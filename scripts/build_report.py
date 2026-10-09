@@ -305,7 +305,7 @@ usable signal, which is why the maturity output was removed.</p>
 {figure("03_reliability_test.png", "Calibration on held-out patients.")}
 {figure("03_shap_any.png", "SHAP of the final TLS model.")}
 {figure("04_reliability_ood.png", "Calibration on the OOD cohorts: bulk probabilities over-call TLS on a new cohort.")}
-{figure("04_spot_maps.png", "Predicted P(TLS) on held-out Visium sections.")}"""),
+{figure("04_spot_maps.png", "Predicted P(TLS) on held-out Visium sections; one colour scale for all sections, capped at the 99th percentile of their spots (TLS cover ~4% of spots).")}"""),
 
         "ici": ("Immunotherapy cohorts", f"""
 {table(coverage, "Patients per diagnosis and endpoint coverage")}

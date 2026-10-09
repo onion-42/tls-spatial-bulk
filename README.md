@@ -42,9 +42,15 @@ All values: 95 % bootstrap CI; test and OOD patients were never seen in training
 | OOD, Internal lung (local data, not in repo) | 47 (17) | **0.855 [0.742, 0.950]** |
 | OOD, CPTAC-PAAD | 129 (54) | 0.641 [0.543, 0.738] |
 
-Predicted P(TLS) on held-out Visium sections (patients never seen in training):
+Predicted P(TLS) on held-out Visium sections (patients never seen in training); one colour scale for all sections,
+capped at the 99th percentile because TLS cover only ~4 % of spots:
 
 ![Predicted P(TLS) on held-out Visium sections](results/figures/04_spot_maps.png)
+
+What the model uses (final LightGBM model, top-20 features; left: mean |SHAP|, right: SHAP per unit coloured by
+feature value). Immunoglobulin genes (IGHG1, IGHG4, IGHM) and B-cell / TLS chemokine pairs (CCL19 × CD79A) lead:
+
+![SHAP of the final TLS model](results/figures/03_shap_any.png)
 
 Interactive ROC curves per cohort (our model vs the published signatures) and a UMAP of the immunotherapy
 samples: [online report](https://onion-42.github.io/tls-spatial-bulk/report.html).
@@ -56,9 +62,6 @@ it adds nothing on top of it (likelihood-ratio tests ≈ null). An interaction o
 only (bladder IMvigor210 and ccRCC, not corrected for multiplicity).
 
 ![OS: adjusted HR per SD and ΔC-index of our score vs each signature, per cancer type](results/figures/05_forest_OS.png)
-
-![Added value of our score over the 12-chemokine signature (nested models, likelihood-ratio tests)](results/figures/05_added_value_chem.png)
-
 **Limitations.** Spots work, bulk within one cohort is weak (~0.55–0.65 for every model family, signatures
 included). Bulk probabilities over-call TLS on a new cohort — use the ranking there. No maturity output: the
 maturity head showed no signal and was removed.

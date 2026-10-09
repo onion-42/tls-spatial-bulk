@@ -48,3 +48,11 @@ models:
     - {family: lgbm, selector: corr}
     - {family: lgbm, selector: shap}
 
+ici:
+  dir: data/private/ici            # one h5ad per treated study (local only)
+  # Studies whose TMB column is a mutation count (WES), not mutations / Mb -> no TMB-high call.
+  tmb_count_scale: [PUB_SKCM_Hugo_ICI, PUB_SKCM_ICP_Liu, PUB_SKCM_Liang_ICI, PUB_SKCM_Riaz_ICI,
+                    SKCM-aCTLA4-VanAllen, PUB_ccRCC_Immotion150_and_151_ICI, PUB_ccRCC_Immotion150_and_151_TKI]
+  covariates: [icb_class, age, sex, stage, site, location]
+  n_boot: 20
+  seed: 0

@@ -1,0 +1,30 @@
+diagnosis	cohort	n	regimen	os	pfs	response	dcr	response_from
+BLCA	PUB_BLCA_Mariathasan_EGAS00001002556	347	anti-PD(L)1	347	0	298	298	RECIST
+COREAD	ImmunoMSI	108	anti-CTLA4+anti-PD(L)1, anti-PD(L)1	0	106	105	105	RECIST
+COREAD	Nipicol	82	anti-CTLA4+anti-PD(L)1	0	82	78	78	RECIST
+ESGA	Kim_PRJEB25780	34	anti-PD(L)1	0	0	34	34	RECIST
+NSCLC	INOVA_antiPD(L)1	20	anti-PD(L)1	16	20	13	13	RECIST
+NSCLC	INOVA_antiPD(L)1+Chemo	18	anti-PD(L)1+chemo	18	18	9	9	RECIST
+NSCLC	Jung_antiPD(L)1	27	anti-PD(L)1	0	27	27	0	annotated R/NR
+NSCLC	Lee_antiPD(L)1	328	anti-PD(L)1	328	328	328	0	annotated R/NR
+NSCLC	Luke_antiPD(L)1	34	anti-PD(L)1	34	34	28	28	RECIST
+NSCLC	Luke_antiPD(L)1+Chemo	43	anti-PD(L)1+chemo	43	43	36	36	RECIST
+NSCLC	Mark_antiPD(L)1	70	anti-PD(L)1	68	70	64	64	RECIST
+NSCLC	PUB_NSCLC_Banchereau_EGAS00001004343	66	anti-PD(L)1	66	66	66	55	RECIST, annotated R/NR
+SKCM	Auslander_antiPD1	5	anti-CTLA4, anti-CTLA4+anti-PD(L)1	0	0	5	0	annotated R/NR
+SKCM	Freeman_antiCTLA4+antiPD1	26	anti-CTLA4, anti-CTLA4+anti-PD(L)1, anti-PD(L)1	0	0	26	0	annotated R/NR
+SKCM	Gide_antiCTLA4+antiPD1	73	anti-CTLA4+anti-PD(L)1, anti-PD(L)1	73	73	73	73	RECIST
+SKCM	Hugo_antiPD1	19	anti-PD(L)1	19	0	19	19	RECIST
+SKCM	Khan_antiPD1	14	anti-PD(L)1	14	0	0	0	
+SKCM	Liang_antiCTLA4	17	anti-CTLA4, anti-PD(L)1	17	0	17	17	RECIST
+SKCM	Liu_antiPD1	67	anti-PD(L)1	67	67	65	65	RECIST
+SKCM	Riaz_antiPD1	25	anti-PD(L)1	25	0	23	23	RECIST
+SKCM	Ribaz_antiCTLA4	68	anti-CTLA4, anti-CTLA4+anti-PD(L)1, anti-PD(L)1, sequential anti-CTLA4/anti-PD(L)1	0	0	68	68	RECIST
+SKCM	VanAllen_antiCTLA4	34	anti-CTLA4	34	34	34	33	RECIST, annotated R/NR
+ccRCC	CheckMates	181	anti-PD(L)1	181	181	172	172	RECIST
+ccRCC	JAVELIN	354	anti-PD(L)1+antiangiogenic	0	354	0	0	
+ccRCC	PUB_RCC_VanAllen_phs001493_Batch1	16	anti-PD(L)1	16	16	16	16	RECIST
+ccRCC	PUB_RCC_VanAllen_phs001493_Batch2	16	anti-CTLA4+anti-PD(L)1, anti-PD(L)1	16	16	16	16	RECIST
+ccRCC	PUB_ccRCC_Immotion150	173	anti-PD(L)1, anti-PD(L)1+antiangiogenic	0	0	164	164	RECIST
+ccRCC	PUB_ccRCC_Immotion151	387	anti-PD(L)1+antiangiogenic	0	387	362	362	RECIST
+ccRCC	RNDonly_WU_ccRCC_RCCTC	37	anti-CTLA4+anti-PD(L)1	37	23	35	35	RECIST

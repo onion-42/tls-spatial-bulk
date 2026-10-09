@@ -1,0 +1,15 @@
+# Local-only data: Visium downloads (~3 GB) and non-public cohorts (Internal lung, MGH)
+data/visium/
+data/private/
+data/processed/
+models/
+results/*.log
+
+# Tooling
+.venv/
+.claude/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ipynb_checkpoints/
+report_full.html

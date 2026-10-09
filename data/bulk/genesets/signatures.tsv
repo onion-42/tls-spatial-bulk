@@ -1,0 +1,31 @@
+name	provenance	priority	paper	genes
+TLS_Solid	paper	1	https://doi.org/10.1016/j.it.2014.09.006	BCL6 CXCR4 CD86 CCL19 CXCL13 CCR7 SELL LAMP3 CCL21 PTGDS
+TLS_SKCM	paper	1	https://doi.org/10.1038/s41586-019-1914-8	CD1D CETP LAT SKAP1 CCR6 RBP5 CD79B EIF1AY PTGDS
+TLS UC	paper	0	https://doi.org/10.1038/s41591-020-1086-y	POU2AF1 LAMP3 CD79A MS4A1
+TLS_Chem	paper	1	https://ajp.amjpathol.org/article/S0002-9440(11)00320-8/fulltext	CXCL11 CCL18 CXCL10 CXCL9 CCL2 CXCL13 CCL8 CCL5 CCL4 CCL3 CCL19 CCL21
+Main6_Exhausted_CD8_T_cells_LUAD	CHESS	1	https://docs.google.com/spreadsheets/d/1Z5q-cupmPI4-r8WpKJQWRRjTOhxtgDqbzvhSZJHwrI0/edit#gid=1763800886	CD8A HAVCR2 CXCL13 LAG3 TIGIT CTLA4 TNFRSF9 CD8B PDCD1
+cdc2	CHESS	1	https://docs.google.com/spreadsheets/d/1Z5q-cupmPI4-r8WpKJQWRRjTOhxtgDqbzvhSZJHwrI0/edit#gid=1763800886	ITGAX HLA-DRA HLA-DRB1 CD1C ITGAM SIRPA FCER1A CLEC10A
+Follicular_dendritic_cells	CHESS	1	https://docs.google.com/spreadsheets/d/1Z5q-cupmPI4-r8WpKJQWRRjTOhxtgDqbzvhSZJHwrI0/edit#gid=1763800886	PDPN LTBR CLU C4A BST1 C1S SERPINE2 PRNP FDCSP
+Main4_B_cells	CHESS	1	https://docs.google.com/spreadsheets/d/1Z5q-cupmPI4-r8WpKJQWRRjTOhxtgDqbzvhSZJHwrI0/edit#gid=1763800886	PAX5 CD79B CD19 TNFRSF13C STAP1 MS4A1 CD79A TNFRSF17 FCRL5 BLK CR2 TNFRSF13B CD22
+Main4_T_cells	CHESS	1	https://docs.google.com/spreadsheets/d/1Z5q-cupmPI4-r8WpKJQWRRjTOhxtgDqbzvhSZJHwrI0/edit#gid=1763800886	TBX21 ITK CD3D CD3E CD3G TRAC TRBC1 TRBC2 CD28 CD5 TRAT1
+Tfh_breast	paper	1	https://doi.org/10.1172/JCI67428	CD200 PDCD1 CXCL13 CXCL9 CD38 ICOS IGNF
+LTi_TNBC	paper	1	https://www.sciencedirect.com/science/article/pii/S1535610821004992	IL7R LTB TNFRSF18 NR4A1 CCR7 TNFRSF4 SOXA
+Follicular_B_helper_T_cells	CHESS	0	https://docs.google.com/spreadsheets/d/1Z5q-cupmPI4-r8WpKJQWRRjTOhxtgDqbzvhSZJHwrI0/edit#gid=1763800886	BCL6 CXCR5 MAF SH2D1A CD40LG IL6 IL21 ICOS CD84 IL4
+cdc1	CHESS	0	https://docs.google.com/spreadsheets/d/1Z5q-cupmPI4-r8WpKJQWRRjTOhxtgDqbzvhSZJHwrI0/edit#gid=1763800886	HLA-DRA HLA-DRB1 THBD XCR1 CLEC9A LY75 ITGAX CD14 ITGAM CADM1 C1orf54
+Main3_lymphatic_endothelium	CHESS	0	https://docs.google.com/spreadsheets/d/1Z5q-cupmPI4-r8WpKJQWRRjTOhxtgDqbzvhSZJHwrI0/edit#gid=1763800886	PDPN PROX1 CCL21 JAM2 FOXC2 EDNRB PPP1R13B FLT4 SOX18 LYVE1 CXCL12 JAM3 CXADR
+Main3_fibroblastic_reticular_cells	CHESS	0	https://docs.google.com/spreadsheets/d/1Z5q-cupmPI4-r8WpKJQWRRjTOhxtgDqbzvhSZJHwrI0/edit#gid=1763800886	DES PDPN ACTA2 LTBR PTGS2 PDGFRA VCAM1 ICAM1 THY1 VIM NT5E
+CD8_T_ex_TNBC	paper	0	https://www.sciencedirect.com/science/article/pii/S1535610821004992	CXCL13 LAG3 PDCD1 TIGIT CTSW CTLA4 TOX GZMB
+CD4_Th1_Tfh_TNBC	paper	0	https://www.sciencedirect.com/science/article/pii/S1535610821004992	CXCL13 PDCD1 TOX TIGIT TOX2 TNFRSF4 CTLA4 CD200
+GC_Foll_B_TNBC	paper	0	https://www.sciencedirect.com/science/article/pii/S1535610821004992	NEIL1 BACH2 CD40 TCL1A MEF2B CXCR5 RGS13
+Mature_DC_TNBC	paper	0	https://www.sciencedirect.com/science/article/pii/S1535610821004992	FSCN1 LAMP3 CCR7 BVRC3 CCL19 EBI3 IDO1
+cDC1_TNBC	paper	0	https://www.sciencedirect.com/science/article/pii/S1535610821004992	CLEC9A IDO1 IRFB CPNE3 CLNK BATF3
+Pro_inf_M_MMP9_TNBC	paper	0	https://www.sciencedirect.com/science/article/pii/S1535610821004992	MMP9 PLA2G2D U8D PTGDS IGLC2 CXCL9 APOE
+Pro_inf_M_CCL2_TNBC	paper	0	https://www.sciencedirect.com/science/article/pii/S1535610821004992	CCL2 FN1 CXCL10 CCL8 CXCl10 TNF MARCO CXCL9 TNFSF10
+M1_signatures	CHESS	0	https://docs.google.com/spreadsheets/d/1Z5q-cupmPI4-r8WpKJQWRRjTOhxtgDqbzvhSZJHwrI0/edit#gid=1763800886	IL23A SOCS3 IL12A IL12B CMKLR1 IL1B NOS2 IRF5 TNF
+Treg	CHESS	0	https://docs.google.com/spreadsheets/d/1Z5q-cupmPI4-r8WpKJQWRRjTOhxtgDqbzvhSZJHwrI0/edit#gid=1763800886	TNFRSF18 IL10 CCR8 CTLA4 IKZF4 IKZF2 FOXP3
+Th17	CHESS	0	https://docs.google.com/spreadsheets/d/1Z5q-cupmPI4-r8WpKJQWRRjTOhxtgDqbzvhSZJHwrI0/edit#gid=1763800886	IL17F IL17A IL26 IL22 RORC BATF IL23R CCR6
+Th1	CHESS	0	https://docs.google.com/spreadsheets/d/1Z5q-cupmPI4-r8WpKJQWRRjTOhxtgDqbzvhSZJHwrI0/edit#gid=1763800886	IL2 IFNG IL12RB2 CD40LG IL21 TBX21 STAT4
+Th2	CHESS	0	https://docs.google.com/spreadsheets/d/1Z5q-cupmPI4-r8WpKJQWRRjTOhxtgDqbzvhSZJHwrI0/edit#gid=1763800886	IL4 IL5 IL13 IL10 GATA3 CCR4
+Checkpoint_inhibition	CHESS	0	https://docs.google.com/spreadsheets/d/1Z5q-cupmPI4-r8WpKJQWRRjTOhxtgDqbzvhSZJHwrI0/edit#gid=1763800886	VSIR HAVCR2 LAG3 TIGIT CTLA4 BTLA CD274 PDCD1 PDCD1LG2
+Plasma_cells	paper	0	https://www.nature.com/articles/ni.3154	PAX5 SPIB BCL11A ABLIM1 TLE3 HHEX
+GC_cells	paper	0	https://www.nature.com/articles/ni.3154	BCL6 BACH2 POU2AF1 PHF19 CENPS

@@ -1,0 +1,9 @@
+cohort	n	tls_pos	maturity_known	mature	pathologist	cnn	role
+CPTAC-PAAD	129	54.0	54	11.0	129	0	OOD (locked)
+CPTAC-ccRCC	86	25.0	0	0.0	86	0	train/test
+Internal_lung	47	17.0	0	0.0	47	0	OOD (locked)
+MGH_LUAD_DagogoJack	12	9.0	9	1.0	12	0	train/test
+TCGA-BRCA	420	203.0	89	9.0	153	267	train/test
+TCGA-KIRC/KIRP/KICH	210	23.0	0	0.0	210	0	train/test
+TCGA-LUAD	451	345.0	158	21.0	221	230	train/test
+TCGA-PAAD	118	89.0	89	17.0	118	0	train/test

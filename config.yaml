@@ -1,0 +1,50 @@
+# All paths are relative to the repo root. Non-public cohorts live in data/private (gitignored);
+# the pipeline runs without them (Internal lung OOD and MGH are then skipped).
+paths:
+  bulk_public: data/bulk
+  bulk_private: data/private
+  visium_raw: data/visium/raw
+  visium_h5ad: data/visium/h5ad
+  processed: data/processed
+  results: results
+
+cohorts:
+  ood: [Internal_lung, CPTAC-PAAD]
+  # Gene panels of the previous model were derived on these cohorts -> excluded when scoring prev_panel.
+  prev_panel_derived_on: [TCGA-LUAD, TCGA-BRCA]
+
+split:
+  seed: 42
+  bulk_test_frac: 0.2
+  visium_test_frac: 0.25
+  cv_folds: 5
+
+units:
+  ks: [1, 7, 19]
+  cap_per_scale: 300        # centres per section and scale (train)
+  max_positive_per_scale: 150
+
+features:
+  n_top_variable: 5000
+  min_bulk_median: 1.0      # log2(TPM + 1)
+  min_spot_detection: 0.02  # share of spots with count > 0
+  n_panel: 200
+  n_pair_genes: 30
+  variants:                 # stage A: representation × platform offset
+    - {representation: rank, offset: true}
+    - {representation: rank, offset: false}
+    - {representation: log, offset: true}
+    - {representation: log, offset: false}
+
+models:
+  stage_a: [{family: enet, selector: corr}]
+  stage_b:
+    - {family: signature, selector: null}
+    - {family: prev_panel, selector: null}
+    - {family: ktsp, selector: corr}
+    - {family: ktsp, selector: shap}
+    - {family: enet, selector: corr}
+    - {family: enet, selector: shap}
+    - {family: lgbm, selector: corr}
+    - {family: lgbm, selector: shap}
+

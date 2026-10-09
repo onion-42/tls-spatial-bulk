@@ -201,8 +201,9 @@ PFS and OS independently of PD-L1 and CD8 density (Vanhersecke et al., <i>Nat Ca
 <p>TLS are scored on H&amp;E, multiplex immunofluorescence or spatial transcriptomics: accurate, but slow and costly.
 Bulk RNA-seq is routine, yet bulk TLS signatures are imprecise against pathologist calls. This project trains one
 model on both worlds so that the same model scores a spot or a bulk sample.</p>
-<div class=pending><b>Figure 2 · TLS in solid cancers</b> — redrawn in BioRender from the 2023–2026 literature;
-to be added.</div>"""),
+{figure("00_tls_biology.png", "TLS formation and maturation, what they release, and the transcriptomic markers of each stage.")}
+{figure("00_tls_mechanisms.png", "TLS cell types and signalling markers (chemokines, receptors, LTBR ligands) and the two ways TLS kill tumour cells: antibodies and cytotoxic T cells.")}
+{figure("00_tls_in_solid_cancers.png", "TLS across solid cancers: presence, induction, prognosis, detection method, surrogate response markers and TLS-guided clinical trials.")}"""),
 
         "data": ("Data", f"""
 <p>Bulk cohorts and their roles. TLS+ counts are pathologist calls except TCGA-BRCA and part of TCGA-LUAD, where

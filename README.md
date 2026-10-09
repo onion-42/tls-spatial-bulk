@@ -98,8 +98,8 @@ saved = pickle.load(open("models/tls_model.pkl", "rb"))
 p_tls = io_ici.score_tls(log_tpm, meta, saved)                         # calibrated P(TLS) per sample
 ```
 
-Methods, the course of the work, all figures, baselines and the survival analysis: **`report.html`**
-(interactive ROC and UMAP need an internet connection for plotly.js). Rebuild it after notebook 05 with
+Methods, the course of the work, all figures, baselines and the survival analysis: **`report.html`**, online at
+**https://onion-42.github.io/tls-spatial-bulk/report.html** (interactive ROC and UMAP need an internet connection for plotly.js). Rebuild it after notebook 05 with
 `uv run python scripts/report_data.py` (per-sample inputs → `data/private/report/`, needs the local cohorts) and
 `uv run python scripts/build_report.py`.
 

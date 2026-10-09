@@ -65,6 +65,12 @@ def metric_rows(df: pd.DataFrame, head: str) -> pd.DataFrame:
     })
 
 
+def by_endpoint(p: pd.DataFrame) -> pd.DataFrame:
+    """Rows in endpoint order (OS, PFS, Response, DCR), diagnoses alphabetical, pooled last."""
+    order = {e: i for i, e in enumerate(["OS", "PFS", "Response", "DCR"])}
+    return p.reindex(sorted(p.index, key=lambda k: (order[k[0]], k[1] == "All", k[1])))
+
+
 def effect_pivot(assoc: pd.DataFrame) -> pd.DataFrame:
     """HR / OR per 1 SD [95% CI] per endpoint × diagnosis × score; bold when the CI excludes 1."""
     a = assoc[assoc["score"] != "covariates only"].copy()
@@ -76,13 +82,11 @@ def effect_pivot(assoc: pd.DataFrame) -> pd.DataFrame:
         return f"<b>{text}</b>" if (r.lo > 1 or r.hi < 1) else text
 
     a["cell"] = a.apply(mark, axis=1)
-    order = {e: i for i, e in enumerate(["OS", "PFS", "Response", "DCR"])}
-    p = a.pivot_table(index=["endpoint", "diagnosis"], columns="score", values="cell", aggfunc="first")
-    p = p.reindex(sorted(p.index, key=lambda k: (order[k[0]], k[1] == "All", k[1])))
+    p = by_endpoint(a.pivot_table(index=["endpoint", "diagnosis"], columns="score", values="cell", aggfunc="first"))
     return p[[OURS] + [c for c in p.columns if c != OURS]]
 
 
-def delta_pivot(delta: pd.DataFrame, rows, column: str, values_from: str) -> pd.DataFrame:
+def delta_pivot(delta: pd.DataFrame, rows, column: str) -> pd.DataFrame:
     d = delta[rows].copy()
 
     def mark(r):
@@ -92,9 +96,7 @@ def delta_pivot(delta: pd.DataFrame, rows, column: str, values_from: str) -> pd.
         return f"<b>{text}</b>" if (r.delta_lo > 0 or r.delta_hi < 0) else text
 
     d["cell"] = d.apply(mark, axis=1)
-    order = {e: i for i, e in enumerate(["OS", "PFS", "Response", "DCR"])}
-    p = d.pivot_table(index=["endpoint", "diagnosis"], columns=column, values="cell", aggfunc="first")
-    return p.reindex(sorted(p.index, key=lambda k: (order[k[0]], k[1] == "All", k[1])))
+    return by_endpoint(d.pivot_table(index=["endpoint", "diagnosis"], columns=column, values="cell", aggfunc="first"))
 
 
 def added_pivot(delta: pd.DataFrame) -> pd.DataFrame:
@@ -109,9 +111,7 @@ def added_pivot(delta: pd.DataFrame) -> pd.DataFrame:
 
     d["cell"] = d.apply(mark, axis=1)
     d["comparison"] = d["comparison"].str.split(":").str[0]
-    order = {e: i for i, e in enumerate(["OS", "PFS", "Response", "DCR"])}
-    p = d.pivot_table(index=["endpoint", "diagnosis"], columns="comparison", values="cell", aggfunc="first")
-    p = p.reindex(sorted(p.index, key=lambda k: (order[k[0]], k[1] == "All", k[1])))
+    p = by_endpoint(d.pivot_table(index=["endpoint", "diagnosis"], columns="comparison", values="cell", aggfunc="first"))
     return p[[c for c in ["a", "b", "b vs a", "c", "d", "e", "e vs d"] if c in p.columns]]
 
 
@@ -165,12 +165,10 @@ def main() -> None:
     added = tsv(ICI / "delta_added_value.tsv")
 
     mature_all = test[(test["head"] == "mature") & (test["block"] == "bulk:all")].iloc[0]
-    sig_cols = [c for c in rho.columns if c != "diagnosis"]
-    cv_b_view = cv_b[["candidate", "auroc_bulk", "auroc_spot", "auroc_bulk_pooled", "score"]].rename(columns={
-        "auroc_bulk": "bulk AUROC, within cohort", "auroc_spot": "spot AUROC", "auroc_bulk_pooled": "bulk AUROC, pooled",
-        "score": "selection score"})
-    cv_a_view = cv_a.rename(columns={"auroc_bulk": "bulk AUROC, within cohort", "auroc_spot": "spot AUROC",
-                                     "auroc_bulk_pooled": "bulk AUROC, pooled", "score": "selection score"})
+    cv_names = {"auroc_bulk": "bulk AUROC, within cohort", "auroc_spot": "spot AUROC",
+                "auroc_bulk_pooled": "bulk AUROC, pooled", "score": "selection score"}
+    cv_a_view = cv_a.rename(columns=cv_names)
+    cv_b_view = cv_b[["candidate", *cv_names]].rename(columns=cv_names)
 
     sections = {
         "summary": ("Summary", f"""
@@ -192,7 +190,7 @@ contributes nothing (likelihood-ratio tests near null). A positive interaction o
 cancer (IMvigor210) and ccRCC; it is uncorrected for multiplicity and is a hypothesis.</li>
 </ul>"""),
 
-        "background": ("Background", """
+        "background": ("Background", f"""
 <p>A TLS is an ectopic lymphoid organ that forms inside chronically inflamed tissue, tumours included: a B-cell
 follicle (mature TLS carry a germinal centre and follicular dendritic cells), a T-cell zone and high endothelial
 venules. In 540 tumours treated with anti-PD-1 / PD-L1, mature TLS predicted objective response (43.1% vs 19.6%),
@@ -321,14 +319,14 @@ survival, OR &gt; 1 more responses.</p>
 <h3>Discrimination: ours vs each signature</h3>
 <p>ΔC-index or ΔAUC of the model with our score minus the model with the signature, same patients; bold when the
 bootstrap CI excludes 0.</p>
-{table(delta_pivot(delta_main, delta_main['reference'] == OURS, 'other', 'delta'), index=True)}
+{table(delta_pivot(delta_main, delta_main['reference'] == OURS, 'other'), index=True)}
 <p>Each score vs the confounders-only model:</p>
-{table(delta_pivot(delta_main, delta_main['other'] == 'covariates only', 'reference', 'delta'), index=True)}
+{table(delta_pivot(delta_main, delta_main['other'] == 'covariates only', 'reference'), index=True)}
 {''.join(figure(f'05_forest_{e}.png', f'{e}: left, adjusted HR / OR per SD; right, Δ of ours vs each signature.') for e in ['OS', 'PFS', 'Response', 'DCR'])}
 <h3>TMB-high + PD-L1 subset</h3>
 <p>Patients with both a TMB call and PD-L1 IHC (271 BLCA, 106 NSCLC). Base model = confounders + TMB-high + PD-L1.</p>
 {table(effect_pivot(assoc_n), index=True)}
-{table(delta_pivot(delta_n, delta_n['other'] == 'covariates only', 'reference', 'delta'), "Each score over confounders + TMB-high + PD-L1", index=True)}
+{table(delta_pivot(delta_n, delta_n['other'] == 'covariates only', 'reference'), "Each score over confounders + TMB-high + PD-L1", index=True)}
 {''.join(figure(f'05_forest_tmb_pdl1_{e}.png', f'{e}, adjusted for TMB-high and PD-L1.') for e in ['OS', 'PFS', 'Response', 'DCR'] if (FIG / f'05_forest_tmb_pdl1_{e}.png').exists())}"""),
 
         "added": ("Added value over 12-chemokine", f"""
@@ -447,11 +445,11 @@ out-of-distribution and immunotherapy cohorts · aggregates only</p></header>
 {{BODY}}
 </main>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/2.35.2/plotly.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/plotly.js-dist-min@2.35.2/plotly.min.js"></script>
 <script>
 (function () {
   if (!window.Plotly) {
-    document.querySelectorAll(".plot").forEach(el => { el.textContent = "Interactive plots need an internet connection (plotly.js from cdnjs)."; });
+    document.querySelectorAll(".plot").forEach(el => { el.textContent = "Interactive plots need an internet connection (plotly.js from jsDelivr)."; });
     return;
   }
   const css = name => getComputedStyle(document.documentElement).getPropertyValue(name).trim();

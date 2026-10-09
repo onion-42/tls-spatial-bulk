@@ -25,6 +25,7 @@ log = logging.getLogger(__name__)
 MIN_EVENTS = 10
 NUMERIC_COVARIATES = ("age", "tmb", "tmb_high", "pdl1_tc")
 COVARIATES_ONLY = "covariates only"
+NO_LRT = {"lr_stat": np.nan, "lr_df": np.nan, "lr_p": np.nan}
 RIDGE_FALLBACK = 0.01  # used only when the unpenalised Cox fit does not converge (noted per model)
 
 
@@ -73,18 +74,18 @@ def stratified_cindex(time, event, risk, strata) -> float:
     return float(concordant / comparable) if comparable else np.nan
 
 
-def _terms(score) -> list[str]:
+def score_terms(score) -> list[str]:
     if score is None:
         return []
     return [score] if isinstance(score, str) else list(score)
 
 
 def model_name(score) -> str:
-    return " + ".join(_terms(score)) if score is not None else COVARIATES_ONLY
+    return " + ".join(score_terms(score)) if score is not None else COVARIATES_ONLY
 
 
 def _term_rows(df, score) -> pd.Series:
-    return df[_terms(score)].notna().all(axis=1)
+    return df[score_terms(score)].notna().all(axis=1)
 
 
 def _nan_result(note: str, **extra) -> dict:
@@ -109,7 +110,7 @@ def _clean_design(covars: pd.DataFrame, rows: np.ndarray, groups) -> pd.DataFram
 def _cox(df, duration, event, score, covars, strata) -> dict:
     from lifelines import CoxPHFitter
 
-    terms = _terms(score)
+    terms = score_terms(score)
     rows = (df[[duration, event]].notna().all(axis=1) & _term_rows(df, score)).to_numpy()
     data = _clean_design(covars, rows, strata).copy()
     for t in terms:
@@ -148,7 +149,7 @@ def _cox(df, duration, event, score, covars, strata) -> dict:
 def _logit(df, outcome, score, covars, groups) -> dict:
     import statsmodels.api as sm
 
-    terms = _terms(score)
+    terms = score_terms(score)
     rows = df[outcome].notna() & _term_rows(df, score)
     y_all = df[outcome]
     informative = y_all[rows].groupby(np.asarray(groups)[rows.to_numpy()]).transform("nunique") > 1
@@ -206,7 +207,7 @@ def nested_lrt(big: dict, small: dict) -> dict:
     comparable = (big["n"] == small["n"] and big["k"] > small["k"] and not big["note"] and not small["note"]
                   and np.isfinite(big["loglik"]) and np.isfinite(small["loglik"]))
     if not comparable:
-        return {"lr_stat": np.nan, "lr_df": np.nan, "lr_p": np.nan}
+        return dict(NO_LRT)
     stat, dof = max(2 * (big["loglik"] - small["loglik"]), 0.0), int(big["k"] - small["k"])
     return {"lr_stat": float(stat), "lr_df": dof, "lr_p": float(chi2.sf(stat, dof))}
 

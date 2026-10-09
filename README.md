@@ -10,11 +10,17 @@ included: a B-cell follicle (mature TLS: with a germinal centre and follicular d
 high endothelial venules. Inside the tumour it primes T cells and produces plasma cells and antibodies against
 the tumour.
 
+![TLS formation and maturation, what they release, transcriptomic markers](results/figures/00_tls_biology.png)
+
+![TLS cell types, signalling markers and the two ways TLS kill tumour cells](results/figures/00_tls_mechanisms.png)
+
 **Why it matters.** TLS are an immunotherapy biomarker that adds to the ones used today. In 540 tumours treated
 with anti-PD-1 / PD-L1, mature TLS predicted objective response (43.1 % vs 19.6 %), PFS and OS **independently of
 PD-L1 and CD8 density** (Vanhersecke et al., *Nat Cancer* 2021,
 [doi:10.1038/s43018-021-00232-6](https://doi.org/10.1038/s43018-021-00232-6)); in a small subset (n = 70) the
 mature-TLS rate did not differ by TMB.
+
+![TLS across solid cancers: presence, induction, prognosis, detection, clinical trials](results/figures/00_tls_in_solid_cancers.png)
 
 **The gap.** TLS are scored on H&E / multiplex IF or with spatial transcriptomics: accurate, but slow and expensive.
 Bulk RNA-seq is routine, yet bulk TLS signatures are imprecise: inside one cohort the published signatures reach
@@ -36,11 +42,22 @@ All values: 95 % bootstrap CI; test and OOD patients were never seen in training
 | OOD, Internal lung (local data, not in repo) | 47 (17) | **0.855 [0.742, 0.950]** |
 | OOD, CPTAC-PAAD | 129 (54) | 0.641 [0.543, 0.738] |
 
+Predicted P(TLS) on held-out Visium sections (patients never seen in training):
+
+![Predicted P(TLS) on held-out Visium sections](results/figures/04_spot_maps.png)
+
+Interactive ROC curves per cohort (our model vs the published signatures) and a UMAP of the immunotherapy
+samples: [online report](https://onion-42.github.io/tls-spatial-bulk/report.html).
+
 **Immunotherapy cohorts** (2,689 ICI-treated patients, 6 cancer types; adjusted Cox / logistic models vs three
 published TLS signatures, `results/ici/`): a higher TLS score goes with longer OS / PFS and more responses, but
 the effect is small (pooled OS HR 0.92 per SD), and the model is **not better than the 12-chemokine signature** —
 it adds nothing on top of it (likelihood-ratio tests ≈ null). An interaction of the two scores is a hypothesis
 only (bladder IMvigor210 and ccRCC, not corrected for multiplicity).
+
+![OS: adjusted HR per SD and ΔC-index of our score vs each signature, per cancer type](results/figures/05_forest_OS.png)
+
+![Added value of our score over the 12-chemokine signature (nested models, likelihood-ratio tests)](results/figures/05_added_value_chem.png)
 
 **Limitations.** Spots work, bulk within one cohort is weak (~0.55–0.65 for every model family, signatures
 included). Bulk probabilities over-call TLS on a new cohort — use the ranking there. No maturity output: the

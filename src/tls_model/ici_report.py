@@ -68,7 +68,7 @@ def _outcome_rows(df: pd.DataFrame, kind: str, outcome) -> pd.DataFrame:
 
 def complete_rows(df: pd.DataFrame, models: list) -> pd.DataFrame:
     """Rows where every score used by any model is present."""
-    cols = sorted({t for m in models for t in ici_stats._terms(m)})
+    cols = sorted({t for m in models for t in ici_stats.score_terms(m)})
     return df[df[cols].notna().all(axis=1)]
 
 
@@ -90,12 +90,12 @@ def _part(out_dir: Path, analysis: str, diagnosis: str, endpoint: str) -> tuple[
 
 def _lrt(fits: dict, a, b) -> dict:
     """LRT when one model's terms are a strict subset of the other's; NaN otherwise."""
-    ta, tb = set(ici_stats._terms(a)), set(ici_stats._terms(b))
+    ta, tb = set(ici_stats.score_terms(a)), set(ici_stats.score_terms(b))
     if tb < ta:
         return ici_stats.nested_lrt(fits[a], fits[b])
     if ta < tb:
         return ici_stats.nested_lrt(fits[b], fits[a])
-    return {"lr_stat": np.nan, "lr_df": np.nan, "lr_p": np.nan}
+    return dict(ici_stats.NO_LRT)
 
 
 def _run_one(sub, kind, outcome, scores, covariates, pairs, n_boot, seed):

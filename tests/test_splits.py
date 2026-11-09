@@ -75,3 +75,19 @@ def test_weights_balance_kinds_and_groups():
     assert np.isclose(w[group == "c1"].sum(), w[group == "c2"].sum())
     assert np.isclose(w[group == "s1"].sum(), w[group == "s2"].sum())
     assert np.isclose(w.mean(), 1.0)
+
+
+def test_visium_split_locks_ood_sources():
+    patients = pd.DataFrame(
+        {
+            "patient": [f"P{i}" for i in range(16)],
+            "source": ["USZ"] * 8 + ["GSE273952"] * 4 + ["GSE351843"] * 4,
+            "has_tls": [1, 1, 0, 0] * 4,
+        }
+    )
+
+    split = splits.split_visium(patients, test_frac=0.25, seed=0, ood_sources=["GSE273952", "GSE351843"])
+
+    assert (split[patients["source"] != "USZ"] == "ood").all()
+    assert set(split[patients["source"] == "USZ"]) == {"train", "test"}
+    assert (split[patients["source"] == "USZ"] == "test").sum() == 2

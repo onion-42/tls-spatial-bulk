@@ -10,8 +10,15 @@ paths:
 
 cohorts:
   ood: [Internal_lung, CPTAC-PAAD]
+  # Visium cohorts held out whole (no spot in gene filter, offset, prior or training): scored once in notebook 04.
+  visium_ood: [GSE273952, GSE351843]
   # Gene panels of the previous model were derived on these cohorts -> excluded when scoring prev_panel.
   prev_panel_derived_on: [TCGA-LUAD, TCGA-BRCA]
+
+labels:
+  # GSE351843 `aggregate` (lymphoid aggregate without a called follicle) = immature TLS (true) or excluded (false).
+  # Notebook 04 reports the other mapping as a sensitivity analysis whatever is set here.
+  aggregate_is_tls: true
 
 split:
   seed: 42

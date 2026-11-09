@@ -300,7 +300,7 @@ explicit; leave-one-cohort-out kept as a robustness table only.</li>
 usable signal, which is why the maturity output was removed.</p>
 {table(loco, "Leave-one-cohort-out (robustness only; selection saw these cohorts)")}
 {interactive_roc()}
-{figure("01_label_maps.png", "Visium spot labels on example sections.")}
+{figure("01_label_maps_GSE175540.png", "Visium spot labels (GSE175540 sections).")}
 {figure("02_bulk_pca.png", "Bulk cohorts, PCA of the shared gene panel: cohorts separate, so pooled AUROC is easy and within-cohort AUROC is the honest metric.")}
 {figure("03_reliability_test.png", "Calibration on held-out patients.")}
 {figure("03_shap_any.png", "SHAP of the final TLS model.")}

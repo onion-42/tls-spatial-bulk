@@ -7,7 +7,7 @@ from tls_model import pipeline
 
 
 def _units(seed=0):
-    """Synthetic units: 3 bulk cohorts (one OOD) + 2 Visium sections, label driven by gene G0."""
+    """Synthetic units: 3 bulk cohorts (one OOD) + 3 Visium sections (one OOD), label driven by gene G0."""
     rng = np.random.default_rng(seed)
     rows = []
     for cohort, split in (("C1", None), ("C2", None), ("OOD", "ood")):
@@ -18,7 +18,7 @@ def _units(seed=0):
                      label_source="cnn" if (cohort == "C1" and i % 7 == 1) else "pathologist",
                      tls_any=int(i % 2), tls_mature=float(i % 4 == 1) if i % 2 else np.nan, k=0, tls_fraction=np.nan)
             )
-    for s, split, protocol in (("S1", "train", "frozen"), ("S2", "test", "ffpe")):
+    for s, split, protocol in (("S1", "train", "frozen"), ("S2", "test", "ffpe"), ("S3", "ood", "ffpe")):
         for i in range(80):
             rows.append(
                 dict(kind="visium", unit="spot" if i < 60 else "agg7", group=s, cohort="", section=s,
@@ -43,6 +43,7 @@ def test_training_rows_never_contain_test_or_ood():
         assert set(train["split"]) == {"train"}
         held_out = set(units.obs.loc[units.obs["split"] != "train", "patient"])
         assert not held_out & set(train["patient"])
+        assert "PS3" in held_out  # the OOD Visium section is held out like an OOD bulk cohort
 
 
 def test_mature_head_uses_only_pathologist_or_visium_maturity():
@@ -135,3 +136,63 @@ def test_run_cv_returns_out_of_fold_scores():
     assert np.isfinite(oof["enet|corr"][rows]).all()
     assert np.isnan(oof["enet|corr"][~rows]).all()
     assert table.set_index("candidate").loc["enet|corr", "score"] > 0.7
+
+
+def test_visium_units_fill_genes_missing_from_a_section_with_zeros():
+    from tls_model import prepare
+
+    obs = pd.DataFrame(
+        {"array_row": [0, 0, 1], "array_col": [0, 2, 1], "tls": [1, 0, 0], "tls_mature": [np.nan] * 3,
+         "excluded": [False] * 3, "section": "S", "patient": "P", "protocol": "ffpe", "platform": "visium_ffpe",
+         "source": "GSE351843"},
+        index=["b1", "b2", "b3"],
+    )
+    section = ad.AnnData(X=np.array([[4, 0], [0, 4], [2, 2]], dtype=np.float32), obs=obs,
+                         var=pd.DataFrame(index=["G0", "G2"]))
+    cfg = {"units": {"ks": [1, 7], "cap_per_scale": 300, "max_positive_per_scale": 150}}
+
+    units = prepare._visium_units(section, "ood", ["G0", "G1", "G2"], cfg, np.random.default_rng(0))
+
+    assert list(units.var_names) == ["G0", "G1", "G2"]
+    assert (units.obs["split"] == "ood").all() and set(units.obs["unit"]) == {"spot", "section"}
+    assert np.all(units.X[:, 1] == 0)
+    assert np.isclose(units.X[0, 0], np.log2(1e6 + 1))
+
+
+def test_bulk_and_visium_unit_blocks_concat_to_the_kept_genes_only():
+    from tls_model import prepare
+
+    genes = ["G0", "G1"]
+    bulk_obs = pd.DataFrame({"cohort": ["C"], "patient": ["p"], "split": ["train"], "label_source": ["pathologist"],
+                             "tls_any": [1.0], "tls_mature": [np.nan]}, index=["b"])
+    bulk = ad.AnnData(X=np.ones((1, 3), dtype=np.float32), obs=bulk_obs, var=pd.DataFrame(index=["G0", "G1", "G9"]))
+    obs = pd.DataFrame({"array_row": [0], "array_col": [0], "tls": [0], "tls_mature": [np.nan], "excluded": [False],
+                        "section": "S", "patient": "P", "protocol": "ffpe", "platform": "visium_ffpe", "source": "X"},
+                       index=["s1"])
+    section = ad.AnnData(X=np.array([[2, 2]], dtype=np.float32), obs=obs, var=pd.DataFrame(index=genes))
+    cfg = {"units": {"ks": [1], "cap_per_scale": 300, "max_positive_per_scale": 150}}
+
+    blocks = [prepare._bulk_units(bulk, genes), prepare._visium_units(section, "ood", genes, cfg, np.random.default_rng(0))]
+    units = ad.concat(blocks, join="outer")
+
+    assert list(units.var_names) == genes
+
+
+def test_predict_in_chunks_equals_one_pass():
+    units = _units()
+    meta = {"genes": list(units.var_names), "signatures": {"sA": ["G0", "G1"], "sB": ["G2", "G3"]},
+            "offset": np.zeros(units.n_vars, dtype=np.float32)}
+    B, names = pipeline.feature_matrix(units, meta, representation="rank", use_offset=False)
+    rows = pipeline.train_rows(units.obs, "any")
+    model = pipeline.make_head({"family": "enet", "selector": "corr"}, meta, 5, 2, 0)
+    model.fit(B[rows], names, units.obs["tls_any"].to_numpy(dtype=float)[rows], np.ones(rows.sum()))
+    from tls_model.models import PlattCalibrator
+
+    calibrator = PlattCalibrator().fit(model.predict_proba(B[rows], names), units.obs["tls_any"].to_numpy()[rows].astype(int),
+                                       pipeline.calibration_kind(units.obs)[rows])
+    variant = {"representation": "rank", "offset": False}
+
+    one = pipeline.predict(B, names, units.obs, model, calibrator)
+    chunked = pipeline.predict_in_chunks(units, meta, variant, model, calibrator, chunk=37)
+
+    assert np.allclose(one, chunked)

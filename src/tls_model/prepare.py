@@ -61,17 +61,24 @@ def _bulk_units(bulk: ad.AnnData, genes: list[str]) -> ad.AnnData:
         },
         index=obs.index,
     )
-    return ad.AnnData(X=np.asarray(bulk[:, genes].X, dtype=np.float32), obs=unit_obs)
+    return ad.AnnData(X=np.asarray(bulk[:, genes].X, dtype=np.float32), obs=unit_obs, var=pd.DataFrame(index=genes))
 
 
 def _visium_units(section: ad.AnnData, split: str, genes: list[str], cfg: dict, rng) -> ad.AnnData:
+    """Units of one section; test / ood sections give spots (k = 1) + the whole section only."""
     if split == "train":
         units = build_units(section, ks=tuple(cfg["units"]["ks"]), cap=cfg["units"]["cap_per_scale"],
                             max_positive=cfg["units"]["max_positive_per_scale"], rng=rng)
     else:
         units = build_units(section, ks=(1,), cap=None, max_positive=None, rng=rng)
+    # Genes absent from a section's probe set (possible for OOD cohorts) count as not detected: log2(0 + 1) = 0.
     gene_idx = section.var_names.get_indexer(genes)
-    values = log2_cpm(units.X)[:, gene_idx]
+    present = gene_idx >= 0
+    values = np.zeros((units.n_obs, len(genes)), dtype=np.float32)
+    values[:, present] = log2_cpm(units.X)[:, gene_idx[present]]
+    if not present.all():
+        log.warning("%s: %d / %d kept genes missing from the section, set to 0", units.obs["section"].iloc[0],
+                    (~present).sum(), len(genes))
     obs = units.obs
     unit_obs = pd.DataFrame(
         {
@@ -82,7 +89,7 @@ def _visium_units(section: ad.AnnData, split: str, genes: list[str], cfg: dict, 
         },
         index=obs.index,
     )
-    return ad.AnnData(X=values.astype(np.float32), obs=unit_obs)
+    return ad.AnnData(X=values, obs=unit_obs, var=pd.DataFrame(index=genes))
 
 
 def _spot_detection(sections: pd.DataFrame, genes: list[str]) -> np.ndarray:
@@ -130,10 +137,12 @@ def prepare_units(cfg: dict, root: Path = Path(".")) -> tuple[ad.AnnData, dict]:
 
     sections = section_table(paths["visium_h5ad"])
     patients = sections.groupby("patient").agg(source=("source", "first"), has_tls=("has_tls", "max")).reset_index()
-    patients["split"] = split_visium(patients, cfg["split"]["visium_test_frac"], seed).to_numpy()
+    patients["split"] = split_visium(patients, cfg["split"]["visium_test_frac"], seed,
+                                     cfg["cohorts"].get("visium_ood", [])).to_numpy()
     sections = sections.merge(patients[["patient", "split"]], on="patient")
 
-    shared = sorted(set(bulk.var_names).intersection(*sections["genes"]))
+    # Shared genes come from the train / test sections only: an OOD cohort must not shape the feature space.
+    shared = sorted(set(bulk.var_names).intersection(*sections.loc[sections["split"] != "ood", "genes"]))
     signatures = io_bulk.load_signatures(paths["bulk_public"])
     protected = {g for genes in signatures.values() for g in genes}
     train_bulk = np.asarray(bulk[bulk.obs["split"] == "train", shared].X)

@@ -178,6 +178,20 @@ def predict(B, names, obs, model, calibrator) -> np.ndarray:
     return calibrator.transform(model.predict_proba(B, names), calibration_kind(obs))
 
 
+PREDICT_CHUNK = 50_000
+
+
+def predict_in_chunks(units, meta: dict, variant: dict, model, calibrator, chunk: int = PREDICT_CHUNK) -> np.ndarray:
+    """Calibrated P for all units, features built `chunk` rows at a time. Every feature is single-sample, so the
+    result equals one pass; memory stays bounded for hundreds of thousands of spots (ssGSEA ranks are float64)."""
+    out = np.empty(units.n_obs, dtype=np.float64)
+    for start in range(0, units.n_obs, chunk):
+        part = units[start : start + chunk]
+        B, names = feature_matrix(part, meta, variant["representation"], bool(variant["offset"]))
+        out[start : start + chunk] = predict(B, names, part.obs, model, calibrator)
+    return out
+
+
 def evaluate_split(obs: pd.DataFrame, p_any: np.ndarray, p_mature: np.ndarray | None, split: str,
                    n_boot: int = 1000) -> pd.DataFrame:
     """Metrics per cohort / data block for one split; spot metrics bootstrap whole sections.

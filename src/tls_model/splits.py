@@ -2,7 +2,8 @@
 
 Bulk: OOD cohorts are locked ("ood"). Every other cohort: 80/20 by patient, stratified by TLS status;
 only patients with a pathologist label can be in test (CNN labels are train-only).
-Visium: ~25% of patients held out, stratified by data source and TLS presence.
+Visium: OOD sources are locked ("ood"); of the rest ~25% of patients are held out, stratified by data source
+and TLS presence.
 """
 
 from __future__ import annotations
@@ -39,11 +40,14 @@ def split_bulk(obs: pd.DataFrame, ood_cohorts, test_frac: float, seed: int) -> p
     return split
 
 
-def split_visium(patients: pd.DataFrame, test_frac: float, seed: int) -> pd.Series:
+def split_visium(patients: pd.DataFrame, test_frac: float, seed: int, ood_sources=()) -> pd.Series:
     """patients: one row per patient with columns patient, source, has_tls. Returns split per row."""
     rng = np.random.default_rng(seed)
-    test_patients = _stratified_pick(patients, ["source", "has_tls"], test_frac, rng)
-    return pd.Series(np.where(patients["patient"].isin(test_patients), "test", "train"), index=patients.index)
+    is_ood = patients["source"].isin(ood_sources)
+    test_patients = _stratified_pick(patients[~is_ood], ["source", "has_tls"], test_frac, rng)
+    split = pd.Series(np.where(patients["patient"].isin(test_patients), "test", "train"), index=patients.index)
+    split[is_ood] = "ood"
+    return split
 
 
 def cv_folds(groups: np.ndarray, y: np.ndarray, n_splits: int, seed: int) -> np.ndarray:

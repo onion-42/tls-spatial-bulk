@@ -70,3 +70,20 @@ def test_public_label_tables_have_no_private_rows_or_internal_columns():
         assert set(table["cohort"]) <= set(io_bulk.PUBLIC_COHORTS)
         assert set(table["method"]) <= set(io_bulk.PUBLIC_METHODS)
         assert not set(io_bulk.DROP_COLUMNS) & set(table.columns)
+
+
+def test_processed_units_keep_visium_ood_sources_out_of_train_and_test():
+    import json
+
+    import yaml
+
+    meta_path = ROOT / "data" / "processed" / "meta.json"
+    if not meta_path.exists():
+        pytest.skip("unit table not built")
+    cfg = yaml.safe_load((ROOT / "config.yaml").read_text(encoding="utf-8"))
+    sections = pd.DataFrame(json.loads(meta_path.read_text(encoding="utf-8"))["sections"])
+    is_ood = sections["source"].isin(cfg["cohorts"]["visium_ood"])
+
+    assert (sections.loc[is_ood, "split"] == "ood").all()
+    assert (sections.loc[~is_ood, "split"] != "ood").all()
+    assert not set(sections.loc[is_ood, "patient"]) & set(sections.loc[~is_ood, "patient"])

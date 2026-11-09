@@ -65,3 +65,26 @@ def test_spot_labels_tls_maturity_and_exclusions():
     assert mature[7:10] == [0, 1, 1]
     assert all(np.isnan(m) for m in mature[:7] + mature[10:])
     assert out["excluded"].tolist() == [False] * 10 + [True, False]
+
+
+def test_spot_labels_new_cohorts_fridman_and_breast():
+    raw = pd.Series(["TLS_SFL", "TLS_immature", "tls", "aggregate", "lymphocytes_present", "NO_TLS",
+                     "TLS_PFL", "TLS_CD21NA_CD23neg", "TLS_CD21NA_CD23NA", "TLS_NA", "TLS_sain", "Folded area"])
+
+    out = labels.spot_labels(raw)
+
+    assert out["tls"].tolist() == [1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0]
+    assert out["tls_mature"].tolist()[:4] == [1, 0, 1, 0]
+    assert out["tls_mature"].iloc[6] == 1
+    assert out["tls_mature"].iloc[7:].isna().all()
+    assert out["excluded"].tolist() == [False] * 11 + [True]
+
+
+def test_spot_labels_aggregate_can_be_excluded_instead():
+    raw = pd.Series(["aggregate", "tls", "lymphocytes_present"])
+
+    out = labels.spot_labels(raw, aggregate_is_tls=False)
+
+    assert out["tls"].tolist() == [0, 1, 0]
+    assert out["excluded"].tolist() == [True, False, False]
+    assert np.isnan(out["tls_mature"].iloc[0])

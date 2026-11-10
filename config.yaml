@@ -9,9 +9,14 @@ paths:
   results: results
 
 cohorts:
-  ood: [Internal_lung, CPTAC-PAAD]
+  # Bulk cohorts held out whole (true holdout, notebook 04 only).
+  ood: [Internal_lung, CPTAC-PAAD, CPTAC-ccRCC]
   # Visium cohorts held out whole (no spot in gene filter, offset, prior or training): scored once in notebook 04.
   visium_ood: [GSE273952, GSE351843]
+  # Roles on top of the patient split: Visium train sections = gold training (teacher); these bulk cohorts, train
+  # split only, are self-distilled (teacher pseudo-labels, gold labels never fitted); their test split stays the
+  # in-distribution bulk test. Any other non-OOD bulk cohort is an error.
+  distill: [TCGA-LUAD, TCGA-BRCA, TCGA-KIRC/KIRP/KICH, TCGA-PAAD]
   # Gene panels of the previous model were derived on these cohorts -> excluded when scoring prev_panel.
   prev_panel_derived_on: [TCGA-LUAD, TCGA-BRCA]
 
@@ -54,6 +59,8 @@ models:
     - {family: enet, selector: shap}
     - {family: lgbm, selector: corr}
     - {family: lgbm, selector: shap}
+  # Direct 3-class (no TLS / immature / mature) candidates, compared with the two-head product in the same CV.
+  three_class: [{family: lgbm, selector: corr}, {family: lgbm, selector: shap}]
 
 ici:
   dir: data/private/ici            # one h5ad per treated study (local only)

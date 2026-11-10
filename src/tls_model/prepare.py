@@ -1,7 +1,8 @@
-"""Build the unit table (bulk + Visium) once: splits, label-free gene filter, platform offset, aggregates.
+"""Build the unit table (bulk + Visium) once: splits + roles, label-free gene filter, platform offset, aggregates.
 
 Output: <processed>/units.h5ad (X = log2 values on kept genes, obs = unit metadata) and <processed>/meta.json.
-Everything that is fitted here (gene filter, offset) uses TRAIN data only and no labels.
+Everything that is fitted here (gene filter, offset) uses train-split data only (Visium train sections and the
+expression of the self-distilled bulk cohorts) and no labels; holdout cohorts touch nothing.
 """
 
 from __future__ import annotations
@@ -16,14 +17,15 @@ import pandas as pd
 
 from tls_model import io_bulk, io_visium
 from tls_model.features import gene_filter, platform_offset
+from tls_model.labels import three_class_label
 from tls_model.pseudobulk import build_units, log2_cpm, spot_prevalence
-from tls_model.splits import split_bulk, split_visium
+from tls_model.splits import roles, split_bulk, split_visium
 
 log = logging.getLogger(__name__)
 
 UNIT_COLUMNS = [
-    "kind", "unit", "k", "group", "cohort", "section", "patient", "split", "platform", "source",
-    "label_source", "tls_any", "tls_mature", "tls_fraction",
+    "kind", "unit", "k", "group", "cohort", "section", "patient", "split", "role", "platform", "source",
+    "label_source", "tls_any", "tls_mature", "tls_three", "tls_fraction",
 ]
 PREV_PANEL_FILE = "Model_genes.tsv"
 
@@ -167,7 +169,10 @@ def prepare_units(cfg: dict, root: Path = Path(".")) -> tuple[ad.AnnData, dict]:
     log.info("natural train-spot prevalence: %s (%s)", spot_prior, natural)
     units = ad.concat(blocks, join="outer")
     units.var_names = genes
+    units.obs["role"] = roles(units.obs, cfg["cohorts"]["distill"])
+    units.obs["tls_three"] = three_class_label(units.obs["tls_any"], units.obs["tls_mature"])
     units.obs = units.obs[UNIT_COLUMNS]
+    log.info("roles: %s", units.obs.groupby("role", observed=True)["patient"].nunique().to_dict())
 
     meta = {
         "genes": genes,

@@ -1,11 +1,15 @@
-"""Metrics with bootstrap 95% CIs, 3-class balanced accuracy, reliability curves, SHAP plots."""
+"""Metrics with bootstrap 95% CIs, 3-class metrics (no TLS / immature / mature), reliability curves, SHAP plots."""
 
 from __future__ import annotations
 
 import numpy as np
 import pandas as pd
 from scipy.stats import spearmanr
-from sklearn.metrics import average_precision_score, balanced_accuracy_score, brier_score_loss, roc_auc_score
+from sklearn.metrics import (
+    average_precision_score, balanced_accuracy_score, brier_score_loss, confusion_matrix, roc_auc_score,
+)
+
+from tls_model.labels import three_class_label
 
 N_BOOT = 1000
 METRICS = {
@@ -13,6 +17,7 @@ METRICS = {
     "auprc": average_precision_score,
     "brier": brier_score_loss,
 }
+CLASS_NAMES = ("none", "immature", "mature")
 
 
 def bootstrap_ci(metric, y, p, groups=None, n_boot: int = N_BOOT, seed: int = 0) -> tuple[float, float, float]:
@@ -28,7 +33,7 @@ def bootstrap_ci(metric, y, p, groups=None, n_boot: int = N_BOOT, seed: int = 0)
     stats = []
     for _ in range(n_boot):
         idx = np.concatenate([members[i] for i in rng.integers(0, len(members), len(members))])
-        if len(np.unique(y[idx])) == 2:
+        if len(np.unique(y[idx])) >= 2:
             stats.append(metric(y[idx], p[idx]))
     if not stats:
         return point, float("nan"), float("nan")
@@ -48,17 +53,53 @@ def binary_metrics(y, p, groups=None, n_boot: int = N_BOOT, seed: int = 0) -> di
 
 
 def three_class_labels(y_any: np.ndarray, y_mature: np.ndarray) -> np.ndarray:
-    """0 = no TLS, 1 = immature, 2 = mature, -1 = TLS with unknown maturity (not scored)."""
-    y_mature = np.asarray(y_mature, dtype=float)
-    labels = np.where(y_mature == 1, 2, 1)
-    labels = np.where(np.isnan(y_mature), -1, labels)
-    return np.where(np.asarray(y_any) == 0, 0, labels)
+    """0 = no TLS, 1 = immature, 2 = mature, -1 = TLS with unknown maturity or no label (not scored)."""
+    labels = three_class_label(np.asarray(y_any, dtype=float), np.asarray(y_mature, dtype=float))
+    return np.where(np.isnan(labels), -1, labels).astype(int)
 
 
 def three_class_balanced_accuracy(y_any, y_mature, probs: np.ndarray) -> float:
     labels = three_class_labels(y_any, y_mature)
     known = labels >= 0
     return float(balanced_accuracy_score(labels[known], probs[known].argmax(axis=1)))
+
+
+def macro_ovr_auroc(y3: np.ndarray, probs: np.ndarray) -> float:
+    """Mean one-vs-rest AUROC over the classes present in y3 (a class absent from y3 is skipped, not an error)."""
+    y3 = np.asarray(y3)
+    values = []
+    for c in range(probs.shape[1]):
+        positive = y3 == c
+        if positive.any() and (~positive).any():
+            values.append(roc_auc_score(positive, probs[:, c]))
+    return float(np.mean(values)) if values else float("nan")
+
+
+def _argmax_balanced_accuracy(y3: np.ndarray, probs: np.ndarray) -> float:
+    return float(balanced_accuracy_score(y3, probs.argmax(axis=1)))
+
+
+MULTICLASS_METRICS = {"balanced_accuracy": _argmax_balanced_accuracy, "macro_auroc": macro_ovr_auroc}
+
+
+def multiclass_metrics(y3, probs, groups=None, n_boot: int = N_BOOT, seed: int = 0) -> dict:
+    """3-class metrics (y3 in {0, 1, 2}, probs (n, 3)): balanced accuracy and macro one-vs-rest AUROC with
+    bootstrap CIs, per-class one-vs-rest AUROCs, and the confusion matrix as 'none immature mature' rows."""
+    y3, probs = np.asarray(y3).astype(int), np.asarray(probs, dtype=float)
+    out = {"n": len(y3), **{f"n_{name}": int((y3 == c).sum()) for c, name in enumerate(CLASS_NAMES)}}
+    if len(np.unique(y3)) < 2:
+        return out
+    for name, metric in MULTICLASS_METRICS.items():
+        point, lo, hi = bootstrap_ci(metric, y3, probs, groups, n_boot, seed)
+        out.update({name: point, f"{name}_lo": lo, f"{name}_hi": hi})
+    for c, name in ((2, "mature"), (1, "immature")):
+        positive = y3 == c
+        out[f"auroc_{name}_vs_rest"] = float(roc_auc_score(positive, probs[:, c])) if 0 < positive.sum() < len(y3) else float("nan")
+    tls = y3 > 0
+    out["auroc_tls_vs_none"] = float(roc_auc_score(tls, 1 - probs[:, 0])) if 0 < tls.sum() < len(y3) else float("nan")
+    matrix = confusion_matrix(y3, probs.argmax(axis=1), labels=[0, 1, 2])
+    out["confusion"] = " ".join("/".join(str(v) for v in row) for row in matrix)
+    return out
 
 
 def section_spearman(sections, p, true_fraction) -> float:
@@ -69,8 +110,8 @@ def section_spearman(sections, p, true_fraction) -> float:
 def metrics_table(rows: list[dict]) -> pd.DataFrame:
     """Rows -> table with 'point [lo, hi]' strings for display."""
     table = pd.DataFrame(rows)
-    for name in METRICS:
-        if name in table:
+    for name in (*METRICS, *MULTICLASS_METRICS):
+        if name in table and f"{name}_lo" in table:
             table[name] = [
                 f"{v:.3f} [{lo:.3f}, {hi:.3f}]" if pd.notna(v) else ""
                 for v, lo, hi in zip(table[name], table[f"{name}_lo"], table[f"{name}_hi"])

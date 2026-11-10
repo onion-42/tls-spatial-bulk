@@ -19,6 +19,14 @@ MATURE = "mature (LA2 / GC+)"
 IMMATURE = "immature only (LA1, no GC)"
 
 
+def three_class_label(tls_any: np.ndarray, tls_mature: np.ndarray) -> np.ndarray:
+    """0 = no TLS, 1 = immature TLS, 2 = mature TLS; NaN = unlabelled or TLS of unknown maturity."""
+    tls_any, tls_mature = np.asarray(tls_any, dtype=float), np.asarray(tls_mature, dtype=float)
+    label = np.where(tls_mature == 1, 2.0, np.where(tls_mature == 0, 1.0, np.nan))
+    label = np.where(tls_any == 0, 0.0, label)
+    return np.where(np.isnan(tls_any), np.nan, label)
+
+
 def label_source(method: pd.Series) -> pd.Series:
     """'pathologist' for pathologist_HE / pathologist_IHC, 'cnn' for every model-made label."""
     return np.where(method.str.startswith("pathologist"), "pathologist", "cnn")

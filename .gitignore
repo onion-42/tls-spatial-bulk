@@ -7,7 +7,8 @@ results/*.log
 
 # Tooling
 .venv/
-.claude/
+.claude
+.claude-staging/
 __pycache__/
 *.pyc
 .pytest_cache/

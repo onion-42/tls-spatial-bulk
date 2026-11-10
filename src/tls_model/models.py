@@ -1,4 +1,5 @@
-"""Model ladder for one head (P(any TLS) or P(mature | TLS)), in-fold feature selection, calibration, SHAP.
+"""Model ladder for one head (P(any TLS), P(mature | TLS), or the direct 3-class no TLS / immature / mature),
+in-fold feature selection, calibration, SHAP.
 
 Families:
     signature   logistic regression on ssGSEA scores of public signatures (pre-specified baseline)
@@ -9,6 +10,8 @@ Families:
 Selection (`corr` | `shap`) happens inside `fit`, i.e. inside every CV fold:
     score all base columns -> top `n_pair_genes` signature genes -> add all their pairwise products
     -> re-score base top-`n_panel` + products -> keep top `n_panel`.
+With three classes in y (enet, lgbm only) `corr` scores a column by its best one-vs-rest correlation, `shap` by the
+mean |SHAP| over classes, and `predict_proba` returns the (n, 3) matrix.
 """
 
 from __future__ import annotations
@@ -44,7 +47,10 @@ def three_class(p_any: np.ndarray, p_mature: np.ndarray) -> np.ndarray:
 
 
 def _lgbm_shap(model: LGBMClassifier, X: np.ndarray) -> np.ndarray:
-    return model.predict(X, pred_contrib=True)[:, :-1]
+    """Per-class SHAP contributions without the bias column: (n, n_classes, n_features); n_classes = 1 for binary."""
+    contrib = model.predict(X, pred_contrib=True)
+    n_classes = contrib.shape[1] // (X.shape[1] + 1)
+    return contrib.reshape(X.shape[0], n_classes, X.shape[1] + 1)[:, :, :-1]
 
 
 class KTSP:
@@ -108,6 +114,7 @@ class HeadModel:
         self.pair_genes: list[str] = []
         self.preselected = preselected  # (panel, pair_genes) shared by enet/lgbm within one fold
         self.model = None
+        self.n_classes = 2
 
     def _assemble(self, B: np.ndarray, names: list[str], columns: list[str]) -> np.ndarray:
         index = {n: i for i, n in enumerate(names)}
@@ -122,11 +129,14 @@ class HeadModel:
 
     def _score(self, X: np.ndarray, y: np.ndarray, w: np.ndarray) -> np.ndarray:
         if self.selector == "corr":
-            return weighted_abs_corr(X, y.astype(float), w)
+            classes = np.unique(y)
+            if len(classes) <= 2:
+                return weighted_abs_corr(X, y.astype(float), w)
+            return np.max([weighted_abs_corr(X, (y == c).astype(float), w) for c in classes], axis=0)
         model = LGBMClassifier(random_state=self.seed, **SHAP_SELECTOR_PARAMS).fit(X, y, sample_weight=w)
         rng = np.random.default_rng(self.seed)
         rows = rng.choice(len(X), size=min(self.n_shap_rows, len(X)), replace=False)
-        return np.abs(_lgbm_shap(model, X[rows])).mean(axis=0)
+        return np.abs(_lgbm_shap(model, X[rows])).mean(axis=(0, 1))
 
     def _select(self, B: np.ndarray, names: list[str], y: np.ndarray, w: np.ndarray) -> list[str]:
         if self.family == "signature":
@@ -153,6 +163,9 @@ class HeadModel:
 
     def fit(self, B: np.ndarray, names: list[str], y: np.ndarray, w: np.ndarray) -> "HeadModel":
         y = np.asarray(y).astype(int)
+        self.n_classes = len(np.unique(y))
+        if self.n_classes > 2 and self.family in ("ktsp", "signature", "prev_panel"):
+            raise ValueError(f"{self.family} is binary only; use enet or lgbm for {self.n_classes} classes")
         if self.preselected is not None:
             self.panel, self.pair_genes = list(self.preselected[0]), list(self.preselected[1])
         else:
@@ -172,20 +185,23 @@ class HeadModel:
         return self
 
     def predict_proba(self, B: np.ndarray, names: list[str]) -> np.ndarray:
+        """P(class 1) for a binary head, the (n, n_classes) matrix for a multiclass one."""
         X = self._assemble(B, names, self.panel)
         if self.family == "ktsp":
             return self.model.predict_proba(X)
-        return self.model.predict_proba(X)[:, 1]
+        probs = self.model.predict_proba(X)
+        return probs if self.n_classes > 2 else probs[:, 1]
 
     def shap_values(self, B: np.ndarray, names: list[str]) -> tuple[np.ndarray, list[str], np.ndarray] | None:
-        """Per-unit SHAP values (log-odds scale) of the panel features; None for kTSP."""
+        """Per-unit SHAP values (log-odds scale) of the panel features; None for kTSP.
+        For a multiclass head: the contributions to the last class (mature)."""
         X = self._assemble(B, names, self.panel)
         if self.family == "ktsp":
             return None
         if self.family == "lgbm":
-            return _lgbm_shap(self.model, X), list(self.panel), X
+            return _lgbm_shap(self.model, X)[:, -1, :], list(self.panel), X
         scaler, linear = self.model[0], self.model[-1]
-        values = (X - scaler.mean_) / scaler.scale_ * linear.coef_[0]
+        values = (X - scaler.mean_) / scaler.scale_ * linear.coef_[-1]
         return values, list(self.panel), X
 
 

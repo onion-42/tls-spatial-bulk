@@ -1,9 +1,11 @@
-"""Patient-grouped splits, CV folds and sample weights.
+"""Patient-grouped splits, roles, CV folds and sample weights.
 
 Bulk: OOD cohorts are locked ("ood"). Every other cohort: 80/20 by patient, stratified by TLS status;
 only patients with a pathologist label can be in test (CNN labels are train-only).
 Visium: OOD sources are locked ("ood"); of the rest ~25% of patients are held out, stratified by data source
 and TLS presence.
+Roles layer on the split: train = Visium train units (gold training), distill = bulk train units of the
+self-distilled cohorts (teacher pseudo-labels only), test = every test unit, holdout = every OOD unit.
 """
 
 from __future__ import annotations
@@ -48,6 +50,26 @@ def split_visium(patients: pd.DataFrame, test_frac: float, seed: int, ood_source
     split = pd.Series(np.where(patients["patient"].isin(test_patients), "test", "train"), index=patients.index)
     split[is_ood] = "ood"
     return split
+
+
+ROLES = ("train", "distill", "test", "holdout")
+
+
+def roles(obs: pd.DataFrame, distill_cohorts) -> pd.Series:
+    """Role per unit from kind, cohort and split; a bulk train cohort that is not distilled is an error."""
+    split = obs["split"].astype(str)
+    is_bulk = (obs["kind"] == "bulk").to_numpy()
+    role = pd.Series("", index=obs.index, dtype=object)
+    role[(split == "ood").to_numpy()] = "holdout"
+    role[(split == "test").to_numpy()] = "test"
+    is_train = (split == "train").to_numpy()
+    role[is_train & ~is_bulk] = "train"
+    role[is_train & is_bulk & obs["cohort"].isin(distill_cohorts).to_numpy()] = "distill"
+    stray = sorted(obs.loc[(role == "").to_numpy(), "cohort"].astype(str).unique())
+    if stray:
+        raise ValueError(f"bulk train cohorts {stray} are neither distilled nor held out: add them to "
+                         "cohorts.distill or cohorts.ood")
+    return role
 
 
 def cv_folds(groups: np.ndarray, y: np.ndarray, n_splits: int, seed: int) -> np.ndarray:

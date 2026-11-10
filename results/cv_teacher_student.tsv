@@ -1,0 +1,7 @@
+candidate	family	selector	auroc_bulk	auroc_spot	auroc_bulk_pooled	auroc_bulk_not_prev_cohorts	score	seconds	stage	head	macro_auroc	balanced_accuracy	auroc_mature_vs_rest
+lgbm|shap	lgbm	shap		0.8494839966463053			0.8494839966463053	4.0	teacher	any			
+lgbm|shap	lgbm	shap		0.6037215391088878			0.6037215391088878	1.5	teacher	mature			
+lgbm|shap	lgbm	shap					0.9482319704395404	177.4	teacher	three	0.9482319704395404	0.5492670005019089	0.9491784628583151
+lgbm|shap	lgbm	shap		0.8524237667124651			0.8524237667124651	110.4	student	any			
+lgbm|shap	lgbm	shap		0.6176165318621721			0.6176165318621721	37.8	student	mature			
+lgbm|shap	lgbm	shap					0.9477343392317957	207.5	student	three	0.9477343392317957	0.5536296158161306	0.95112257556669

@@ -22,11 +22,14 @@ def _units(seed=0):
         for i in range(80):
             rows.append(
                 dict(kind="visium", unit="spot" if i < 60 else "agg7", group=s, cohort="", section=s,
-                     patient=f"P{s}", split=split, platform=f"visium_{protocol}", label_source="pathologist",
-                     tls_any=int(i % 3 == 0), tls_mature=np.nan, k=1 if i < 60 else 7, tls_fraction=float(i % 3 == 0))
+                     patient=f"P{s}_{i % 4}" if split == "train" else f"P{s}", split=split, platform=f"visium_{protocol}", label_source="pathologist",
+                     tls_any=int(i % 3 == 0), tls_mature=float(i % 6 == 0) if i % 3 == 0 else np.nan,
+                     k=1 if i < 60 else 7, tls_fraction=float(i % 3 == 0))
             )
     obs = pd.DataFrame(rows)
     obs.index = [f"u{i}" for i in range(len(obs))]
+    obs["role"] = pipeline.roles(obs, distill_cohorts=["C1", "C2"])
+    obs["tls_three"] = pipeline.three_class_column(obs)
     X = rng.normal(size=(len(obs), 12)).astype(np.float32) + 5
     X[:, 0] += 2 * obs["tls_any"].to_numpy()
     genes = [f"G{i}" for i in range(12)]
@@ -36,14 +39,34 @@ def _units(seed=0):
 def test_training_rows_never_contain_test_or_ood():
     units = _units()
 
-    for head in ("any", "mature"):
+    for head in ("any", "mature", "three"):
         rows = pipeline.train_rows(units.obs, head)
         train = units.obs[rows]
 
         assert set(train["split"]) == {"train"}
+        assert set(train["role"]) == {"train"} and set(train["kind"]) == {"visium"}
         held_out = set(units.obs.loc[units.obs["split"] != "train", "patient"])
         assert not held_out & set(train["patient"])
         assert "PS3" in held_out  # the OOD Visium section is held out like an OOD bulk cohort
+
+
+def test_roles_layer_on_the_split():
+    obs = _units().obs
+
+    assert set(obs.loc[obs["kind"] == "visium", "role"]) == {"train", "test", "holdout"}
+    assert (obs.loc[(obs["cohort"] == "C1") & (obs["split"] == "train"), "role"] == "distill").all()
+    assert (obs.loc[(obs["cohort"] == "C1") & (obs["split"] == "test"), "role"] == "test").all()
+    assert (obs.loc[obs["cohort"] == "OOD", "role"] == "holdout").all()
+    with pytest.raises(ValueError, match="C2"):
+        pipeline.roles(obs, distill_cohorts=["C1"])
+
+
+def test_three_class_column_is_nan_for_tls_of_unknown_maturity():
+    obs = pd.DataFrame({"tls_any": [0, 1, 1, 1], "tls_mature": [np.nan, np.nan, 0.0, 1.0]})
+
+    out = pipeline.three_class_column(obs)
+
+    assert out.tolist()[0] == 0 and np.isnan(out.tolist()[1]) and out.tolist()[2:] == [1, 2]
 
 
 def test_mature_head_uses_only_pathologist_or_visium_maturity():
@@ -89,21 +112,36 @@ def test_evaluate_split_without_maturity_reports_head_a_only():
     units = _units()
     p_any = np.where(units.obs["tls_any"].to_numpy() == 1, 0.8, 0.2)
 
-    table = pipeline.evaluate_split(units.obs, p_any, None, "test", n_boot=50)
+    table = pipeline.evaluate_split(units.obs, p_any, "test", n_boot=50)
 
     assert set(table["head"]) == {"any"}
     assert "bulk:all" in set(table["block"])
 
 
-def test_calibration_rows_are_pathologist_bulk_and_train_spots_only():
+def test_evaluate_split_with_three_class_probs_scores_every_block():
+    units = _units()
+    y3 = units.obs["tls_three"].to_numpy(dtype=float)
+    probs = np.full((len(y3), 3), 0.1)
+    probs[np.arange(len(y3)), np.nan_to_num(y3, nan=1).astype(int)] = 0.8
+
+    table = pipeline.evaluate_split(units.obs, probs, "test", n_boot=20)
+
+    three = table[table["head"] == "3-class"]
+    assert {"bulk:all", "bulk:C1", "visium:spots"} <= set(three["block"])
+    assert np.isclose(three.loc[three["block"] == "bulk:all", "balanced_accuracy"].iloc[0], 1.0)
+    assert {"any", "mature"} <= set(table["head"])
+
+
+def test_calibration_rows_are_gold_train_spots_and_distill_pathologist_bulk():
     units = _units()
 
     rows = pipeline.calibration_rows(units.obs, "any")
     used = units.obs[rows]
 
-    assert (used["split"] == "train").all()
+    assert set(used["role"]) == {"train", "distill"}
     assert (used["label_source"] == "pathologist").all()
-    assert set(used["unit"]) <= {"bulk", "spot"}
+    assert set(used.loc[used["role"] == "train", "unit"]) == {"spot"}
+    assert set(used.loc[used["role"] == "distill", "unit"]) == {"bulk"}
     assert set(pipeline.calibration_kind(units.obs)) == {"bulk", "spot"}
 
 
@@ -128,8 +166,8 @@ def test_run_cv_returns_out_of_fold_scores():
     B, names = pipeline.feature_matrix(units, meta, representation="rank", use_offset=False)
     candidates = [{"family": "enet", "selector": "corr"}, {"family": "signature", "selector": None}]
 
-    table, oof = pipeline.run_cv(B, names, units.obs, "any", candidates, meta, n_folds=3, seed=0,
-                                 n_panel=5, n_pair_genes=2)
+    table, oof, _ = pipeline.run_cv(B, names, units.obs, "any", candidates, meta, n_folds=3, seed=0,
+                                    n_panel=5, n_pair_genes=2)
 
     rows = pipeline.train_rows(units.obs, "any")
     assert len(table) == 2

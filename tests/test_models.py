@@ -96,3 +96,17 @@ def test_platt_prior_shift_corrects_enriched_sampling():
 
     assert np.isclose(plain.transform(p, kind).mean(), y.mean(), atol=0.02)
     assert shifted.transform(p, kind).mean() < 0.15
+
+
+@pytest.mark.parametrize("selector", ["corr", "shap"])
+def test_lgbm_head_handles_three_classes(selector):
+    B, names, y, w = _toy(n=600)
+    rng = np.random.default_rng(1)
+    y3 = np.where(y == 1, np.where(B[:, 2] > 0.5, 2, 1), 0)  # class 2 = positive with high gene:C
+
+    model = models.HeadModel("lgbm", selector, n_panel=6, n_pair_genes=2, signature_genes={"A", "B", "C"}).fit(B, names, y3, w)
+    probs = model.predict_proba(B, names)
+
+    assert probs.shape == (600, 3) and np.allclose(probs.sum(axis=1), 1.0)
+    assert (probs.argmax(axis=1) == y3).mean() > 0.9
+    assert model.shap_values(B, names) is not None

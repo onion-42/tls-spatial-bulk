@@ -65,6 +65,44 @@ def metric_rows(df: pd.DataFrame, head: str) -> pd.DataFrame:
     })
 
 
+def block_ci(df: pd.DataFrame, block: str, head: str = "any") -> str:
+    """AUROC [CI] of one block, or a note when the cohort is absent from this run (e.g. the local Internal lung)."""
+    t = df[(df["head"] == head) & (df["block"] == block)]
+    return "n/a (not in this run)" if t.empty else ci(*t[["auroc", "auroc_lo", "auroc_hi"]].iloc[0])
+
+
+def three_class_rows(df: pd.DataFrame) -> pd.DataFrame:
+    t = df[df["head"] == "3-class"]
+    return pd.DataFrame({
+        "evaluation": t["split"], "block": t["block"], "n": t["n"].astype("Int64"),
+        "none / immature / mature": [f"{a} / {b} / {c}" for a, b, c in t[["n_none", "n_immature", "n_mature"]].astype(int).itertuples(index=False)],
+        "balanced accuracy": [ci(*r) for r in t[["balanced_accuracy", "balanced_accuracy_lo", "balanced_accuracy_hi"]].itertuples(index=False)],
+        "macro AUROC": [ci(*r) for r in t[["macro_auroc", "macro_auroc_lo", "macro_auroc_hi"]].itertuples(index=False)],
+        "AUROC mature vs rest": t["auroc_mature_vs_rest"].round(3),
+        "confusion (rows = truth)": t["confusion"],
+    })
+
+
+def ablation_view(ablation: pd.DataFrame) -> pd.DataFrame:
+    return pd.DataFrame({
+        "head": ablation["head"], "evaluation": ablation["split"].map({"test": "test", "ood": "holdout"}),
+        "block": ablation["block"], "n": ablation["n"].astype("Int64"), "positives": ablation["n_pos"].astype("Int64"),
+        "teacher AUROC": [ci(*r) for r in ablation[["teacher_auroc", "teacher_lo", "teacher_hi"]].itertuples(index=False)],
+        "student AUROC": [ci(*r) for r in ablation[["student_auroc", "student_lo", "student_hi"]].itertuples(index=False)],
+        "Δ": ablation["delta"].map(lambda v: f"{v:+.3f}"),
+    })
+
+
+def forms_view(forms: pd.DataFrame) -> pd.DataFrame:
+    return pd.DataFrame({
+        "stage": forms["stage"], "form": forms["form"], "n": forms["n"].astype("Int64"),
+        "balanced accuracy": [ci(*r) for r in forms[["balanced_accuracy", "balanced_accuracy_lo", "balanced_accuracy_hi"]].itertuples(index=False)],
+        "macro AUROC": [ci(*r) for r in forms[["macro_auroc", "macro_auroc_lo", "macro_auroc_hi"]].itertuples(index=False)],
+        "AUROC mature vs rest": forms["auroc_mature_vs_rest"].round(3),
+        "P(TLS) AUROC, all train spots": forms["auroc_tls_all_spots"].round(3) if "auroc_tls_all_spots" in forms else "n/a (before the rule change)",
+    })
+
+
 def by_endpoint(p: pd.DataFrame) -> pd.DataFrame:
     """Rows in endpoint order (OS, PFS, Response, DCR), diagnoses alphabetical, pooled last."""
     order = {e: i for i, e in enumerate(["OS", "PFS", "Response", "DCR"])}
@@ -156,15 +194,16 @@ within-cohort z-scoring and cohort strata remove from the outcome models.</p>
 
 def main() -> None:
     test, ood = tsv(RES / "test_metrics.tsv"), tsv(RES / "ood_metrics.tsv")
-    cv_a, cv_b, loco = tsv(RES / "cv_stage_a.tsv"), tsv(RES / "cv_stage_b_any.tsv"), tsv(RES / "loco.tsv")
+    cv_a, cv_b, forms = tsv(RES / "cv_stage_a.tsv"), tsv(RES / "cv_stage_b_any.tsv"), tsv(RES / "cv_forms.tsv")
     ceiling, cohorts_bulk = tsv(RES / "label_ceiling_luad.tsv"), tsv(RES / "bulk_cohorts.tsv")
     coverage, ici_cohorts = tsv(ICI / "coverage.tsv"), tsv(ICI / "cohorts.tsv")
     rho = tsv(ICI / "score_correlation.tsv")
     assoc_main, delta_main = tsv(ICI / "assoc_main.tsv"), tsv(ICI / "delta_main.tsv")
     assoc_n, delta_n = tsv(ICI / "assoc_tmb_pdl1.tsv"), tsv(ICI / "delta_tmb_pdl1.tsv")
     added = tsv(ICI / "delta_added_value.tsv")
+    ablation = tsv(RES / "ablation_distillation.tsv")
+    three_cv = tsv(RES / "cv_stage_b_three.tsv")
 
-    mature_all = test[(test["head"] == "mature") & (test["block"] == "bulk:all")].iloc[0]
     cv_names = {"auroc_bulk": "bulk AUROC, within cohort", "auroc_spot": "spot AUROC",
                 "auroc_bulk_pooled": "bulk AUROC, pooled", "score": "selection score"}
     cv_a_view = cv_a.rename(columns=cv_names)
@@ -173,17 +212,29 @@ def main() -> None:
     sections = {
         "summary": ("Summary", f"""
 <p class=lede>One expression-only model reads tertiary lymphoid structures (TLS) from a Visium spot or from a bulk
-RNA-seq sample, one sample at a time. It was trained on spot annotations from spatial transcriptomics together with
-pathologist TLS calls on bulk tumours, selected by grouped cross-validation, and checked once on two locked
-out-of-distribution (OOD) cohorts. It was then frozen and scored in 2,689 patients treated with immune checkpoint
-inhibitors (ICI).</p>
+RNA-seq sample, one sample at a time, as three class probabilities: no TLS / immature TLS / mature TLS. It was
+trained on spot annotations from spatial transcriptomics (the gold labels), carried to bulk RNA-seq by
+self-distillation on TCGA (the teacher's own soft predictions train the student; the TCGA pathologist labels are
+never fitted), selected by grouped cross-validation, tested on held-out patients (Visium sections and the TCGA test
+split) and checked once on locked holdout cohorts: CPTAC-PAAD, CPTAC-ccRCC, Internal lung, two new Visium cohorts
+(GSE273952 ccRCC, GSE351843 breast) and their whole-section pseudo-bulks. The earlier version of the model (trained
+on spot and bulk labels together, no maturity output) was frozen and scored in 2,689 patients treated with immune
+checkpoint inhibitors (ICI); that analysis was not repeated.</p>
 <ul class=findings>
-<li><b>Spots work.</b> Held-out Visium patients: AUROC {ci(*test[(test['head']=='any')&(test['block']=='visium:spots')][['auroc','auroc_lo','auroc_hi']].iloc[0])}.</li>
+<li><b>Spots work.</b> Held-out Visium patients: AUROC {ci(*test[(test['head']=='any')&(test['block']=='visium:spots')][['auroc','auroc_lo','auroc_hi']].iloc[0])}.
+Holdout Visium (two new cohorts, one of them breast on a new chemistry): {block_ci(ood, 'visium:spots')}.</li>
+<li><b>Maturity.</b> Among TLS, mature vs immature separates weakly: P(mature | TLS) AUROC
+{block_ci(test, 'bulk:all', 'mature')} on the TCGA test split, {block_ci(ood, 'visium:spots', 'mature')} on holdout
+spots. The 3-class ranking of mature TLS against everything else is high on spots (mature TLS are also the strongest
+TLS signal) and near chance on bulk; see the 3-class tables.</li>
+<li><b>Self-distillation did not move the bulk metrics.</b> Teacher (Visium only) vs student (Visium + TCGA
+pseudo-labels) differ by less than ±0.05 AUROC on every bulk block, within the bootstrap intervals (ablation table).</li>
 <li><b>Bulk ranks TLS across cancer types, weakly within one.</b> Held-out bulk, pooled: AUROC
 {ci(*test[(test['head']=='any')&(test['block']=='bulk:all')][['auroc','auroc_lo','auroc_hi']].iloc[0])}; within a cohort
 0.45–0.70 with wide intervals. Every model family, published signatures included, stays near 0.55–0.65 here.</li>
-<li><b>OOD, scored once.</b> Internal lung {ci(*ood[ood['block']=='bulk:Internal_lung'][['auroc','auroc_lo','auroc_hi']].iloc[0])},
-CPTAC-PAAD {ci(*ood[ood['block']=='bulk:CPTAC-PAAD'][['auroc','auroc_lo','auroc_hi']].iloc[0])}.</li>
+<li><b>Holdout, scored once.</b> CPTAC-PAAD {block_ci(ood, 'bulk:CPTAC-PAAD')}, CPTAC-ccRCC
+{block_ci(ood, 'bulk:CPTAC-ccRCC')}, Internal lung {block_ci(ood, 'bulk:Internal_lung')}; whole-section pseudo-bulks
+{block_ci(ood, 'visium:sections')}.</li>
 <li><b>Immunotherapy.</b> A higher score goes with longer survival and more responses, but the effect is small
 (pooled OS HR 0.92 per SD), and the model is not better than the 12-chemokine signature: added on top of it, it
 contributes nothing (likelihood-ratio tests near null). A positive interaction of the two scores appears in bladder
@@ -204,12 +255,21 @@ model on both worlds so that the same model scores a spot or a bulk sample.</p>
 {figure("00_tls_in_solid_cancers.png", "TLS across solid cancers: presence, induction, prognosis, detection method, surrogate response markers and TLS-guided clinical trials.")}"""),
 
         "data": ("Data", f"""
-<p>Bulk cohorts and their roles. TLS+ counts are pathologist calls except TCGA-BRCA and part of TCGA-LUAD, where
-HookNet-TLS labels (CNN) were used for training only; every test and OOD metric uses pathologist labels.</p>
+<p>Roles on top of a patient-grouped split (seed fixed): <b>train</b> = Visium train sections (gold labels; the
+teacher and the student learn from them), <b>distill</b> = the train split of the TCGA cohorts (expression only: the
+teacher's soft predictions are the student's targets; the pathologist labels there serve as a diagnostic and for the
+two Platt parameters of bulk calibration), <b>test</b> = Visium test sections and the TCGA test split (in-distribution),
+<b>holdout</b> = CPTAC-PAAD, CPTAC-ccRCC, Internal lung, GSE273952, GSE351843 and the whole-section pseudo-bulks of
+every test and holdout section, scored once. A leakage report asserts that no patient sits in two of these groups,
+that every fitted row is a train or distill unit and that calibration sees gold labels only.</p>
+<p>Bulk cohorts. TLS+ counts are pathologist calls except TCGA-BRCA and part of TCGA-LUAD, where HookNet-TLS labels
+(CNN) exist; CNN labels are neither fitted nor scored in this version.</p>
 {table(cohorts_bulk)}
-<p>Visium: GSE175540 (ccRCC, 23 sections, FFPE and frozen; Meylan <i>Immunity</i> 2022) and USZ (8 FFPE kidney and lung
-sections; Zenodo 14620362, CC-BY-4.0). Splits are by patient: about 25% of Visium patients and 20% of bulk patients
-per cohort are held out. Non-public cohorts (Internal lung, MGH) stay outside the repository.</p>
+<p>Visium: GSE175540 (ccRCC, 23 sections, FFPE and frozen; Meylan <i>Immunity</i> 2022; TLS spots carry no maturity)
+and USZ (8 FFPE kidney and lung sections with mature / immature spot labels; Zenodo 14620362, CC-BY-4.0) are the
+training sources; GSE273952 (ccRCC FFPE, Fridman lab; 8 sections that are not GSE175540 re-annotations) and
+GSE351843 (primary breast, CytAssist FFPE; pathologist labels from Zenodo 18917100, lymphoid aggregates counted as
+immature TLS) are holdout. Non-public cohorts (Internal lung, MGH) stay outside the repository.</p>
 <p>Label ceiling, TCGA-LUAD: two pathologists agree almost perfectly with each other (κ 0.96), while two runs of
 the public HookNet-TLS model (HookNet-TLS_a, HookNet-TLS_b) agree with pathologists only moderately (κ 0.20–0.51)
 and with each other poorly (κ 0.20). A model trained partly on these CNN labels cannot be expected to beat that
@@ -226,12 +286,24 @@ help and was dropped), ssGSEA of 30 public signatures, their pairwise products a
 genes chosen inside each fold.</li>
 <li><b>Ladder.</b> Signature baseline, elastic-net logistic regression, k-top-scoring pairs, LightGBM; feature
 selection by correlation or by mean |SHAP|, both inside folds.</li>
-<li><b>Selection.</b> Grouped 5-fold CV over training patients; the score weighs mean within-cohort bulk AUROC (pooled
-AUROC rewards telling cancer types apart) and spot AUROC. Winner: LightGBM with SHAP selection.</li>
-<li><b>Calibration.</b> Platt scaling on out-of-fold predictions, separately for bulk and spot units; spot
-probabilities corrected for the TLS-enriched sampling of training spots.</li>
-<li><b>Evaluation.</b> Held-out patients; bootstrap 95% CI for every metric; OOD cohorts scored once, with nothing
-tuned afterwards; leave-one-cohort-out reported for robustness only.</li>
+<li><b>Heads and forms.</b> Head A = P(TLS), head B = P(mature | TLS) (fitted on units with a known maturity only),
+combined into no TLS / immature / mature by the product (the <i>hierarchy</i>). A <i>direct</i> 3-class LightGBM
+(same selectors, one-vs-rest correlation or mean |SHAP| over classes) is trained on units with a known 3-class label
+and compared out-of-fold. Deployed form: the hierarchy, unless the direct model wins both the 3-class macro AUROC and
+P(TLS) on all train spots.</li>
+<li><b>Self-distillation.</b> The teacher (fitted on Visium train only) predicts soft labels for the TCGA train split;
+the student is fitted on the Visium rows plus every TCGA row repeated once per class with weight = soft probability
+(exact for the log-loss; maturity rows weighted by the teacher's P(TLS)). In the student's cross-validation the
+pseudo-labels of fold f come from the teacher fitted without fold f, so no held-out gold label reaches the fit.</li>
+<li><b>Selection.</b> Grouped 5-fold CV over the training patients, one patient partition shared by every head;
+spot AUROC (k = 1) for the heads, macro one-vs-rest AUROC for the 3-class model. Winner everywhere: LightGBM with
+SHAP selection.</li>
+<li><b>Calibration.</b> Platt scaling per unit kind: out-of-fold predictions on train spots, in-sample predictions on
+the pathologist-labelled TCGA train samples (labels never fitted); spot probabilities corrected for the TLS-enriched
+sampling of training spots. The direct 3-class model has no calibration, which is one reason it is not deployed.</li>
+<li><b>Evaluation.</b> Held-out patients; bootstrap 95% CI for every metric (sections resampled for spots, patients
+for the Visium cohort tables); holdout cohorts scored once, with nothing tuned afterwards. 3-class metrics: balanced
+accuracy of the argmax call, macro one-vs-rest AUROC, per-class AUROC, confusion matrix.</li>
 </ul>
 <h3>Signature scores (baselines)</h3>
 <ul>
@@ -284,10 +356,25 @@ data block and label). Bulk model selection moved to within-cohort AUROC.</li>
 <li><b>Stage B.</b> LightGBM with SHAP selection had the best selection score; signature baselines were close.</li>
 <li><b>Review.</b> Calibration by unit type, lymph-node spots removed before aggregation, unknown labels made
 explicit; leave-one-cohort-out kept as a robustness table only.</li>
-<li><b>Maturity head removed.</b> Bulk maturity showed no signal.</li>
+<li><b>Maturity head removed</b> in that version: bulk maturity showed no signal.</li>
 <li><b>OOD scored once</b> and reported as is.</li>
 <li><b>Immunotherapy.</b> Model frozen; 28 studies harmonised; baselines, Cox and logistic models, TMB + PD-L1 subset.</li>
 <li><b>Added value.</b> Nested models with the 12-chemokine signature and its interaction with our score.</li>
+<li><b>Two new Visium cohorts</b> (GSE273952 ccRCC, GSE351843 breast) added as locked holdout; 11 of the 19 GSE273952
+sections turned out to be the GSE175540 sections re-annotated and were dropped.</li>
+<li><b>Redesign: roles.</b> Spatial data became the only gold training set; TCGA moved to self-distillation (train
+split) and an in-distribution test (test split); CPTAC-ccRCC moved to holdout. A leakage report with hard assertions
+replaced the ad-hoc checks. Leave-one-cohort-out lost its meaning (no bulk cohort is fitted on gold labels) and was
+dropped.</li>
+<li><b>Maturity back as a 3-class output.</b> Hierarchy (two calibrated heads) and a direct 3-class LightGBM were
+compared out-of-fold. The first selection rule (macro AUROC on units with a known 3-class label) picked the direct
+model; on the held-out Visium spots its P(TLS) fell to 0.76 against 0.93 for the hierarchy, because the units with a
+known 3-class label leave out the 1,901 GSE175540 TLS spots that only the hierarchy learns from, and without
+calibration its argmax never calls TLS on bulk. The rule now requires the direct model to win on both criteria; the
+hierarchy is deployed and the direct model stays as a comparison.</li>
+<li><b>Ablation of the distillation.</b> Teacher vs student on the TCGA test split, Visium test spots and the bulk
+holdout: no change beyond the bootstrap noise. The student is kept (it is the design), but the bulk gain expected
+from distillation did not materialise.</li>
 </ol>"""),
 
         "model": ("Model results", f"""
@@ -296,16 +383,23 @@ explicit; leave-one-cohort-out kept as a robustness table only.</li>
 {table(cv_b_view, "Stage B · model × selector; the highest selection score was kept")}
 <h3>Held-out test and OOD</h3>
 {table(metric_rows(pd.concat([test, ood]), "any"), "P(any TLS): held-out patients and the two OOD cohorts")}
-<p>Bulk maturity (pooled held-out): AUROC {ci(mature_all.auroc, mature_all.auroc_lo, mature_all.auroc_hi)} — no
-usable signal, which is why the maturity output was removed.</p>
-{table(loco, "Leave-one-cohort-out (robustness only; selection saw these cohorts)")}
+{table(three_class_rows(pd.concat([test, ood])), "3-class (no TLS / immature / mature): held-out patients and the holdout cohorts")}
+{table(forms_view(forms), "Hierarchy (P(TLS) · P(mature | TLS)) vs direct 3-class model, out-of-fold on the gold train units with a known 3-class label")}
+{table(three_cv[["candidate", "macro_auroc", "balanced_accuracy", "auroc_mature_vs_rest", "seconds"]], "Direct 3-class candidates (teacher CV, train spots)")}
+<h3>Ablation: does self-distillation on TCGA help?</h3>
+<p>Teacher = the two heads fitted on Visium train only; student = the same heads refitted with the TCGA pseudo-labels.
+Raw head probabilities (AUROC is rank-based, calibration does not matter), bootstrap 95% CI.</p>
+{table(ablation_view(ablation), "Teacher vs student AUROC on the TCGA test split, Visium test spots and the bulk holdout")}
 {interactive_roc()}
 {figure("01_label_maps_GSE175540.png", "Visium spot labels (GSE175540 sections).")}
 {figure("02_bulk_pca.png", "Bulk cohorts, PCA of the shared gene panel: cohorts separate, so pooled AUROC is easy and within-cohort AUROC is the honest metric.")}
 {figure("03_reliability_test.png", "Calibration on held-out patients.")}
-{figure("03_shap_any.png", "SHAP of the final TLS model.")}
+{figure("03_shap_any.png", "SHAP of the final P(TLS) head (student).")}
+{figure("03_shap_mature.png", "SHAP of the final P(mature | TLS) head (student).")}
+{figure("03_shap_three.png", "SHAP of the direct 3-class model, contributions to the mature class (comparison only, not deployed).")}
 {figure("04_reliability_ood.png", "Calibration on the OOD cohorts: bulk probabilities over-call TLS on a new cohort.")}
-{figure("04_spot_maps.png", "Predicted P(TLS) on held-out Visium sections; one colour scale for all sections, capped at the 99th percentile of their spots (TLS cover ~4% of spots).")}"""),
+{figure("04_spot_maps.png", "Held-out Visium sections: expert 3-class label, predicted P(TLS) (one colour scale, capped at the 99th percentile of the shown spots) and the argmax class call.")}
+{figure("04_spot_maps_ood.png", "The same on four holdout sections: GSE273952 P_16 and breast P22 / P26 carry mature TLS, breast P17 lymphoid aggregates only.")}"""),
 
         "ici": ("Immunotherapy cohorts", f"""
 {table(coverage, "Patients per diagnosis and endpoint coverage")}

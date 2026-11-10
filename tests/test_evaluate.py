@@ -41,3 +41,26 @@ def test_section_spearman():
     fraction = np.array([0.0, 0.0, 0.1, 0.1, 0.3, 0.3])
 
     assert np.isclose(evaluate.section_spearman(sections, p, fraction), 1.0)
+
+
+def test_multiclass_metrics_perfect_and_uninformative():
+    y3 = np.array([0, 1, 2] * 30)
+    perfect = np.full((90, 3), 0.1)
+    perfect[np.arange(90), y3] = 0.8
+    flat = np.full((90, 3), 1 / 3)
+
+    good = evaluate.multiclass_metrics(y3, perfect, n_boot=50)
+    bad = evaluate.multiclass_metrics(y3, flat, n_boot=50)
+
+    assert good["n"] == 90 and good["n_mature"] == 30 and good["n_immature"] == 30 and good["n_none"] == 30
+    assert good["balanced_accuracy"] == 1.0 and good["macro_auroc"] == 1.0 and good["auroc_mature_vs_rest"] == 1.0
+    assert good["balanced_accuracy_lo"] == 1.0
+    assert np.isclose(bad["macro_auroc"], 0.5) and np.isclose(bad["balanced_accuracy"], 1 / 3)
+    assert good["confusion"] == "30/0/0 0/30/0 0/0/30"
+
+
+def test_macro_ovr_auroc_skips_absent_classes():
+    y3 = np.array([0, 0, 2, 2])
+    probs = np.array([[0.8, 0.1, 0.1], [0.7, 0.2, 0.1], [0.1, 0.1, 0.8], [0.2, 0.1, 0.7]])
+
+    assert evaluate.macro_ovr_auroc(y3, probs) == 1.0

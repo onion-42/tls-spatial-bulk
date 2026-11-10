@@ -1,7 +1,9 @@
 cohort	n	tls_pos	maturity_known	mature	pathologist	cnn	role
 CPTAC-PAAD	129	54.0	54	11.0	129	0	holdout
 CPTAC-ccRCC	86	25.0	0	0.0	86	0	holdout
+TCGA-BLCA	303	225.0	225	114.0	303	0	holdout
 TCGA-BRCA	420	203.0	89	9.0	153	267	distill (train split) / test
 TCGA-KIRC/KIRP/KICH	210	23.0	0	0.0	210	0	distill (train split) / test
 TCGA-LUAD	451	345.0	158	21.0	221	230	distill (train split) / test
+TCGA-LUSC	342	312.0	312	98.0	342	0	holdout
 TCGA-PAAD	118	89.0	89	17.0	118	0	distill (train split) / test

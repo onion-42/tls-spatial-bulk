@@ -2524,3 +2524,948 @@ PAAD		TCGA-PAAD	TCGA-XN-A8T5	TCGA-XN-A8T5	pathologist_HE	1			12.0	0.0		0.0	0.0		
 PAAD		TCGA-PAAD	TCGA-YB-A89D	TCGA-YB-A89D	pathologist_HE	1			0.0	0.0		3.0	0.0		0.0	0.0	0.0	3.0	0.0	3.0	tumor-associated (intratumoral + border)	0.0					positive	immature only (LA1, no GC)	True	TCGA-YB-A89D	True	False
 PAAD		TCGA-PAAD	TCGA-Z5-AAPL	TCGA-Z5-AAPL	pathologist_HE	1			4.0	0.0		2.0	0.0		0.0	0.0	4.0	2.0	0.0	6.0	tumor-associated (intratumoral + border)	0.0					positive	immature only (LA1, no GC)	True	TCGA-Z5-AAPL	True	False
 kidney_other/unknown		TCGA-KIRC/KIRP/KICH	TCGA-B3-3925-01	TCGA-B3-3925	pathologist_HE	1	1.0																				negative	unknown	False		False	False
+BLCA		TCGA-BLCA	TCGA-2F-A9KO-01	TCGA-2F-A9KO	HookNet-TLS_manual	2	1													13		0					positive	immature only (LA1, no GC)	True	TCGA-2F-A9KO-01	True	False
+BLCA		TCGA-BLCA	TCGA-2F-A9KP-01	TCGA-2F-A9KP	HookNet-TLS_manual	2	1													4		2					positive	mature (LA2 / GC+)	True	TCGA-2F-A9KP-01	True	False
+BLCA		TCGA-BLCA	TCGA-2F-A9KQ-01	TCGA-2F-A9KQ	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-2F-A9KQ-01	True	False
+BLCA		TCGA-BLCA	TCGA-2F-A9KR-01	TCGA-2F-A9KR	HookNet-TLS_manual	2	1													7		0					positive	immature only (LA1, no GC)	True	TCGA-2F-A9KR-01	True	False
+BLCA		TCGA-BLCA	TCGA-2F-A9KT-01	TCGA-2F-A9KT	HookNet-TLS_manual	2	1													18		7					positive	mature (LA2 / GC+)	True	TCGA-2F-A9KT-01	True	False
+BLCA		TCGA-BLCA	TCGA-2F-A9KW-01	TCGA-2F-A9KW	HookNet-TLS_manual	2	1													24		1					positive	mature (LA2 / GC+)	True	TCGA-2F-A9KW-01	True	False
+BLCA		TCGA-BLCA	TCGA-4Z-AA7M-01	TCGA-4Z-AA7M	HookNet-TLS_manual	2	1													1		1					positive	mature (LA2 / GC+)	True	TCGA-4Z-AA7M-01	True	False
+BLCA		TCGA-BLCA	TCGA-4Z-AA7N-01	TCGA-4Z-AA7N	HookNet-TLS_manual	2	1													41		14					positive	mature (LA2 / GC+)	True	TCGA-4Z-AA7N-01	True	False
+BLCA		TCGA-BLCA	TCGA-4Z-AA7O-01	TCGA-4Z-AA7O	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-4Z-AA7O-01	True	False
+BLCA		TCGA-BLCA	TCGA-4Z-AA7Q-01	TCGA-4Z-AA7Q	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-4Z-AA7Q-01	True	False
+BLCA		TCGA-BLCA	TCGA-4Z-AA7R-01	TCGA-4Z-AA7R	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-4Z-AA7R-01	True	False
+BLCA		TCGA-BLCA	TCGA-4Z-AA7S-01	TCGA-4Z-AA7S	HookNet-TLS_manual	2	1													9		0					positive	immature only (LA1, no GC)	True	TCGA-4Z-AA7S-01	True	False
+BLCA		TCGA-BLCA	TCGA-4Z-AA7Y-01	TCGA-4Z-AA7Y	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-4Z-AA7Y-01	True	False
+BLCA		TCGA-BLCA	TCGA-4Z-AA80-01	TCGA-4Z-AA80	HookNet-TLS_manual	2	1													10		5					positive	mature (LA2 / GC+)	True	TCGA-4Z-AA80-01	True	False
+BLCA		TCGA-BLCA	TCGA-4Z-AA81-01	TCGA-4Z-AA81	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-4Z-AA81-01	True	False
+BLCA		TCGA-BLCA	TCGA-4Z-AA82-01	TCGA-4Z-AA82	HookNet-TLS_manual	2	1													13		0					positive	immature only (LA1, no GC)	True	TCGA-4Z-AA82-01	True	False
+BLCA		TCGA-BLCA	TCGA-4Z-AA83-01	TCGA-4Z-AA83	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-4Z-AA83-01	True	False
+BLCA		TCGA-BLCA	TCGA-4Z-AA84-01	TCGA-4Z-AA84	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-4Z-AA84-01	True	False
+BLCA		TCGA-BLCA	TCGA-4Z-AA86-01	TCGA-4Z-AA86	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-4Z-AA86-01	True	False
+BLCA		TCGA-BLCA	TCGA-4Z-AA87-01	TCGA-4Z-AA87	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-4Z-AA87-01	True	False
+BLCA		TCGA-BLCA	TCGA-4Z-AA89-01	TCGA-4Z-AA89	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-4Z-AA89-01	True	False
+BLCA		TCGA-BLCA	TCGA-5N-A9KI-01	TCGA-5N-A9KI	HookNet-TLS_manual	2	1													4		0					positive	immature only (LA1, no GC)	True	TCGA-5N-A9KI-01	True	False
+BLCA		TCGA-BLCA	TCGA-BL-A0C8-01	TCGA-BL-A0C8	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-BL-A0C8-01	True	False
+BLCA		TCGA-BLCA	TCGA-BL-A3JM-01	TCGA-BL-A3JM	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-BL-A3JM-01	True	False
+BLCA		TCGA-BLCA	TCGA-BL-A5ZZ-01	TCGA-BL-A5ZZ	HookNet-TLS_manual	2	1													2		0					positive	immature only (LA1, no GC)	True	TCGA-BL-A5ZZ-01	True	False
+BLCA		TCGA-BLCA	TCGA-BT-A0S7-01	TCGA-BT-A0S7	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-BT-A0S7-01	True	False
+BLCA		TCGA-BLCA	TCGA-BT-A0YX-01	TCGA-BT-A0YX	HookNet-TLS_manual	2	1													3		0					positive	immature only (LA1, no GC)	True	TCGA-BT-A0YX-01	True	False
+BLCA		TCGA-BLCA	TCGA-BT-A20J-01	TCGA-BT-A20J	HookNet-TLS_manual	2	1													10		1					positive	mature (LA2 / GC+)	True	TCGA-BT-A20J-01	True	False
+BLCA		TCGA-BLCA	TCGA-BT-A20N-01	TCGA-BT-A20N	HookNet-TLS_manual	2	1													45		3					positive	mature (LA2 / GC+)	True	TCGA-BT-A20N-01	True	False
+BLCA		TCGA-BLCA	TCGA-BT-A20O-01	TCGA-BT-A20O	HookNet-TLS_manual	2	1													2		1					positive	mature (LA2 / GC+)	True	TCGA-BT-A20O-01	True	False
+BLCA		TCGA-BLCA	TCGA-BT-A20P-01	TCGA-BT-A20P	HookNet-TLS_manual	2	1													2		0					positive	immature only (LA1, no GC)	True	TCGA-BT-A20P-01	True	False
+BLCA		TCGA-BLCA	TCGA-BT-A20Q-01	TCGA-BT-A20Q	HookNet-TLS_manual	2	1													1		0					positive	immature only (LA1, no GC)	True	TCGA-BT-A20Q-01	True	False
+BLCA		TCGA-BLCA	TCGA-BT-A20R-01	TCGA-BT-A20R	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-BT-A20R-01	True	False
+BLCA		TCGA-BLCA	TCGA-BT-A20T-01	TCGA-BT-A20T	HookNet-TLS_manual	2	1													9		0					positive	immature only (LA1, no GC)	True	TCGA-BT-A20T-01	True	False
+BLCA		TCGA-BLCA	TCGA-BT-A20W-01	TCGA-BT-A20W	HookNet-TLS_manual	2	1													2		0					positive	immature only (LA1, no GC)	True	TCGA-BT-A20W-01	True	False
+BLCA		TCGA-BLCA	TCGA-BT-A2LA-01	TCGA-BT-A2LA	HookNet-TLS_manual	2	1													6		0					positive	immature only (LA1, no GC)	True	TCGA-BT-A2LA-01	True	False
+BLCA		TCGA-BLCA	TCGA-BT-A2LB-01	TCGA-BT-A2LB	HookNet-TLS_manual	2	1													7		0					positive	immature only (LA1, no GC)	True	TCGA-BT-A2LB-01	True	False
+BLCA		TCGA-BLCA	TCGA-BT-A2LD-01	TCGA-BT-A2LD	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-BT-A2LD-01	True	False
+BLCA		TCGA-BLCA	TCGA-BT-A3PH-01	TCGA-BT-A3PH	HookNet-TLS_manual	2	1													1		0					positive	immature only (LA1, no GC)	True	TCGA-BT-A3PH-01	True	False
+BLCA		TCGA-BLCA	TCGA-BT-A3PJ-01	TCGA-BT-A3PJ	HookNet-TLS_manual	2	1													26		3					positive	mature (LA2 / GC+)	True	TCGA-BT-A3PJ-01	True	False
+BLCA		TCGA-BLCA	TCGA-BT-A3PK-01	TCGA-BT-A3PK	HookNet-TLS_manual	2	1													6		3					positive	mature (LA2 / GC+)	True	TCGA-BT-A3PK-01	True	False
+BLCA		TCGA-BLCA	TCGA-BT-A42B-01	TCGA-BT-A42B	HookNet-TLS_manual	2	1													1		0					positive	immature only (LA1, no GC)	True	TCGA-BT-A42B-01	False	False
+BLCA		TCGA-BLCA	TCGA-BT-A42C-01	TCGA-BT-A42C	HookNet-TLS_manual	2	1													4		0					positive	immature only (LA1, no GC)	True	TCGA-BT-A42C-01	True	False
+BLCA		TCGA-BLCA	TCGA-BT-A42E-01	TCGA-BT-A42E	HookNet-TLS_manual	2	1													37		10					positive	mature (LA2 / GC+)	True	TCGA-BT-A42E-01	True	False
+BLCA		TCGA-BLCA	TCGA-BT-A42F-01	TCGA-BT-A42F	HookNet-TLS_manual	2	1													6		0					positive	immature only (LA1, no GC)	True	TCGA-BT-A42F-01	True	False
+BLCA		TCGA-BLCA	TCGA-C4-A0EZ-01	TCGA-C4-A0EZ	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-C4-A0EZ-01	True	False
+BLCA		TCGA-BLCA	TCGA-C4-A0F0-01	TCGA-C4-A0F0	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-C4-A0F0-01	True	False
+BLCA		TCGA-BLCA	TCGA-C4-A0F7-01	TCGA-C4-A0F7	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-C4-A0F7-01	True	False
+BLCA		TCGA-BLCA	TCGA-CF-A1HR-01	TCGA-CF-A1HR	HookNet-TLS_manual	2	1													5		0					positive	immature only (LA1, no GC)	True	TCGA-CF-A1HR-01	True	False
+BLCA		TCGA-BLCA	TCGA-CF-A3MG-01	TCGA-CF-A3MG	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-CF-A3MG-01	True	False
+BLCA		TCGA-BLCA	TCGA-CF-A3MH-01	TCGA-CF-A3MH	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-CF-A3MH-01	True	False
+BLCA		TCGA-BLCA	TCGA-CF-A3MI-01	TCGA-CF-A3MI	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-CF-A3MI-01	True	False
+BLCA		TCGA-BLCA	TCGA-CF-A47S-01	TCGA-CF-A47S	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-CF-A47S-01	True	False
+BLCA		TCGA-BLCA	TCGA-CF-A47V-01	TCGA-CF-A47V	HookNet-TLS_manual	2	1													6		0					positive	immature only (LA1, no GC)	True	TCGA-CF-A47V-01	True	False
+BLCA		TCGA-BLCA	TCGA-CF-A47W-01	TCGA-CF-A47W	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-CF-A47W-01	True	False
+BLCA		TCGA-BLCA	TCGA-CF-A47X-01	TCGA-CF-A47X	HookNet-TLS_manual	2	1													10		1					positive	mature (LA2 / GC+)	True	TCGA-CF-A47X-01	True	False
+BLCA		TCGA-BLCA	TCGA-CF-A5UA-01	TCGA-CF-A5UA	HookNet-TLS_manual	2	1													3		0					positive	immature only (LA1, no GC)	True	TCGA-CF-A5UA-01	True	False
+BLCA		TCGA-BLCA	TCGA-CF-A9FF-01	TCGA-CF-A9FF	HookNet-TLS_manual	2	1													3		0					positive	immature only (LA1, no GC)	True	TCGA-CF-A9FF-01	True	False
+BLCA		TCGA-BLCA	TCGA-CU-A0YO-01	TCGA-CU-A0YO	HookNet-TLS_manual	2	1													8		0					positive	immature only (LA1, no GC)	True	TCGA-CU-A0YO-01	True	False
+BLCA		TCGA-BLCA	TCGA-DK-A1A3-01	TCGA-DK-A1A3	HookNet-TLS_manual	2	1													8		1					positive	mature (LA2 / GC+)	True	TCGA-DK-A1A3-01	True	False
+BLCA		TCGA-BLCA	TCGA-DK-A1A5-01	TCGA-DK-A1A5	HookNet-TLS_manual	2	1													11		0					positive	immature only (LA1, no GC)	True	TCGA-DK-A1A5-01	True	False
+BLCA		TCGA-BLCA	TCGA-DK-A1A6-01	TCGA-DK-A1A6	HookNet-TLS_manual	2	1													11		1					positive	mature (LA2 / GC+)	True	TCGA-DK-A1A6-01	True	False
+BLCA		TCGA-BLCA	TCGA-DK-A1A7-01	TCGA-DK-A1A7	HookNet-TLS_manual	2	1													6		3					positive	mature (LA2 / GC+)	True	TCGA-DK-A1A7-01	True	False
+BLCA		TCGA-BLCA	TCGA-DK-A1AA-01	TCGA-DK-A1AA	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-DK-A1AA-01	True	False
+BLCA		TCGA-BLCA	TCGA-DK-A1AB-01	TCGA-DK-A1AB	HookNet-TLS_manual	2	1													2		0					positive	immature only (LA1, no GC)	True	TCGA-DK-A1AB-01	True	False
+BLCA		TCGA-BLCA	TCGA-DK-A1AC-01	TCGA-DK-A1AC	HookNet-TLS_manual	2	1													3		0					positive	immature only (LA1, no GC)	True	TCGA-DK-A1AC-01	True	False
+BLCA		TCGA-BLCA	TCGA-DK-A1AD-01	TCGA-DK-A1AD	HookNet-TLS_manual	2	1													4		2					positive	mature (LA2 / GC+)	True	TCGA-DK-A1AD-01	True	False
+BLCA		TCGA-BLCA	TCGA-DK-A1AE-01	TCGA-DK-A1AE	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-DK-A1AE-01	True	False
+BLCA		TCGA-BLCA	TCGA-DK-A1AF-01	TCGA-DK-A1AF	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-DK-A1AF-01	True	False
+BLCA		TCGA-BLCA	TCGA-DK-A1AG-01	TCGA-DK-A1AG	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-DK-A1AG-01	True	False
+BLCA		TCGA-BLCA	TCGA-DK-A2HX-01	TCGA-DK-A2HX	HookNet-TLS_manual	2	1													9		0					positive	immature only (LA1, no GC)	True	TCGA-DK-A2HX-01	True	False
+BLCA		TCGA-BLCA	TCGA-DK-A2I1-01	TCGA-DK-A2I1	HookNet-TLS_manual	2	1													9		1					positive	mature (LA2 / GC+)	True	TCGA-DK-A2I1-01	True	False
+BLCA		TCGA-BLCA	TCGA-DK-A2I2-01	TCGA-DK-A2I2	HookNet-TLS_manual	2	1													43		8					positive	mature (LA2 / GC+)	True	TCGA-DK-A2I2-01	True	False
+BLCA		TCGA-BLCA	TCGA-DK-A2I4-01	TCGA-DK-A2I4	HookNet-TLS_manual	2	1													2		0					positive	immature only (LA1, no GC)	True	TCGA-DK-A2I4-01	True	False
+BLCA		TCGA-BLCA	TCGA-DK-A2I6-01	TCGA-DK-A2I6	HookNet-TLS_manual	2	1													28		9					positive	mature (LA2 / GC+)	True	TCGA-DK-A2I6-01	True	False
+BLCA		TCGA-BLCA	TCGA-DK-A3IK-01	TCGA-DK-A3IK	HookNet-TLS_manual	2	1													2		0					positive	immature only (LA1, no GC)	True	TCGA-DK-A3IK-01	True	False
+BLCA		TCGA-BLCA	TCGA-DK-A3IL-01	TCGA-DK-A3IL	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-DK-A3IL-01	True	False
+BLCA		TCGA-BLCA	TCGA-DK-A3IM-01	TCGA-DK-A3IM	HookNet-TLS_manual	2	1													14		0					positive	immature only (LA1, no GC)	True	TCGA-DK-A3IM-01	True	False
+BLCA		TCGA-BLCA	TCGA-DK-A3IN-01	TCGA-DK-A3IN	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-DK-A3IN-01	True	False
+BLCA		TCGA-BLCA	TCGA-DK-A3IQ-01	TCGA-DK-A3IQ	HookNet-TLS_manual	2	1													8		0					positive	immature only (LA1, no GC)	True	TCGA-DK-A3IQ-01	True	False
+BLCA		TCGA-BLCA	TCGA-DK-A3IS-01	TCGA-DK-A3IS	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-DK-A3IS-01	True	False
+BLCA		TCGA-BLCA	TCGA-DK-A3IT-01	TCGA-DK-A3IT	HookNet-TLS_manual	2	1													7		0					positive	immature only (LA1, no GC)	True	TCGA-DK-A3IT-01	True	False
+BLCA		TCGA-BLCA	TCGA-DK-A3IU-01	TCGA-DK-A3IU	HookNet-TLS_manual	2	1													41		1					positive	mature (LA2 / GC+)	True	TCGA-DK-A3IU-01	True	False
+BLCA		TCGA-BLCA	TCGA-DK-A3IV-01	TCGA-DK-A3IV	HookNet-TLS_manual	2	1													8		2					positive	mature (LA2 / GC+)	True	TCGA-DK-A3IV-01	True	False
+BLCA		TCGA-BLCA	TCGA-DK-A3WW-01	TCGA-DK-A3WW	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-DK-A3WW-01	True	False
+BLCA		TCGA-BLCA	TCGA-DK-A3WY-01	TCGA-DK-A3WY	HookNet-TLS_manual	2	1													40		30					positive	mature (LA2 / GC+)	True	TCGA-DK-A3WY-01	True	False
+BLCA		TCGA-BLCA	TCGA-DK-A3X1-01	TCGA-DK-A3X1	HookNet-TLS_manual	2	1													12		8					positive	mature (LA2 / GC+)	True	TCGA-DK-A3X1-01	True	False
+BLCA		TCGA-BLCA	TCGA-DK-A3X2-01	TCGA-DK-A3X2	HookNet-TLS_manual	2	1													1		0					positive	immature only (LA1, no GC)	True	TCGA-DK-A3X2-01	True	False
+BLCA		TCGA-BLCA	TCGA-DK-A6AV-01	TCGA-DK-A6AV	HookNet-TLS_manual	2	1													13		2					positive	mature (LA2 / GC+)	True	TCGA-DK-A6AV-01	True	False
+BLCA		TCGA-BLCA	TCGA-DK-A6AW-01	TCGA-DK-A6AW	HookNet-TLS_manual	2	1													8		0					positive	immature only (LA1, no GC)	True	TCGA-DK-A6AW-01	False	False
+BLCA		TCGA-BLCA	TCGA-DK-A6B0-01	TCGA-DK-A6B0	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-DK-A6B0-01	True	False
+BLCA		TCGA-BLCA	TCGA-DK-A6B1-01	TCGA-DK-A6B1	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-DK-A6B1-01	True	False
+BLCA		TCGA-BLCA	TCGA-DK-A6B2-01	TCGA-DK-A6B2	HookNet-TLS_manual	2	1													20		2					positive	mature (LA2 / GC+)	True	TCGA-DK-A6B2-01	True	False
+BLCA		TCGA-BLCA	TCGA-DK-A6B5-01	TCGA-DK-A6B5	HookNet-TLS_manual	2	1													4		0					positive	immature only (LA1, no GC)	True	TCGA-DK-A6B5-01	True	False
+BLCA		TCGA-BLCA	TCGA-E5-A2PC-01	TCGA-E5-A2PC	HookNet-TLS_manual	2	1													7		2					positive	mature (LA2 / GC+)	True	TCGA-E5-A2PC-01	True	False
+BLCA		TCGA-BLCA	TCGA-E5-A4TZ-01	TCGA-E5-A4TZ	HookNet-TLS_manual	2	1													1		0					positive	immature only (LA1, no GC)	True	TCGA-E5-A4TZ-01	True	False
+BLCA		TCGA-BLCA	TCGA-E5-A4U1-01	TCGA-E5-A4U1	HookNet-TLS_manual	2	1													4		0					positive	immature only (LA1, no GC)	True	TCGA-E5-A4U1-01	True	False
+BLCA		TCGA-BLCA	TCGA-E7-A4IJ-01	TCGA-E7-A4IJ	HookNet-TLS_manual	2	1													3		0					positive	immature only (LA1, no GC)	True	TCGA-E7-A4IJ-01	True	False
+BLCA		TCGA-BLCA	TCGA-E7-A6MD-01	TCGA-E7-A6MD	HookNet-TLS_manual	2	1													5		1					positive	mature (LA2 / GC+)	True	TCGA-E7-A6MD-01	True	False
+BLCA		TCGA-BLCA	TCGA-E7-A6ME-01	TCGA-E7-A6ME	HookNet-TLS_manual	2	1													4		0					positive	immature only (LA1, no GC)	True	TCGA-E7-A6ME-01	True	False
+BLCA		TCGA-BLCA	TCGA-E7-A7DU-01	TCGA-E7-A7DU	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-E7-A7DU-01	True	False
+BLCA		TCGA-BLCA	TCGA-E7-A85H-01	TCGA-E7-A85H	HookNet-TLS_manual	2	1													9		2					positive	mature (LA2 / GC+)	True	TCGA-E7-A85H-01	True	False
+BLCA		TCGA-BLCA	TCGA-E7-A8O8-01	TCGA-E7-A8O8	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-E7-A8O8-01	True	False
+BLCA		TCGA-BLCA	TCGA-E7-A97P-01	TCGA-E7-A97P	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-E7-A97P-01	True	False
+BLCA		TCGA-BLCA	TCGA-FD-A3B3-01	TCGA-FD-A3B3	HookNet-TLS_manual	2	1													2		0					positive	immature only (LA1, no GC)	True	TCGA-FD-A3B3-01	True	False
+BLCA		TCGA-BLCA	TCGA-FD-A3B4-01	TCGA-FD-A3B4	HookNet-TLS_manual	2	1													20		10					positive	mature (LA2 / GC+)	True	TCGA-FD-A3B4-01	True	False
+BLCA		TCGA-BLCA	TCGA-FD-A3B5-01	TCGA-FD-A3B5	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-FD-A3B5-01	True	False
+BLCA		TCGA-BLCA	TCGA-FD-A3B7-01	TCGA-FD-A3B7	HookNet-TLS_manual	2	1													7		7					positive	mature (LA2 / GC+)	True	TCGA-FD-A3B7-01	True	False
+BLCA		TCGA-BLCA	TCGA-FD-A3B8-01	TCGA-FD-A3B8	HookNet-TLS_manual	2	1													5		2					positive	mature (LA2 / GC+)	True	TCGA-FD-A3B8-01	True	False
+BLCA		TCGA-BLCA	TCGA-FD-A3N5-01	TCGA-FD-A3N5	HookNet-TLS_manual	2	1													40		8					positive	mature (LA2 / GC+)	True	TCGA-FD-A3N5-01	True	False
+BLCA		TCGA-BLCA	TCGA-FD-A3N6-01	TCGA-FD-A3N6	HookNet-TLS_manual	2	1													22		6					positive	mature (LA2 / GC+)	True	TCGA-FD-A3N6-01	True	False
+BLCA		TCGA-BLCA	TCGA-FD-A3NA-01	TCGA-FD-A3NA	HookNet-TLS_manual	2	1													42		24					positive	mature (LA2 / GC+)	True	TCGA-FD-A3NA-01	True	False
+BLCA		TCGA-BLCA	TCGA-FD-A3SJ-01	TCGA-FD-A3SJ	HookNet-TLS_manual	2	1													4		0					positive	immature only (LA1, no GC)	True	TCGA-FD-A3SJ-01	True	False
+BLCA		TCGA-BLCA	TCGA-FD-A3SL-01	TCGA-FD-A3SL	HookNet-TLS_manual	2	1													4		0					positive	immature only (LA1, no GC)	True	TCGA-FD-A3SL-01	True	False
+BLCA		TCGA-BLCA	TCGA-FD-A3SM-01	TCGA-FD-A3SM	HookNet-TLS_manual	2	1													1		0					positive	immature only (LA1, no GC)	True	TCGA-FD-A3SM-01	True	False
+BLCA		TCGA-BLCA	TCGA-FD-A3SN-01	TCGA-FD-A3SN	HookNet-TLS_manual	2	1													12		2					positive	mature (LA2 / GC+)	True	TCGA-FD-A3SN-01	True	False
+BLCA		TCGA-BLCA	TCGA-FD-A3SO-01	TCGA-FD-A3SO	HookNet-TLS_manual	2	1													9		3					positive	mature (LA2 / GC+)	True	TCGA-FD-A3SO-01	True	False
+BLCA		TCGA-BLCA	TCGA-FD-A3SP-01	TCGA-FD-A3SP	HookNet-TLS_manual	2	1													6		0					positive	immature only (LA1, no GC)	True	TCGA-FD-A3SP-01	True	False
+BLCA		TCGA-BLCA	TCGA-FD-A3SQ-01	TCGA-FD-A3SQ	HookNet-TLS_manual	2	1													8		1					positive	mature (LA2 / GC+)	True	TCGA-FD-A3SQ-01	True	False
+BLCA		TCGA-BLCA	TCGA-FD-A3SR-01	TCGA-FD-A3SR	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-FD-A3SR-01	True	False
+BLCA		TCGA-BLCA	TCGA-FD-A43N-01	TCGA-FD-A43N	HookNet-TLS_manual	2	1													36		0					positive	immature only (LA1, no GC)	True	TCGA-FD-A43N-01	True	False
+BLCA		TCGA-BLCA	TCGA-FD-A43P-01	TCGA-FD-A43P	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-FD-A43P-01	True	False
+BLCA		TCGA-BLCA	TCGA-FD-A43S-01	TCGA-FD-A43S	HookNet-TLS_manual	2	1													23		3					positive	mature (LA2 / GC+)	True	TCGA-FD-A43S-01	True	False
+BLCA		TCGA-BLCA	TCGA-FD-A43U-01	TCGA-FD-A43U	HookNet-TLS_manual	2	1													4		3					positive	mature (LA2 / GC+)	True	TCGA-FD-A43U-01	True	False
+BLCA		TCGA-BLCA	TCGA-FD-A43X-01	TCGA-FD-A43X	HookNet-TLS_manual	2	1													2		0					positive	immature only (LA1, no GC)	True	TCGA-FD-A43X-01	True	False
+BLCA		TCGA-BLCA	TCGA-FD-A43Y-01	TCGA-FD-A43Y	HookNet-TLS_manual	2	1													8		2					positive	mature (LA2 / GC+)	True	TCGA-FD-A43Y-01	True	False
+BLCA		TCGA-BLCA	TCGA-FD-A5BR-01	TCGA-FD-A5BR	HookNet-TLS_manual	2	1													17		2					positive	mature (LA2 / GC+)	True	TCGA-FD-A5BR-01	True	False
+BLCA		TCGA-BLCA	TCGA-FD-A5BS-01	TCGA-FD-A5BS	HookNet-TLS_manual	2	1													23		1					positive	mature (LA2 / GC+)	True	TCGA-FD-A5BS-01	True	False
+BLCA		TCGA-BLCA	TCGA-FD-A5BT-01	TCGA-FD-A5BT	HookNet-TLS_manual	2	1													8		0					positive	immature only (LA1, no GC)	True	TCGA-FD-A5BT-01	True	False
+BLCA		TCGA-BLCA	TCGA-FD-A5BU-01	TCGA-FD-A5BU	HookNet-TLS_manual	2	1													76		15					positive	mature (LA2 / GC+)	True	TCGA-FD-A5BU-01	True	False
+BLCA		TCGA-BLCA	TCGA-FD-A5BX-01	TCGA-FD-A5BX	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-FD-A5BX-01	True	False
+BLCA		TCGA-BLCA	TCGA-FD-A5BY-01	TCGA-FD-A5BY	HookNet-TLS_manual	2	1													2		0					positive	immature only (LA1, no GC)	True	TCGA-FD-A5BY-01	True	False
+BLCA		TCGA-BLCA	TCGA-FD-A5BZ-01	TCGA-FD-A5BZ	HookNet-TLS_manual	2	1													14		1					positive	mature (LA2 / GC+)	True	TCGA-FD-A5BZ-01	True	False
+BLCA		TCGA-BLCA	TCGA-FD-A5C0-01	TCGA-FD-A5C0	HookNet-TLS_manual	2	1													17		0					positive	immature only (LA1, no GC)	True	TCGA-FD-A5C0-01	True	False
+BLCA		TCGA-BLCA	TCGA-FD-A5C1-01	TCGA-FD-A5C1	HookNet-TLS_manual	2	1													5		3					positive	mature (LA2 / GC+)	True	TCGA-FD-A5C1-01	True	False
+BLCA		TCGA-BLCA	TCGA-FD-A62N-01	TCGA-FD-A62N	HookNet-TLS_manual	2	1													5		1					positive	mature (LA2 / GC+)	True	TCGA-FD-A62N-01	True	False
+BLCA		TCGA-BLCA	TCGA-FD-A62O-01	TCGA-FD-A62O	HookNet-TLS_manual	2	1													23		2					positive	mature (LA2 / GC+)	True	TCGA-FD-A62O-01	True	False
+BLCA		TCGA-BLCA	TCGA-FD-A62P-01	TCGA-FD-A62P	HookNet-TLS_manual	2	1													1		0					positive	immature only (LA1, no GC)	True	TCGA-FD-A62P-01	True	False
+BLCA		TCGA-BLCA	TCGA-FD-A62S-01	TCGA-FD-A62S	HookNet-TLS_manual	2	1													12		0					positive	immature only (LA1, no GC)	True	TCGA-FD-A62S-01	True	False
+BLCA		TCGA-BLCA	TCGA-FD-A6TA-01	TCGA-FD-A6TA	HookNet-TLS_manual	2	1													6		0					positive	immature only (LA1, no GC)	True	TCGA-FD-A6TA-01	True	False
+BLCA		TCGA-BLCA	TCGA-FD-A6TB-01	TCGA-FD-A6TB	HookNet-TLS_manual	2	1													10		0					positive	immature only (LA1, no GC)	True	TCGA-FD-A6TB-01	True	False
+BLCA		TCGA-BLCA	TCGA-FD-A6TC-01	TCGA-FD-A6TC	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-FD-A6TC-01	True	False
+BLCA		TCGA-BLCA	TCGA-FD-A6TF-01	TCGA-FD-A6TF	HookNet-TLS_manual	2	1													5		0					positive	immature only (LA1, no GC)	True	TCGA-FD-A6TF-01	True	False
+BLCA		TCGA-BLCA	TCGA-FD-A6TG-01	TCGA-FD-A6TG	HookNet-TLS_manual	2	1													9		0					positive	immature only (LA1, no GC)	True	TCGA-FD-A6TG-01	True	False
+BLCA		TCGA-BLCA	TCGA-FD-A6TH-01	TCGA-FD-A6TH	HookNet-TLS_manual	2	1													41		4					positive	mature (LA2 / GC+)	True	TCGA-FD-A6TH-01	True	False
+BLCA		TCGA-BLCA	TCGA-FD-A6TI-01	TCGA-FD-A6TI	HookNet-TLS_manual	2	1													1		0					positive	immature only (LA1, no GC)	True	TCGA-FD-A6TI-01	True	False
+BLCA		TCGA-BLCA	TCGA-FD-A6TK-01	TCGA-FD-A6TK	HookNet-TLS_manual	2	1													1		0					positive	immature only (LA1, no GC)	True	TCGA-FD-A6TK-01	True	False
+BLCA		TCGA-BLCA	TCGA-FJ-A3Z7-01	TCGA-FJ-A3Z7	HookNet-TLS_manual	2	1													10		1					positive	mature (LA2 / GC+)	True	TCGA-FJ-A3Z7-01	True	False
+BLCA		TCGA-BLCA	TCGA-FJ-A3Z9-01	TCGA-FJ-A3Z9	HookNet-TLS_manual	2	1													11		0					positive	immature only (LA1, no GC)	True	TCGA-FJ-A3Z9-01	True	False
+BLCA		TCGA-BLCA	TCGA-FJ-A3ZE-01	TCGA-FJ-A3ZE	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-FJ-A3ZE-01	True	False
+BLCA		TCGA-BLCA	TCGA-FJ-A3ZF-01	TCGA-FJ-A3ZF	HookNet-TLS_manual	2	1													1		0					positive	immature only (LA1, no GC)	True	TCGA-FJ-A3ZF-01	True	False
+BLCA		TCGA-BLCA	TCGA-FT-A3EE-01	TCGA-FT-A3EE	HookNet-TLS_manual	2	1													6		0					positive	immature only (LA1, no GC)	True	TCGA-FT-A3EE-01	True	False
+BLCA		TCGA-BLCA	TCGA-FT-A61P-01	TCGA-FT-A61P	HookNet-TLS_manual	2	1													1		0					positive	immature only (LA1, no GC)	True	TCGA-FT-A61P-01	True	False
+BLCA		TCGA-BLCA	TCGA-G2-A2EC-01	TCGA-G2-A2EC	HookNet-TLS_manual	2	1													3		0					positive	immature only (LA1, no GC)	True	TCGA-G2-A2EC-01	True	False
+BLCA		TCGA-BLCA	TCGA-G2-A2EF-01	TCGA-G2-A2EF	HookNet-TLS_manual	2	1													4		3					positive	mature (LA2 / GC+)	True	TCGA-G2-A2EF-01	True	False
+BLCA		TCGA-BLCA	TCGA-G2-A2EJ-01	TCGA-G2-A2EJ	HookNet-TLS_manual	2	1													9		2					positive	mature (LA2 / GC+)	True	TCGA-G2-A2EJ-01	True	False
+BLCA		TCGA-BLCA	TCGA-G2-A2EK-01	TCGA-G2-A2EK	HookNet-TLS_manual	2	1													2		0					positive	immature only (LA1, no GC)	True	TCGA-G2-A2EK-01	True	False
+BLCA		TCGA-BLCA	TCGA-G2-A2EO-01	TCGA-G2-A2EO	HookNet-TLS_manual	2	1													9		5					positive	mature (LA2 / GC+)	True	TCGA-G2-A2EO-01	True	False
+BLCA		TCGA-BLCA	TCGA-G2-A2ES-01	TCGA-G2-A2ES	HookNet-TLS_manual	2	1													24		12					positive	mature (LA2 / GC+)	True	TCGA-G2-A2ES-01	True	False
+BLCA		TCGA-BLCA	TCGA-G2-A3IB-01	TCGA-G2-A3IB	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-G2-A3IB-01	True	False
+BLCA		TCGA-BLCA	TCGA-G2-A3VY-01	TCGA-G2-A3VY	HookNet-TLS_manual	2	1													26		5					positive	mature (LA2 / GC+)	True	TCGA-G2-A3VY-01	True	False
+BLCA		TCGA-BLCA	TCGA-G2-AA3B-01	TCGA-G2-AA3B	HookNet-TLS_manual	2	1													12		12					positive	mature (LA2 / GC+)	True	TCGA-G2-AA3B-01	True	False
+BLCA		TCGA-BLCA	TCGA-G2-AA3F-01	TCGA-G2-AA3F	HookNet-TLS_manual	2	1													3		1					positive	mature (LA2 / GC+)	True	TCGA-G2-AA3F-01	True	False
+BLCA		TCGA-BLCA	TCGA-GC-A3BM-01	TCGA-GC-A3BM	HookNet-TLS_manual	2	1													1		0					positive	immature only (LA1, no GC)	True	TCGA-GC-A3BM-01	True	False
+BLCA		TCGA-BLCA	TCGA-GC-A3I6-01	TCGA-GC-A3I6	HookNet-TLS_manual	2	1													1		0					positive	immature only (LA1, no GC)	True	TCGA-GC-A3I6-01	True	False
+BLCA		TCGA-BLCA	TCGA-GC-A3OO-01	TCGA-GC-A3OO	HookNet-TLS_manual	2	1													13		4					positive	mature (LA2 / GC+)	True	TCGA-GC-A3OO-01	True	False
+BLCA		TCGA-BLCA	TCGA-GC-A3RC-01	TCGA-GC-A3RC	HookNet-TLS_manual	2	1													7		1					positive	mature (LA2 / GC+)	True	TCGA-GC-A3RC-01	True	False
+BLCA		TCGA-BLCA	TCGA-GC-A3RD-01	TCGA-GC-A3RD	HookNet-TLS_manual	2	1													4		1					positive	mature (LA2 / GC+)	True	TCGA-GC-A3RD-01	True	False
+BLCA		TCGA-BLCA	TCGA-GC-A4ZW-01	TCGA-GC-A4ZW	HookNet-TLS_manual	2	1													4		3					positive	mature (LA2 / GC+)	True	TCGA-GC-A4ZW-01	True	False
+BLCA		TCGA-BLCA	TCGA-GC-A6I1-01	TCGA-GC-A6I1	HookNet-TLS_manual	2	1													1		0					positive	immature only (LA1, no GC)	True	TCGA-GC-A6I1-01	True	False
+BLCA		TCGA-BLCA	TCGA-GC-A6I3-01	TCGA-GC-A6I3	HookNet-TLS_manual	2	1													2		1					positive	mature (LA2 / GC+)	True	TCGA-GC-A6I3-01	True	False
+BLCA		TCGA-BLCA	TCGA-GD-A3OP-01	TCGA-GD-A3OP	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-GD-A3OP-01	True	False
+BLCA		TCGA-BLCA	TCGA-GD-A3OQ-01	TCGA-GD-A3OQ	HookNet-TLS_manual	2	1													5		0					positive	immature only (LA1, no GC)	True	TCGA-GD-A3OQ-01	True	False
+BLCA		TCGA-BLCA	TCGA-GD-A3OS-01	TCGA-GD-A3OS	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-GD-A3OS-01	True	False
+BLCA		TCGA-BLCA	TCGA-GU-A42P-01	TCGA-GU-A42P	HookNet-TLS_manual	2	1													26		11					positive	mature (LA2 / GC+)	True	TCGA-GU-A42P-01	True	False
+BLCA		TCGA-BLCA	TCGA-GU-A42Q-01	TCGA-GU-A42Q	HookNet-TLS_manual	2	1													20		6					positive	mature (LA2 / GC+)	True	TCGA-GU-A42Q-01	True	False
+BLCA		TCGA-BLCA	TCGA-GU-A42R-01	TCGA-GU-A42R	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-GU-A42R-01	True	False
+BLCA		TCGA-BLCA	TCGA-GU-A762-01	TCGA-GU-A762	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-GU-A762-01	True	False
+BLCA		TCGA-BLCA	TCGA-GU-A763-01	TCGA-GU-A763	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-GU-A763-01	True	False
+BLCA		TCGA-BLCA	TCGA-GU-A764-01	TCGA-GU-A764	HookNet-TLS_manual	2	1													14		1					positive	mature (LA2 / GC+)	True	TCGA-GU-A764-01	True	False
+BLCA		TCGA-BLCA	TCGA-GU-A766-01	TCGA-GU-A766	HookNet-TLS_manual	2	1													44		10					positive	mature (LA2 / GC+)	True	TCGA-GU-A766-01	True	False
+BLCA		TCGA-BLCA	TCGA-GU-A767-01	TCGA-GU-A767	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-GU-A767-01	True	False
+BLCA		TCGA-BLCA	TCGA-GU-AATO-01	TCGA-GU-AATO	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-GU-AATO-01	True	False
+BLCA		TCGA-BLCA	TCGA-GU-AATP-01	TCGA-GU-AATP	HookNet-TLS_manual	2	1													20		8					positive	mature (LA2 / GC+)	True	TCGA-GU-AATP-01	True	False
+BLCA		TCGA-BLCA	TCGA-GU-AATQ-01	TCGA-GU-AATQ	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-GU-AATQ-01	True	False
+BLCA		TCGA-BLCA	TCGA-GV-A3JV-01	TCGA-GV-A3JV	HookNet-TLS_manual	2	1													3		1					positive	mature (LA2 / GC+)	True	TCGA-GV-A3JV-01	True	False
+BLCA		TCGA-BLCA	TCGA-GV-A3JW-01	TCGA-GV-A3JW	HookNet-TLS_manual	2	1													1		0					positive	immature only (LA1, no GC)	True	TCGA-GV-A3JW-01	True	False
+BLCA		TCGA-BLCA	TCGA-GV-A3JX-01	TCGA-GV-A3JX	HookNet-TLS_manual	2	1													18		3					positive	mature (LA2 / GC+)	True	TCGA-GV-A3JX-01	True	False
+BLCA		TCGA-BLCA	TCGA-GV-A3JZ-01	TCGA-GV-A3JZ	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-GV-A3JZ-01	True	False
+BLCA		TCGA-BLCA	TCGA-GV-A3QF-01	TCGA-GV-A3QF	HookNet-TLS_manual	2	1													9		4					positive	mature (LA2 / GC+)	True	TCGA-GV-A3QF-01	True	False
+BLCA		TCGA-BLCA	TCGA-GV-A3QG-01	TCGA-GV-A3QG	HookNet-TLS_manual	2	1													3		0					positive	immature only (LA1, no GC)	True	TCGA-GV-A3QG-01	True	False
+BLCA		TCGA-BLCA	TCGA-GV-A3QH-01	TCGA-GV-A3QH	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-GV-A3QH-01	True	False
+BLCA		TCGA-BLCA	TCGA-GV-A3QI-01	TCGA-GV-A3QI	HookNet-TLS_manual	2	1													3		0					positive	immature only (LA1, no GC)	True	TCGA-GV-A3QI-01	True	False
+BLCA		TCGA-BLCA	TCGA-GV-A3QK-01	TCGA-GV-A3QK	HookNet-TLS_manual	2	1													27		0					positive	immature only (LA1, no GC)	True	TCGA-GV-A3QK-01	True	False
+BLCA		TCGA-BLCA	TCGA-GV-A40G-01	TCGA-GV-A40G	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-GV-A40G-01	True	False
+BLCA		TCGA-BLCA	TCGA-GV-A6ZA-01	TCGA-GV-A6ZA	HookNet-TLS_manual	2	1													40		8					positive	mature (LA2 / GC+)	True	TCGA-GV-A6ZA-01	True	False
+BLCA		TCGA-BLCA	TCGA-H4-A2HO-01	TCGA-H4-A2HO	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-H4-A2HO-01	True	False
+BLCA		TCGA-BLCA	TCGA-HQ-A5NE-01	TCGA-HQ-A5NE	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-HQ-A5NE-01	True	False
+BLCA		TCGA-BLCA	TCGA-K4-A3WU-01	TCGA-K4-A3WU	HookNet-TLS_manual	2	1													7		2					positive	mature (LA2 / GC+)	True	TCGA-K4-A3WU-01	True	False
+BLCA		TCGA-BLCA	TCGA-K4-A3WV-01	TCGA-K4-A3WV	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-K4-A3WV-01	True	False
+BLCA		TCGA-BLCA	TCGA-K4-A4AC-01	TCGA-K4-A4AC	HookNet-TLS_manual	2	1													4		0					positive	immature only (LA1, no GC)	True	TCGA-K4-A4AC-01	True	False
+BLCA		TCGA-BLCA	TCGA-K4-A5RH-01	TCGA-K4-A5RH	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-K4-A5RH-01	True	False
+BLCA		TCGA-BLCA	TCGA-K4-A5RJ-01	TCGA-K4-A5RJ	HookNet-TLS_manual	2	1													8		0					positive	immature only (LA1, no GC)	True	TCGA-K4-A5RJ-01	True	False
+BLCA		TCGA-BLCA	TCGA-K4-A6FZ-01	TCGA-K4-A6FZ	HookNet-TLS_manual	2	1													18		4					positive	mature (LA2 / GC+)	True	TCGA-K4-A6FZ-01	True	False
+BLCA		TCGA-BLCA	TCGA-K4-A6MB-01	TCGA-K4-A6MB	HookNet-TLS_manual	2	1													8		0					positive	immature only (LA1, no GC)	True	TCGA-K4-A6MB-01	True	False
+BLCA		TCGA-BLCA	TCGA-K4-A83P-01	TCGA-K4-A83P	HookNet-TLS_manual	2	1													19		5					positive	mature (LA2 / GC+)	True	TCGA-K4-A83P-01	True	False
+BLCA		TCGA-BLCA	TCGA-K4-AAQO-01	TCGA-K4-AAQO	HookNet-TLS_manual	2	1													16		1					positive	mature (LA2 / GC+)	True	TCGA-K4-AAQO-01	True	False
+BLCA		TCGA-BLCA	TCGA-LC-A66R-01	TCGA-LC-A66R	HookNet-TLS_manual	2	1													12		0					positive	immature only (LA1, no GC)	True	TCGA-LC-A66R-01	True	False
+BLCA		TCGA-BLCA	TCGA-LT-A8JT-01	TCGA-LT-A8JT	HookNet-TLS_manual	2	1													17		1					positive	mature (LA2 / GC+)	True	TCGA-LT-A8JT-01	True	False
+BLCA		TCGA-BLCA	TCGA-MV-A51V-01	TCGA-MV-A51V	HookNet-TLS_manual	2	1													1		0					positive	immature only (LA1, no GC)	True	TCGA-MV-A51V-01	True	False
+BLCA		TCGA-BLCA	TCGA-PQ-A6FI-01	TCGA-PQ-A6FI	HookNet-TLS_manual	2	1													14		4					positive	mature (LA2 / GC+)	True	TCGA-PQ-A6FI-01	True	False
+BLCA		TCGA-BLCA	TCGA-PQ-A6FN-01	TCGA-PQ-A6FN	HookNet-TLS_manual	2	1													27		1					positive	mature (LA2 / GC+)	True	TCGA-PQ-A6FN-01	True	False
+BLCA		TCGA-BLCA	TCGA-S5-A6DX-01	TCGA-S5-A6DX	HookNet-TLS_manual	2	1													7		1					positive	mature (LA2 / GC+)	True	TCGA-S5-A6DX-01	True	False
+BLCA		TCGA-BLCA	TCGA-S5-AA26-01	TCGA-S5-AA26	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-S5-AA26-01	True	False
+BLCA		TCGA-BLCA	TCGA-SY-A9G0-01	TCGA-SY-A9G0	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-SY-A9G0-01	True	False
+BLCA		TCGA-BLCA	TCGA-SY-A9G5-01	TCGA-SY-A9G5	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-SY-A9G5-01	True	False
+BLCA		TCGA-BLCA	TCGA-UY-A78K-01	TCGA-UY-A78K	HookNet-TLS_manual	2	1													42		5					positive	mature (LA2 / GC+)	True	TCGA-UY-A78K-01	True	False
+BLCA		TCGA-BLCA	TCGA-UY-A78L-01	TCGA-UY-A78L	HookNet-TLS_manual	2	1													19		2					positive	mature (LA2 / GC+)	True	TCGA-UY-A78L-01	True	False
+BLCA		TCGA-BLCA	TCGA-UY-A78M-01	TCGA-UY-A78M	HookNet-TLS_manual	2	1													5		2					positive	mature (LA2 / GC+)	True	TCGA-UY-A78M-01	True	False
+BLCA		TCGA-BLCA	TCGA-UY-A78N-01	TCGA-UY-A78N	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-UY-A78N-01	True	False
+BLCA		TCGA-BLCA	TCGA-UY-A78O-01	TCGA-UY-A78O	HookNet-TLS_manual	2	1													2		0					positive	immature only (LA1, no GC)	True	TCGA-UY-A78O-01	True	False
+BLCA		TCGA-BLCA	TCGA-UY-A78P-01	TCGA-UY-A78P	HookNet-TLS_manual	2	1													30		2					positive	mature (LA2 / GC+)	True	TCGA-UY-A78P-01	True	False
+BLCA		TCGA-BLCA	TCGA-UY-A8OB-01	TCGA-UY-A8OB	HookNet-TLS_manual	2	1													4		0					positive	immature only (LA1, no GC)	True	TCGA-UY-A8OB-01	True	False
+BLCA		TCGA-BLCA	TCGA-UY-A8OC-01	TCGA-UY-A8OC	HookNet-TLS_manual	2	1													6		0					positive	immature only (LA1, no GC)	True	TCGA-UY-A8OC-01	True	False
+BLCA		TCGA-BLCA	TCGA-UY-A8OD-01	TCGA-UY-A8OD	HookNet-TLS_manual	2	1													3		1					positive	mature (LA2 / GC+)	True	TCGA-UY-A8OD-01	True	False
+BLCA		TCGA-BLCA	TCGA-UY-A9PA-01	TCGA-UY-A9PA	HookNet-TLS_manual	2	1													7		3					positive	mature (LA2 / GC+)	True	TCGA-UY-A9PA-01	True	False
+BLCA		TCGA-BLCA	TCGA-UY-A9PB-01	TCGA-UY-A9PB	HookNet-TLS_manual	2	1													21		6					positive	mature (LA2 / GC+)	True	TCGA-UY-A9PB-01	True	False
+BLCA		TCGA-BLCA	TCGA-UY-A9PD-01	TCGA-UY-A9PD	HookNet-TLS_manual	2	1													4		1					positive	mature (LA2 / GC+)	True	TCGA-UY-A9PD-01	True	False
+BLCA		TCGA-BLCA	TCGA-UY-A9PE-01	TCGA-UY-A9PE	HookNet-TLS_manual	2	1													14		4					positive	mature (LA2 / GC+)	True	TCGA-UY-A9PE-01	True	False
+BLCA		TCGA-BLCA	TCGA-UY-A9PH-01	TCGA-UY-A9PH	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-UY-A9PH-01	True	False
+BLCA		TCGA-BLCA	TCGA-XF-A8HB-01	TCGA-XF-A8HB	HookNet-TLS_manual	2	1													8		3					positive	mature (LA2 / GC+)	True	TCGA-XF-A8HB-01	True	False
+BLCA		TCGA-BLCA	TCGA-XF-A8HC-01	TCGA-XF-A8HC	HookNet-TLS_manual	2	1													8		0					positive	immature only (LA1, no GC)	True	TCGA-XF-A8HC-01	True	False
+BLCA		TCGA-BLCA	TCGA-XF-A8HD-01	TCGA-XF-A8HD	HookNet-TLS_manual	2	1													5		0					positive	immature only (LA1, no GC)	True	TCGA-XF-A8HD-01	True	False
+BLCA		TCGA-BLCA	TCGA-XF-A8HE-01	TCGA-XF-A8HE	HookNet-TLS_manual	2	1													6		3					positive	mature (LA2 / GC+)	True	TCGA-XF-A8HE-01	True	False
+BLCA		TCGA-BLCA	TCGA-XF-A8HF-01	TCGA-XF-A8HF	HookNet-TLS_manual	2	1													3		0					positive	immature only (LA1, no GC)	True	TCGA-XF-A8HF-01	True	False
+BLCA		TCGA-BLCA	TCGA-XF-A8HG-01	TCGA-XF-A8HG	HookNet-TLS_manual	2	1													5		0					positive	immature only (LA1, no GC)	True	TCGA-XF-A8HG-01	True	False
+BLCA		TCGA-BLCA	TCGA-XF-A8HH-01	TCGA-XF-A8HH	HookNet-TLS_manual	2	1													3		2					positive	mature (LA2 / GC+)	True	TCGA-XF-A8HH-01	True	False
+BLCA		TCGA-BLCA	TCGA-XF-A8HI-01	TCGA-XF-A8HI	HookNet-TLS_manual	2	1													8		1					positive	mature (LA2 / GC+)	True	TCGA-XF-A8HI-01	True	False
+BLCA		TCGA-BLCA	TCGA-XF-A9SH-01	TCGA-XF-A9SH	HookNet-TLS_manual	2	1													3		0					positive	immature only (LA1, no GC)	True	TCGA-XF-A9SH-01	True	False
+BLCA		TCGA-BLCA	TCGA-XF-A9SI-01	TCGA-XF-A9SI	HookNet-TLS_manual	2	1													9		2					positive	mature (LA2 / GC+)	True	TCGA-XF-A9SI-01	True	False
+BLCA		TCGA-BLCA	TCGA-XF-A9SJ-01	TCGA-XF-A9SJ	HookNet-TLS_manual	2	1													5		1					positive	mature (LA2 / GC+)	True	TCGA-XF-A9SJ-01	True	False
+BLCA		TCGA-BLCA	TCGA-XF-A9SK-01	TCGA-XF-A9SK	HookNet-TLS_manual	2	1													14		0					positive	immature only (LA1, no GC)	True	TCGA-XF-A9SK-01	True	False
+BLCA		TCGA-BLCA	TCGA-XF-A9SL-01	TCGA-XF-A9SL	HookNet-TLS_manual	2	1													1		0					positive	immature only (LA1, no GC)	True	TCGA-XF-A9SL-01	True	False
+BLCA		TCGA-BLCA	TCGA-XF-A9SM-01	TCGA-XF-A9SM	HookNet-TLS_manual	2	1													11		2					positive	mature (LA2 / GC+)	True	TCGA-XF-A9SM-01	True	False
+BLCA		TCGA-BLCA	TCGA-XF-A9SP-01	TCGA-XF-A9SP	HookNet-TLS_manual	2	1													6		1					positive	mature (LA2 / GC+)	True	TCGA-XF-A9SP-01	True	False
+BLCA		TCGA-BLCA	TCGA-XF-A9SU-01	TCGA-XF-A9SU	HookNet-TLS_manual	2	1													6		0					positive	immature only (LA1, no GC)	True	TCGA-XF-A9SU-01	True	False
+BLCA		TCGA-BLCA	TCGA-XF-A9SV-01	TCGA-XF-A9SV	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-XF-A9SV-01	True	False
+BLCA		TCGA-BLCA	TCGA-XF-A9SW-01	TCGA-XF-A9SW	HookNet-TLS_manual	2	1													10		2					positive	mature (LA2 / GC+)	True	TCGA-XF-A9SW-01	True	False
+BLCA		TCGA-BLCA	TCGA-XF-A9SX-01	TCGA-XF-A9SX	HookNet-TLS_manual	2	1													25		4					positive	mature (LA2 / GC+)	True	TCGA-XF-A9SX-01	True	False
+BLCA		TCGA-BLCA	TCGA-XF-A9SY-01	TCGA-XF-A9SY	HookNet-TLS_manual	2	1													20		17					positive	mature (LA2 / GC+)	True	TCGA-XF-A9SY-01	True	False
+BLCA		TCGA-BLCA	TCGA-XF-A9SZ-01	TCGA-XF-A9SZ	HookNet-TLS_manual	2	1													1		1					positive	mature (LA2 / GC+)	True	TCGA-XF-A9SZ-01	True	False
+BLCA		TCGA-BLCA	TCGA-XF-A9T0-01	TCGA-XF-A9T0	HookNet-TLS_manual	2	1													1		0					positive	immature only (LA1, no GC)	True	TCGA-XF-A9T0-01	True	False
+BLCA		TCGA-BLCA	TCGA-XF-A9T2-01	TCGA-XF-A9T2	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-XF-A9T2-01	True	False
+BLCA		TCGA-BLCA	TCGA-XF-A9T3-01	TCGA-XF-A9T3	HookNet-TLS_manual	2	1													1		0					positive	immature only (LA1, no GC)	True	TCGA-XF-A9T3-01	True	False
+BLCA		TCGA-BLCA	TCGA-XF-A9T4-01	TCGA-XF-A9T4	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-XF-A9T4-01	True	False
+BLCA		TCGA-BLCA	TCGA-XF-A9T5-01	TCGA-XF-A9T5	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-XF-A9T5-01	True	False
+BLCA		TCGA-BLCA	TCGA-XF-A9T6-01	TCGA-XF-A9T6	HookNet-TLS_manual	2	1													38		17					positive	mature (LA2 / GC+)	True	TCGA-XF-A9T6-01	True	False
+BLCA		TCGA-BLCA	TCGA-XF-AAME-01	TCGA-XF-AAME	HookNet-TLS_manual	2	1													4		0					positive	immature only (LA1, no GC)	True	TCGA-XF-AAME-01	True	False
+BLCA		TCGA-BLCA	TCGA-XF-AAMF-01	TCGA-XF-AAMF	HookNet-TLS_manual	2	1													1		0					positive	immature only (LA1, no GC)	True	TCGA-XF-AAMF-01	False	False
+BLCA		TCGA-BLCA	TCGA-XF-AAMH-01	TCGA-XF-AAMH	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-XF-AAMH-01	True	False
+BLCA		TCGA-BLCA	TCGA-XF-AAMJ-01	TCGA-XF-AAMJ	HookNet-TLS_manual	2	1													1		0					positive	immature only (LA1, no GC)	True	TCGA-XF-AAMJ-01	True	False
+BLCA		TCGA-BLCA	TCGA-XF-AAML-01	TCGA-XF-AAML	HookNet-TLS_manual	2	1													7		0					positive	immature only (LA1, no GC)	True	TCGA-XF-AAML-01	True	False
+BLCA		TCGA-BLCA	TCGA-XF-AAMQ-01	TCGA-XF-AAMQ	HookNet-TLS_manual	2	1													16		13					positive	mature (LA2 / GC+)	True	TCGA-XF-AAMQ-01	True	False
+BLCA		TCGA-BLCA	TCGA-XF-AAMR-01	TCGA-XF-AAMR	HookNet-TLS_manual	2	1													2		0					positive	immature only (LA1, no GC)	True	TCGA-XF-AAMR-01	True	False
+BLCA		TCGA-BLCA	TCGA-XF-AAMT-01	TCGA-XF-AAMT	HookNet-TLS_manual	2	1													4		2					positive	mature (LA2 / GC+)	True	TCGA-XF-AAMT-01	True	False
+BLCA		TCGA-BLCA	TCGA-XF-AAMW-01	TCGA-XF-AAMW	HookNet-TLS_manual	2	1													3		0					positive	immature only (LA1, no GC)	True	TCGA-XF-AAMW-01	True	False
+BLCA		TCGA-BLCA	TCGA-XF-AAMX-01	TCGA-XF-AAMX	HookNet-TLS_manual	2	1													38		7					positive	mature (LA2 / GC+)	True	TCGA-XF-AAMX-01	True	False
+BLCA		TCGA-BLCA	TCGA-XF-AAMY-01	TCGA-XF-AAMY	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-XF-AAMY-01	True	False
+BLCA		TCGA-BLCA	TCGA-XF-AAMZ-01	TCGA-XF-AAMZ	HookNet-TLS_manual	2	1													23		5					positive	mature (LA2 / GC+)	True	TCGA-XF-AAMZ-01	True	False
+BLCA		TCGA-BLCA	TCGA-XF-AAN0-01	TCGA-XF-AAN0	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-XF-AAN0-01	True	False
+BLCA		TCGA-BLCA	TCGA-XF-AAN1-01	TCGA-XF-AAN1	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-XF-AAN1-01	True	False
+BLCA		TCGA-BLCA	TCGA-XF-AAN2-01	TCGA-XF-AAN2	HookNet-TLS_manual	2	1													6		2					positive	mature (LA2 / GC+)	True	TCGA-XF-AAN2-01	True	False
+BLCA		TCGA-BLCA	TCGA-XF-AAN3-01	TCGA-XF-AAN3	HookNet-TLS_manual	2	1													2		0					positive	immature only (LA1, no GC)	True	TCGA-XF-AAN3-01	True	False
+BLCA		TCGA-BLCA	TCGA-XF-AAN4-01	TCGA-XF-AAN4	HookNet-TLS_manual	2	1													5		0					positive	immature only (LA1, no GC)	True	TCGA-XF-AAN4-01	True	False
+BLCA		TCGA-BLCA	TCGA-XF-AAN5-01	TCGA-XF-AAN5	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-XF-AAN5-01	True	False
+BLCA		TCGA-BLCA	TCGA-XF-AAN7-01	TCGA-XF-AAN7	HookNet-TLS_manual	2	1													2		0					positive	immature only (LA1, no GC)	True	TCGA-XF-AAN7-01	True	False
+BLCA		TCGA-BLCA	TCGA-XF-AAN8-01	TCGA-XF-AAN8	HookNet-TLS_manual	2	1													1		0					positive	immature only (LA1, no GC)	True	TCGA-XF-AAN8-01	True	False
+BLCA		TCGA-BLCA	TCGA-YC-A89H-01	TCGA-YC-A89H	HookNet-TLS_manual	2	1													22		3					positive	mature (LA2 / GC+)	True	TCGA-YC-A89H-01	True	False
+BLCA		TCGA-BLCA	TCGA-YC-A8S6-01	TCGA-YC-A8S6	HookNet-TLS_manual	2	1													1		0					positive	immature only (LA1, no GC)	True	TCGA-YC-A8S6-01	True	False
+BLCA		TCGA-BLCA	TCGA-YF-AA3L-01	TCGA-YF-AA3L	HookNet-TLS_manual	2	1													10		0					positive	immature only (LA1, no GC)	True	TCGA-YF-AA3L-01	True	False
+BLCA		TCGA-BLCA	TCGA-YF-AA3M-01	TCGA-YF-AA3M	HookNet-TLS_manual	2	1													16		0					positive	immature only (LA1, no GC)	True	TCGA-YF-AA3M-01	True	False
+BLCA		TCGA-BLCA	TCGA-ZF-A9R0-01	TCGA-ZF-A9R0	HookNet-TLS_manual	2	1													2		0					positive	immature only (LA1, no GC)	True	TCGA-ZF-A9R0-01	True	False
+BLCA		TCGA-BLCA	TCGA-ZF-A9R1-01	TCGA-ZF-A9R1	HookNet-TLS_manual	2	1													6		0					positive	immature only (LA1, no GC)	True	TCGA-ZF-A9R1-01	True	False
+BLCA		TCGA-BLCA	TCGA-ZF-A9R2-01	TCGA-ZF-A9R2	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-ZF-A9R2-01	True	False
+BLCA		TCGA-BLCA	TCGA-ZF-A9R3-01	TCGA-ZF-A9R3	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-ZF-A9R3-01	True	False
+BLCA		TCGA-BLCA	TCGA-ZF-A9R7-01	TCGA-ZF-A9R7	HookNet-TLS_manual	2	1													3		2					positive	mature (LA2 / GC+)	True	TCGA-ZF-A9R7-01	True	False
+BLCA		TCGA-BLCA	TCGA-ZF-A9R9-01	TCGA-ZF-A9R9	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-ZF-A9R9-01	True	False
+BLCA		TCGA-BLCA	TCGA-ZF-A9RC-01	TCGA-ZF-A9RC	HookNet-TLS_manual	2	1													15		1					positive	mature (LA2 / GC+)	True	TCGA-ZF-A9RC-01	True	False
+BLCA		TCGA-BLCA	TCGA-ZF-A9RD-01	TCGA-ZF-A9RD	HookNet-TLS_manual	2	1													7		3					positive	mature (LA2 / GC+)	True	TCGA-ZF-A9RD-01	True	False
+BLCA		TCGA-BLCA	TCGA-ZF-A9RF-01	TCGA-ZF-A9RF	HookNet-TLS_manual	2	1													11		0					positive	immature only (LA1, no GC)	True	TCGA-ZF-A9RF-01	True	False
+BLCA		TCGA-BLCA	TCGA-ZF-A9RG-01	TCGA-ZF-A9RG	HookNet-TLS_manual	2	1													1		0					positive	immature only (LA1, no GC)	True	TCGA-ZF-A9RG-01	False	False
+BLCA		TCGA-BLCA	TCGA-ZF-A9RL-01	TCGA-ZF-A9RL	HookNet-TLS_manual	2	1													5		0					positive	immature only (LA1, no GC)	True	TCGA-ZF-A9RL-01	True	False
+BLCA		TCGA-BLCA	TCGA-ZF-A9RM-01	TCGA-ZF-A9RM	HookNet-TLS_manual	2	1													5		0					positive	immature only (LA1, no GC)	True	TCGA-ZF-A9RM-01	True	False
+BLCA		TCGA-BLCA	TCGA-ZF-A9RN-01	TCGA-ZF-A9RN	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-ZF-A9RN-01	True	False
+BLCA		TCGA-BLCA	TCGA-ZF-AA4N-01	TCGA-ZF-AA4N	HookNet-TLS_manual	2	1													3		0					positive	immature only (LA1, no GC)	True	TCGA-ZF-AA4N-01	True	False
+BLCA		TCGA-BLCA	TCGA-ZF-AA4R-01	TCGA-ZF-AA4R	HookNet-TLS_manual	2	1													10		1					positive	mature (LA2 / GC+)	True	TCGA-ZF-AA4R-01	True	False
+BLCA		TCGA-BLCA	TCGA-ZF-AA4T-01	TCGA-ZF-AA4T	HookNet-TLS_manual	2	1													3		0					positive	immature only (LA1, no GC)	True	TCGA-ZF-AA4T-01	True	False
+BLCA		TCGA-BLCA	TCGA-ZF-AA4U-01	TCGA-ZF-AA4U	HookNet-TLS_manual	2	1													3		0					positive	immature only (LA1, no GC)	True	TCGA-ZF-AA4U-01	True	False
+BLCA		TCGA-BLCA	TCGA-ZF-AA4V-01	TCGA-ZF-AA4V	HookNet-TLS_manual	2	1													6		1					positive	mature (LA2 / GC+)	True	TCGA-ZF-AA4V-01	True	False
+BLCA		TCGA-BLCA	TCGA-ZF-AA4W-01	TCGA-ZF-AA4W	HookNet-TLS_manual	2	1													3		0					positive	immature only (LA1, no GC)	True	TCGA-ZF-AA4W-01	True	False
+BLCA		TCGA-BLCA	TCGA-ZF-AA4X-01	TCGA-ZF-AA4X	HookNet-TLS_manual	2	1													2		0					positive	immature only (LA1, no GC)	True	TCGA-ZF-AA4X-01	True	False
+BLCA		TCGA-BLCA	TCGA-ZF-AA52-01	TCGA-ZF-AA52	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-ZF-AA52-01	True	False
+BLCA		TCGA-BLCA	TCGA-ZF-AA54-01	TCGA-ZF-AA54	HookNet-TLS_manual	2	1													1		0					positive	immature only (LA1, no GC)	True	TCGA-ZF-AA54-01	True	False
+BLCA		TCGA-BLCA	TCGA-ZF-AA58-01	TCGA-ZF-AA58	HookNet-TLS_manual	2	1													14		0					positive	immature only (LA1, no GC)	True	TCGA-ZF-AA58-01	True	False
+BLCA		TCGA-BLCA	TCGA-ZF-AA5H-01	TCGA-ZF-AA5H	HookNet-TLS_manual	2	1													24		6					positive	mature (LA2 / GC+)	True	TCGA-ZF-AA5H-01	True	False
+BLCA		TCGA-BLCA	TCGA-ZF-AA5N-01	TCGA-ZF-AA5N	HookNet-TLS_manual	2	1													1		1					positive	mature (LA2 / GC+)	True	TCGA-ZF-AA5N-01	True	False
+BLCA		TCGA-BLCA	TCGA-ZF-AA5P-01	TCGA-ZF-AA5P	HookNet-TLS_manual	2	1													7		0					positive	immature only (LA1, no GC)	True	TCGA-ZF-AA5P-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-3Z-A93Z-01	TCGA-3Z-A93Z	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-3Z-A93Z-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-6D-AA2E-01	TCGA-6D-AA2E	HookNet-TLS_manual	2	1													1		0					positive	immature only (LA1, no GC)	True	TCGA-6D-AA2E-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-A3-3307-01	TCGA-A3-3307	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-A3-3307-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-A3-3308-01	TCGA-A3-3308	HookNet-TLS_manual	2	1													1		1					positive	mature (LA2 / GC+)	True	TCGA-A3-3308-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-A3-3313-01	TCGA-A3-3313	HookNet-TLS_manual	2	1													2		1					positive	mature (LA2 / GC+)	True	TCGA-A3-3313-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-A3-3335-01	TCGA-A3-3335	HookNet-TLS_manual	2	1													1		0					positive	immature only (LA1, no GC)	True	TCGA-A3-3335-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-A3-3347-01	TCGA-A3-3347	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-A3-3347-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-A3-3359-01	TCGA-A3-3359	HookNet-TLS_manual	2	1													1		0					positive	immature only (LA1, no GC)	True	TCGA-A3-3359-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-A3-3365-01	TCGA-A3-3365	HookNet-TLS_manual	2	1													3		1					positive	mature (LA2 / GC+)	True	TCGA-A3-3365-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-A3-3370-01	TCGA-A3-3370	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-A3-3370-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-A3-3376-01	TCGA-A3-3376	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-A3-3376-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-A3-3378-01	TCGA-A3-3378	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-A3-3378-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-A3-3380-01	TCGA-A3-3380	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-A3-3380-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-A3-3382-01	TCGA-A3-3382	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-A3-3382-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-A3-A6NJ-01	TCGA-A3-A6NJ	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-A3-A6NJ-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-A3-A8OV-01	TCGA-A3-A8OV	HookNet-TLS_manual	2	1													3		0					positive	immature only (LA1, no GC)	True	TCGA-A3-A8OV-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-A3-A8OW-01	TCGA-A3-A8OW	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-A3-A8OW-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-A3-A8OX-01	TCGA-A3-A8OX	HookNet-TLS_manual	2	1													1		0					positive	immature only (LA1, no GC)	True	TCGA-A3-A8OX-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-AK-3426-01	TCGA-AK-3426	HookNet-TLS_manual	2	1													4		0					positive	immature only (LA1, no GC)	True	TCGA-AK-3426-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-AK-3429-01	TCGA-AK-3429	HookNet-TLS_manual	2	1													2		0					positive	immature only (LA1, no GC)	True	TCGA-AK-3429-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B0-4688-01	TCGA-B0-4688	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-B0-4688-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B0-4691-01	TCGA-B0-4691	HookNet-TLS_manual	2	1													5		0					positive	immature only (LA1, no GC)	True	TCGA-B0-4691-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B0-4694-01	TCGA-B0-4694	HookNet-TLS_manual	2	1													1		0					positive	immature only (LA1, no GC)	True	TCGA-B0-4694-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B0-4697-01	TCGA-B0-4697	HookNet-TLS_manual	2	1													22		3					positive	mature (LA2 / GC+)	True	TCGA-B0-4697-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B0-4699-01	TCGA-B0-4699	HookNet-TLS_manual	2	1													8		0					positive	immature only (LA1, no GC)	True	TCGA-B0-4699-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B0-4700-01	TCGA-B0-4700	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-B0-4700-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B0-4701-01	TCGA-B0-4701	HookNet-TLS_manual	2	1													11		1					positive	mature (LA2 / GC+)	True	TCGA-B0-4701-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B0-4703-01	TCGA-B0-4703	HookNet-TLS_manual	2	1													1		0					positive	immature only (LA1, no GC)	True	TCGA-B0-4703-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B0-4707-01	TCGA-B0-4707	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-B0-4707-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B0-4712-01	TCGA-B0-4712	HookNet-TLS_manual	2	1													4		0					positive	immature only (LA1, no GC)	True	TCGA-B0-4712-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B0-4810-01	TCGA-B0-4810	HookNet-TLS_manual	2	1													7		0					positive	immature only (LA1, no GC)	True	TCGA-B0-4810-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B0-4811-01	TCGA-B0-4811	HookNet-TLS_manual	2	1													3		3					positive	mature (LA2 / GC+)	True	TCGA-B0-4811-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B0-4813-01	TCGA-B0-4813	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-B0-4813-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B0-4815-01	TCGA-B0-4815	HookNet-TLS_manual	2	1													4		0					positive	immature only (LA1, no GC)	True	TCGA-B0-4815-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B0-4817-01	TCGA-B0-4817	HookNet-TLS_manual	2	1													10		0					positive	immature only (LA1, no GC)	True	TCGA-B0-4817-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B0-4818-01	TCGA-B0-4818	HookNet-TLS_manual	2	1													3		0					positive	immature only (LA1, no GC)	True	TCGA-B0-4818-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B0-4819-01	TCGA-B0-4819	HookNet-TLS_manual	2	1													4		0					positive	immature only (LA1, no GC)	True	TCGA-B0-4819-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B0-4821-01	TCGA-B0-4821	HookNet-TLS_manual	2	1													2		0					positive	immature only (LA1, no GC)	True	TCGA-B0-4821-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B0-4824-01	TCGA-B0-4824	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-B0-4824-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B0-4827-01	TCGA-B0-4827	HookNet-TLS_manual	2	1													1		0					positive	immature only (LA1, no GC)	True	TCGA-B0-4827-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B0-4833-01	TCGA-B0-4833	HookNet-TLS_manual	2	1													4		0					positive	immature only (LA1, no GC)	True	TCGA-B0-4833-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B0-4834-01	TCGA-B0-4834	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-B0-4834-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B0-4836-01	TCGA-B0-4836	HookNet-TLS_manual	2	1													4		0					positive	immature only (LA1, no GC)	True	TCGA-B0-4836-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B0-4837-01	TCGA-B0-4837	HookNet-TLS_manual	2	1													1		0					positive	immature only (LA1, no GC)	True	TCGA-B0-4837-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B0-4842-01	TCGA-B0-4842	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-B0-4842-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B0-4846-01	TCGA-B0-4846	HookNet-TLS_manual	2	1													4		0					positive	immature only (LA1, no GC)	True	TCGA-B0-4846-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B0-4847-01	TCGA-B0-4847	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-B0-4847-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B0-4849-01	TCGA-B0-4849	HookNet-TLS_manual	2	1													4		0					positive	immature only (LA1, no GC)	True	TCGA-B0-4849-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B0-4945-01	TCGA-B0-4945	HookNet-TLS_manual	2	1													1		0					positive	immature only (LA1, no GC)	True	TCGA-B0-4945-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B0-5075-01	TCGA-B0-5075	HookNet-TLS_manual	2	1													2		0					positive	immature only (LA1, no GC)	True	TCGA-B0-5075-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B0-5081-01	TCGA-B0-5081	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-B0-5081-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B0-5083-01	TCGA-B0-5083	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-B0-5083-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B0-5085-01	TCGA-B0-5085	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-B0-5085-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B0-5088-01	TCGA-B0-5088	HookNet-TLS_manual	2	1													8		0					positive	immature only (LA1, no GC)	True	TCGA-B0-5088-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B0-5092-01	TCGA-B0-5092	HookNet-TLS_manual	2	1													3		0					positive	immature only (LA1, no GC)	True	TCGA-B0-5092-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B0-5095-01	TCGA-B0-5095	HookNet-TLS_manual	2	1													33		0					positive	immature only (LA1, no GC)	True	TCGA-B0-5095-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B0-5098-01	TCGA-B0-5098	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-B0-5098-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B0-5099-01	TCGA-B0-5099	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-B0-5099-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B0-5100-01	TCGA-B0-5100	HookNet-TLS_manual	2	1													1		0					positive	immature only (LA1, no GC)	True	TCGA-B0-5100-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B0-5104-01	TCGA-B0-5104	HookNet-TLS_manual	2	1													7		0					positive	immature only (LA1, no GC)	True	TCGA-B0-5104-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B0-5106-01	TCGA-B0-5106	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-B0-5106-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B0-5108-01	TCGA-B0-5108	HookNet-TLS_manual	2	1													1		0					positive	immature only (LA1, no GC)	True	TCGA-B0-5108-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B0-5109-01	TCGA-B0-5109	HookNet-TLS_manual	2	1													2		0					positive	immature only (LA1, no GC)	True	TCGA-B0-5109-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B0-5110-01	TCGA-B0-5110	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-B0-5110-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B0-5113-01	TCGA-B0-5113	HookNet-TLS_manual	2	1													1		0					positive	immature only (LA1, no GC)	True	TCGA-B0-5113-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B0-5115-01	TCGA-B0-5115	HookNet-TLS_manual	2	1													1		0					positive	immature only (LA1, no GC)	True	TCGA-B0-5115-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B0-5116-01	TCGA-B0-5116	HookNet-TLS_manual	2	1													5		0					positive	immature only (LA1, no GC)	True	TCGA-B0-5116-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B0-5117-01	TCGA-B0-5117	HookNet-TLS_manual	2	1													15		0					positive	immature only (LA1, no GC)	True	TCGA-B0-5117-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B0-5120-01	TCGA-B0-5120	HookNet-TLS_manual	2	1													5		0					positive	immature only (LA1, no GC)	True	TCGA-B0-5120-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B0-5400-01	TCGA-B0-5400	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-B0-5400-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B0-5402-01	TCGA-B0-5402	HookNet-TLS_manual	2	1													1		0					positive	immature only (LA1, no GC)	True	TCGA-B0-5402-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B0-5690-01	TCGA-B0-5690	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-B0-5690-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B0-5691-01	TCGA-B0-5691	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-B0-5691-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B0-5693-01	TCGA-B0-5693	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-B0-5693-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B0-5694-01	TCGA-B0-5694	HookNet-TLS_manual	2	1													2		0					positive	immature only (LA1, no GC)	True	TCGA-B0-5694-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B0-5695-01	TCGA-B0-5695	HookNet-TLS_manual	2	1													4		0					positive	immature only (LA1, no GC)	True	TCGA-B0-5695-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B0-5696-01	TCGA-B0-5696	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-B0-5696-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B0-5697-01	TCGA-B0-5697	HookNet-TLS_manual	2	1													4		0					positive	immature only (LA1, no GC)	True	TCGA-B0-5697-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B0-5698-01	TCGA-B0-5698	HookNet-TLS_manual	2	1													2		0					positive	immature only (LA1, no GC)	True	TCGA-B0-5698-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B0-5699-01	TCGA-B0-5699	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-B0-5699-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B0-5700-01	TCGA-B0-5700	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-B0-5700-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B0-5702-01	TCGA-B0-5702	HookNet-TLS_manual	2	1													2		0					positive	immature only (LA1, no GC)	True	TCGA-B0-5702-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B0-5703-01	TCGA-B0-5703	HookNet-TLS_manual	2	1													4		1					positive	mature (LA2 / GC+)	True	TCGA-B0-5703-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B0-5705-01	TCGA-B0-5705	HookNet-TLS_manual	2	1													5		0					positive	immature only (LA1, no GC)	True	TCGA-B0-5705-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B0-5707-01	TCGA-B0-5707	HookNet-TLS_manual	2	1													2		0					positive	immature only (LA1, no GC)	True	TCGA-B0-5707-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B0-5709-01	TCGA-B0-5709	HookNet-TLS_manual	2	1													5		1					positive	mature (LA2 / GC+)	True	TCGA-B0-5709-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B0-5710-01	TCGA-B0-5710	HookNet-TLS_manual	2	1													2		0					positive	immature only (LA1, no GC)	True	TCGA-B0-5710-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B0-5712-01	TCGA-B0-5712	HookNet-TLS_manual	2	1													6		1					positive	mature (LA2 / GC+)	True	TCGA-B0-5712-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B0-5713-01	TCGA-B0-5713	HookNet-TLS_manual	2	1													9		0					positive	immature only (LA1, no GC)	True	TCGA-B0-5713-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B0-5812-01	TCGA-B0-5812	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-B0-5812-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B2-4098-01	TCGA-B2-4098	HookNet-TLS_manual	2	1													8		0					positive	immature only (LA1, no GC)	True	TCGA-B2-4098-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B2-4099-01	TCGA-B2-4099	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-B2-4099-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B4-5377-01	TCGA-B4-5377	HookNet-TLS_manual	2	1													2		2					positive	mature (LA2 / GC+)	True	TCGA-B4-5377-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B4-5378-01	TCGA-B4-5378	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-B4-5378-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B4-5843-01	TCGA-B4-5843	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-B4-5843-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B8-5158-01	TCGA-B8-5158	HookNet-TLS_manual	2	1													10		0					positive	immature only (LA1, no GC)	True	TCGA-B8-5158-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B8-5159-01	TCGA-B8-5159	HookNet-TLS_manual	2	1													2		0					positive	immature only (LA1, no GC)	True	TCGA-B8-5159-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B8-5165-01	TCGA-B8-5165	HookNet-TLS_manual	2	1													4		0					positive	immature only (LA1, no GC)	True	TCGA-B8-5165-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B8-5545-01	TCGA-B8-5545	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-B8-5545-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-B8-A54J-01	TCGA-B8-A54J	HookNet-TLS_manual	2	1													2		0					positive	immature only (LA1, no GC)	True	TCGA-B8-A54J-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-4158-01	TCGA-BP-4158	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-BP-4158-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-4159-01	TCGA-BP-4159	HookNet-TLS_manual	2	1													2		0					positive	immature only (LA1, no GC)	True	TCGA-BP-4159-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-4160-01	TCGA-BP-4160	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-BP-4160-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-4161-01	TCGA-BP-4161	HookNet-TLS_manual	2	1													10		2					positive	mature (LA2 / GC+)	True	TCGA-BP-4161-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-4162-01	TCGA-BP-4162	HookNet-TLS_manual	2	1													2		0					positive	immature only (LA1, no GC)	True	TCGA-BP-4162-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-4163-01	TCGA-BP-4163	HookNet-TLS_manual	2	1													1		0					positive	immature only (LA1, no GC)	True	TCGA-BP-4163-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-4164-01	TCGA-BP-4164	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-BP-4164-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-4165-01	TCGA-BP-4165	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-BP-4165-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-4166-01	TCGA-BP-4166	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-BP-4166-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-4167-01	TCGA-BP-4167	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-BP-4167-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-4170-01	TCGA-BP-4170	HookNet-TLS_manual	2	1													2		0					positive	immature only (LA1, no GC)	True	TCGA-BP-4170-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-4174-01	TCGA-BP-4174	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-BP-4174-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-4176-01	TCGA-BP-4176	HookNet-TLS_manual	2	1													3		0					positive	immature only (LA1, no GC)	True	TCGA-BP-4176-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-4325-01	TCGA-BP-4325	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-BP-4325-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-4326-01	TCGA-BP-4326	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-BP-4326-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-4330-01	TCGA-BP-4330	HookNet-TLS_manual	2	1													8		0					positive	immature only (LA1, no GC)	True	TCGA-BP-4330-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-4331-01	TCGA-BP-4331	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-BP-4331-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-4332-01	TCGA-BP-4332	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-BP-4332-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-4337-01	TCGA-BP-4337	HookNet-TLS_manual	2	1													6		0					positive	immature only (LA1, no GC)	True	TCGA-BP-4337-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-4343-01	TCGA-BP-4343	HookNet-TLS_manual	2	1													5		0					positive	immature only (LA1, no GC)	True	TCGA-BP-4343-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-4344-01	TCGA-BP-4344	HookNet-TLS_manual	2	1													4		0					positive	immature only (LA1, no GC)	True	TCGA-BP-4344-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-4345-01	TCGA-BP-4345	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-BP-4345-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-4346-01	TCGA-BP-4346	HookNet-TLS_manual	2	1													2		0					positive	immature only (LA1, no GC)	True	TCGA-BP-4346-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-4349-01	TCGA-BP-4349	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-BP-4349-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-4351-01	TCGA-BP-4351	HookNet-TLS_manual	2	1													2		0					positive	immature only (LA1, no GC)	True	TCGA-BP-4351-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-4353-01	TCGA-BP-4353	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-BP-4353-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-4756-01	TCGA-BP-4756	HookNet-TLS_manual	2	1													3		0					positive	immature only (LA1, no GC)	True	TCGA-BP-4756-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-4758-01	TCGA-BP-4758	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-BP-4758-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-4760-01	TCGA-BP-4760	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-BP-4760-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-4761-01	TCGA-BP-4761	HookNet-TLS_manual	2	1													6		3					positive	mature (LA2 / GC+)	True	TCGA-BP-4761-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-4762-01	TCGA-BP-4762	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-BP-4762-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-4763-01	TCGA-BP-4763	HookNet-TLS_manual	2	1													4		0					positive	immature only (LA1, no GC)	True	TCGA-BP-4763-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-4765-01	TCGA-BP-4765	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-BP-4765-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-4766-01	TCGA-BP-4766	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-BP-4766-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-4768-01	TCGA-BP-4768	HookNet-TLS_manual	2	1													7		0					positive	immature only (LA1, no GC)	True	TCGA-BP-4768-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-4769-01	TCGA-BP-4769	HookNet-TLS_manual	2	1													1		0					positive	immature only (LA1, no GC)	True	TCGA-BP-4769-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-4771-01	TCGA-BP-4771	HookNet-TLS_manual	2	1													2		0					positive	immature only (LA1, no GC)	True	TCGA-BP-4771-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-4774-01	TCGA-BP-4774	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-BP-4774-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-4775-01	TCGA-BP-4775	HookNet-TLS_manual	2	1													5		0					positive	immature only (LA1, no GC)	True	TCGA-BP-4775-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-4776-01	TCGA-BP-4776	HookNet-TLS_manual	2	1													3		0					positive	immature only (LA1, no GC)	True	TCGA-BP-4776-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-4777-01	TCGA-BP-4777	HookNet-TLS_manual	2	1													2		0					positive	immature only (LA1, no GC)	True	TCGA-BP-4777-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-4781-01	TCGA-BP-4781	HookNet-TLS_manual	2	1													3		0					positive	immature only (LA1, no GC)	True	TCGA-BP-4781-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-4782-01	TCGA-BP-4782	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-BP-4782-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-4784-01	TCGA-BP-4784	HookNet-TLS_manual	2	1													38		1					positive	mature (LA2 / GC+)	True	TCGA-BP-4784-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-4787-01	TCGA-BP-4787	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-BP-4787-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-4789-01	TCGA-BP-4789	HookNet-TLS_manual	2	1													1		0					positive	immature only (LA1, no GC)	True	TCGA-BP-4789-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-4790-01	TCGA-BP-4790	HookNet-TLS_manual	2	1													25		2					positive	mature (LA2 / GC+)	True	TCGA-BP-4790-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-4795-01	TCGA-BP-4795	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-BP-4795-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-4797-01	TCGA-BP-4797	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-BP-4797-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-4803-01	TCGA-BP-4803	HookNet-TLS_manual	2	1													4		0					positive	immature only (LA1, no GC)	True	TCGA-BP-4803-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-4804-01	TCGA-BP-4804	HookNet-TLS_manual	2	1													1		0					positive	immature only (LA1, no GC)	True	TCGA-BP-4804-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-4807-01	TCGA-BP-4807	HookNet-TLS_manual	2	1													5		0					positive	immature only (LA1, no GC)	True	TCGA-BP-4807-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-4959-01	TCGA-BP-4959	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-BP-4959-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-4960-01	TCGA-BP-4960	HookNet-TLS_manual	2	1													4		0					positive	immature only (LA1, no GC)	True	TCGA-BP-4960-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-4962-01	TCGA-BP-4962	HookNet-TLS_manual	2	1													2		0					positive	immature only (LA1, no GC)	True	TCGA-BP-4962-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-4963-01	TCGA-BP-4963	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-BP-4963-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-4964-01	TCGA-BP-4964	HookNet-TLS_manual	2	1													4		2					positive	mature (LA2 / GC+)	True	TCGA-BP-4964-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-4965-01	TCGA-BP-4965	HookNet-TLS_manual	2	1													24		2					positive	mature (LA2 / GC+)	True	TCGA-BP-4965-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-4969-01	TCGA-BP-4969	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-BP-4969-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-4970-01	TCGA-BP-4970	HookNet-TLS_manual	2	1													7		0					positive	immature only (LA1, no GC)	True	TCGA-BP-4970-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-4971-01	TCGA-BP-4971	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-BP-4971-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-4972-01	TCGA-BP-4972	HookNet-TLS_manual	2	1													6		0					positive	immature only (LA1, no GC)	True	TCGA-BP-4972-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-4973-01	TCGA-BP-4973	HookNet-TLS_manual	2	1													21		1					positive	mature (LA2 / GC+)	True	TCGA-BP-4973-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-4974-01	TCGA-BP-4974	HookNet-TLS_manual	2	1													14		0					positive	immature only (LA1, no GC)	True	TCGA-BP-4974-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-4975-01	TCGA-BP-4975	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-BP-4975-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-4976-01	TCGA-BP-4976	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-BP-4976-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-4982-01	TCGA-BP-4982	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-BP-4982-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-4985-01	TCGA-BP-4985	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-BP-4985-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-4986-01	TCGA-BP-4986	HookNet-TLS_manual	2	1													7		0					positive	immature only (LA1, no GC)	True	TCGA-BP-4986-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-4988-01	TCGA-BP-4988	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-BP-4988-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-4989-01	TCGA-BP-4989	HookNet-TLS_manual	2	1													1		1					positive	mature (LA2 / GC+)	True	TCGA-BP-4989-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-4991-01	TCGA-BP-4991	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-BP-4991-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-4992-01	TCGA-BP-4992	HookNet-TLS_manual	2	1													4		0					positive	immature only (LA1, no GC)	True	TCGA-BP-4992-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-4993-01	TCGA-BP-4993	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-BP-4993-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-4994-01	TCGA-BP-4994	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-BP-4994-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-4998-01	TCGA-BP-4998	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-BP-4998-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-4999-01	TCGA-BP-4999	HookNet-TLS_manual	2	1													4		0					positive	immature only (LA1, no GC)	True	TCGA-BP-4999-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-5000-01	TCGA-BP-5000	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-BP-5000-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-5001-01	TCGA-BP-5001	HookNet-TLS_manual	2	1													3		0					positive	immature only (LA1, no GC)	True	TCGA-BP-5001-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-5004-01	TCGA-BP-5004	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-BP-5004-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-5006-01	TCGA-BP-5006	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-BP-5006-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-5007-01	TCGA-BP-5007	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-BP-5007-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-5008-01	TCGA-BP-5008	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-BP-5008-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-5009-01	TCGA-BP-5009	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-BP-5009-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-5170-01	TCGA-BP-5170	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-BP-5170-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-5173-01	TCGA-BP-5173	HookNet-TLS_manual	2	1													3		0					positive	immature only (LA1, no GC)	True	TCGA-BP-5173-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-5174-01	TCGA-BP-5174	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-BP-5174-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-5175-01	TCGA-BP-5175	HookNet-TLS_manual	2	1													10		0					positive	immature only (LA1, no GC)	True	TCGA-BP-5175-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-5178-01	TCGA-BP-5178	HookNet-TLS_manual	2	1													7		0					positive	immature only (LA1, no GC)	True	TCGA-BP-5178-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-5180-01	TCGA-BP-5180	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-BP-5180-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-5181-01	TCGA-BP-5181	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-BP-5181-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-5182-01	TCGA-BP-5182	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-BP-5182-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-5183-01	TCGA-BP-5183	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-BP-5183-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-5184-01	TCGA-BP-5184	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-BP-5184-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-5185-01	TCGA-BP-5185	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-BP-5185-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-5186-01	TCGA-BP-5186	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-BP-5186-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-5187-01	TCGA-BP-5187	HookNet-TLS_manual	2	1													2		0					positive	immature only (LA1, no GC)	True	TCGA-BP-5187-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-5189-01	TCGA-BP-5189	HookNet-TLS_manual	2	1													4		0					positive	immature only (LA1, no GC)	True	TCGA-BP-5189-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-5190-01	TCGA-BP-5190	HookNet-TLS_manual	2	1													1		0					positive	immature only (LA1, no GC)	True	TCGA-BP-5190-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-5192-01	TCGA-BP-5192	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-BP-5192-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-5194-01	TCGA-BP-5194	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-BP-5194-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-5195-01	TCGA-BP-5195	HookNet-TLS_manual	2	1													1		0					positive	immature only (LA1, no GC)	True	TCGA-BP-5195-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-5196-01	TCGA-BP-5196	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-BP-5196-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-5198-01	TCGA-BP-5198	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-BP-5198-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-5199-01	TCGA-BP-5199	HookNet-TLS_manual	2	1													2		0					positive	immature only (LA1, no GC)	True	TCGA-BP-5199-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-BP-5202-01	TCGA-BP-5202	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-BP-5202-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-CJ-4634-01	TCGA-CJ-4634	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-CJ-4634-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-CJ-4636-01	TCGA-CJ-4636	HookNet-TLS_manual	2	1													7		0					positive	immature only (LA1, no GC)	True	TCGA-CJ-4636-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-CJ-4639-01	TCGA-CJ-4639	HookNet-TLS_manual	2	1													1		0					positive	immature only (LA1, no GC)	True	TCGA-CJ-4639-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-CJ-4640-01	TCGA-CJ-4640	HookNet-TLS_manual	2	1													9		0					positive	immature only (LA1, no GC)	True	TCGA-CJ-4640-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-CJ-4641-01	TCGA-CJ-4641	HookNet-TLS_manual	2	1													17		1					positive	mature (LA2 / GC+)	True	TCGA-CJ-4641-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-CJ-4643-01	TCGA-CJ-4643	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-CJ-4643-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-CJ-4644-01	TCGA-CJ-4644	HookNet-TLS_manual	2	1													2		0					positive	immature only (LA1, no GC)	True	TCGA-CJ-4644-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-CJ-4868-01	TCGA-CJ-4868	HookNet-TLS_manual	2	1													6		0					positive	immature only (LA1, no GC)	True	TCGA-CJ-4868-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-CJ-4869-01	TCGA-CJ-4869	HookNet-TLS_manual	2	1													9		0					positive	immature only (LA1, no GC)	True	TCGA-CJ-4869-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-CJ-4870-01	TCGA-CJ-4870	HookNet-TLS_manual	2	1													2		0					positive	immature only (LA1, no GC)	True	TCGA-CJ-4870-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-CJ-4871-01	TCGA-CJ-4871	HookNet-TLS_manual	2	1													2		0					positive	immature only (LA1, no GC)	True	TCGA-CJ-4871-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-CJ-4873-01	TCGA-CJ-4873	HookNet-TLS_manual	2	1													20		2					positive	mature (LA2 / GC+)	True	TCGA-CJ-4873-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-CJ-4874-01	TCGA-CJ-4874	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-CJ-4874-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-CJ-4875-01	TCGA-CJ-4875	HookNet-TLS_manual	2	1													3		0					positive	immature only (LA1, no GC)	True	TCGA-CJ-4875-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-CJ-4876-01	TCGA-CJ-4876	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-CJ-4876-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-CJ-4878-01	TCGA-CJ-4878	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-CJ-4878-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-CJ-4881-01	TCGA-CJ-4881	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-CJ-4881-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-CJ-4882-01	TCGA-CJ-4882	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-CJ-4882-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-CJ-4884-01	TCGA-CJ-4884	HookNet-TLS_manual	2	1													2		0					positive	immature only (LA1, no GC)	True	TCGA-CJ-4884-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-CJ-4885-01	TCGA-CJ-4885	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-CJ-4885-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-CJ-4886-01	TCGA-CJ-4886	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-CJ-4886-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-CJ-4887-01	TCGA-CJ-4887	HookNet-TLS_manual	2	1													1		0					positive	immature only (LA1, no GC)	True	TCGA-CJ-4887-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-CJ-4888-01	TCGA-CJ-4888	HookNet-TLS_manual	2	1													2		0					positive	immature only (LA1, no GC)	True	TCGA-CJ-4888-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-CJ-4889-01	TCGA-CJ-4889	HookNet-TLS_manual	2	1													1		0					positive	immature only (LA1, no GC)	True	TCGA-CJ-4889-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-CJ-4891-01	TCGA-CJ-4891	HookNet-TLS_manual	2	1													1		0					positive	immature only (LA1, no GC)	True	TCGA-CJ-4891-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-CJ-4892-01	TCGA-CJ-4892	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-CJ-4892-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-CJ-4895-01	TCGA-CJ-4895	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-CJ-4895-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-CJ-4897-01	TCGA-CJ-4897	HookNet-TLS_manual	2	1													1		1					positive	mature (LA2 / GC+)	True	TCGA-CJ-4897-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-CJ-4899-01	TCGA-CJ-4899	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-CJ-4899-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-CJ-4900-01	TCGA-CJ-4900	HookNet-TLS_manual	2	1													14		0					positive	immature only (LA1, no GC)	True	TCGA-CJ-4900-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-CJ-4901-01	TCGA-CJ-4901	HookNet-TLS_manual	2	1													2		0					positive	immature only (LA1, no GC)	True	TCGA-CJ-4901-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-CJ-4902-01	TCGA-CJ-4902	HookNet-TLS_manual	2	1													8		1					positive	mature (LA2 / GC+)	True	TCGA-CJ-4902-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-CJ-4903-01	TCGA-CJ-4903	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-CJ-4903-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-CJ-4905-01	TCGA-CJ-4905	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-CJ-4905-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-CJ-4908-01	TCGA-CJ-4908	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-CJ-4908-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-CJ-4912-01	TCGA-CJ-4912	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-CJ-4912-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-CJ-4916-01	TCGA-CJ-4916	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-CJ-4916-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-CJ-4918-01	TCGA-CJ-4918	HookNet-TLS_manual	2	1													27		2					positive	mature (LA2 / GC+)	True	TCGA-CJ-4918-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-CJ-4920-01	TCGA-CJ-4920	HookNet-TLS_manual	2	1													7		2					positive	mature (LA2 / GC+)	True	TCGA-CJ-4920-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-CJ-4923-01	TCGA-CJ-4923	HookNet-TLS_manual	2	1													7		0					positive	immature only (LA1, no GC)	True	TCGA-CJ-4923-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-CJ-5686-01	TCGA-CJ-5686	HookNet-TLS_manual	2	1													1		0					positive	immature only (LA1, no GC)	True	TCGA-CJ-5686-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-CJ-6027-01	TCGA-CJ-6027	HookNet-TLS_manual	2	1													7		1					positive	mature (LA2 / GC+)	True	TCGA-CJ-6027-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-CJ-6028-01	TCGA-CJ-6028	HookNet-TLS_manual	2	1													3		1					positive	mature (LA2 / GC+)	True	TCGA-CJ-6028-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-CJ-6030-01	TCGA-CJ-6030	HookNet-TLS_manual	2	1													7		0					positive	immature only (LA1, no GC)	True	TCGA-CJ-6030-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-CJ-6031-01	TCGA-CJ-6031	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-CJ-6031-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-CJ-6032-01	TCGA-CJ-6032	HookNet-TLS_manual	2	1													3		0					positive	immature only (LA1, no GC)	True	TCGA-CJ-6032-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-CJ-6033-01	TCGA-CJ-6033	HookNet-TLS_manual	2	1													20		4					positive	mature (LA2 / GC+)	True	TCGA-CJ-6033-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-CZ-4853-01	TCGA-CZ-4853	HookNet-TLS_manual	2	1													1		0					positive	immature only (LA1, no GC)	True	TCGA-CZ-4853-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-CZ-4857-01	TCGA-CZ-4857	HookNet-TLS_manual	2	1													1		0					positive	immature only (LA1, no GC)	True	TCGA-CZ-4857-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-CZ-4859-01	TCGA-CZ-4859	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-CZ-4859-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-CZ-4860-01	TCGA-CZ-4860	HookNet-TLS_manual	2	1													3		0					positive	immature only (LA1, no GC)	True	TCGA-CZ-4860-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-CZ-4861-01	TCGA-CZ-4861	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-CZ-4861-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-CZ-4862-01	TCGA-CZ-4862	HookNet-TLS_manual	2	1													16		0					positive	immature only (LA1, no GC)	True	TCGA-CZ-4862-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-CZ-4863-01	TCGA-CZ-4863	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-CZ-4863-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-CZ-4864-01	TCGA-CZ-4864	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-CZ-4864-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-CZ-4865-01	TCGA-CZ-4865	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-CZ-4865-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-CZ-4866-01	TCGA-CZ-4866	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-CZ-4866-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-CZ-5451-01	TCGA-CZ-5451	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-CZ-5451-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-CZ-5454-01	TCGA-CZ-5454	HookNet-TLS_manual	2	1													7		0					positive	immature only (LA1, no GC)	True	TCGA-CZ-5454-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-CZ-5457-01	TCGA-CZ-5457	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-CZ-5457-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-CZ-5458-01	TCGA-CZ-5458	HookNet-TLS_manual	2	1													7		0					positive	immature only (LA1, no GC)	True	TCGA-CZ-5458-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-CZ-5459-01	TCGA-CZ-5459	HookNet-TLS_manual	2	1													4		0					positive	immature only (LA1, no GC)	True	TCGA-CZ-5459-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-CZ-5460-01	TCGA-CZ-5460	HookNet-TLS_manual	2	1													4		0					positive	immature only (LA1, no GC)	True	TCGA-CZ-5460-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-CZ-5461-01	TCGA-CZ-5461	HookNet-TLS_manual	2	1													1		0					positive	immature only (LA1, no GC)	True	TCGA-CZ-5461-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-CZ-5464-01	TCGA-CZ-5464	HookNet-TLS_manual	2	1													5		1					positive	mature (LA2 / GC+)	True	TCGA-CZ-5464-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-CZ-5465-01	TCGA-CZ-5465	HookNet-TLS_manual	2	1													1		0					positive	immature only (LA1, no GC)	True	TCGA-CZ-5465-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-CZ-5466-01	TCGA-CZ-5466	HookNet-TLS_manual	2	1													11		0					positive	immature only (LA1, no GC)	True	TCGA-CZ-5466-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-CZ-5468-01	TCGA-CZ-5468	HookNet-TLS_manual	2	1													8		0					positive	immature only (LA1, no GC)	True	TCGA-CZ-5468-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-CZ-5469-01	TCGA-CZ-5469	HookNet-TLS_manual	2	1													1		0					positive	immature only (LA1, no GC)	True	TCGA-CZ-5469-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-CZ-5470-01	TCGA-CZ-5470	HookNet-TLS_manual	2	1													7		0					positive	immature only (LA1, no GC)	True	TCGA-CZ-5470-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-CZ-5985-01	TCGA-CZ-5985	HookNet-TLS_manual	2	1													3		0					positive	immature only (LA1, no GC)	True	TCGA-CZ-5985-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-CZ-5989-01	TCGA-CZ-5989	HookNet-TLS_manual	2	1													5		0					positive	immature only (LA1, no GC)	True	TCGA-CZ-5989-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-DV-5566-01	TCGA-DV-5566	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-DV-5566-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-DV-5567-01	TCGA-DV-5567	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-DV-5567-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-DV-5568-01	TCGA-DV-5568	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-DV-5568-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-DV-5569-01	TCGA-DV-5569	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-DV-5569-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-DV-5574-01	TCGA-DV-5574	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-DV-5574-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-DV-5575-01	TCGA-DV-5575	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-DV-5575-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-DV-A4VX-01	TCGA-DV-A4VX	HookNet-TLS_manual	2	1													7		1					positive	mature (LA2 / GC+)	True	TCGA-DV-A4VX-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-DV-A4VZ-01	TCGA-DV-A4VZ	HookNet-TLS_manual	2	1													7		1					positive	mature (LA2 / GC+)	True	TCGA-DV-A4VZ-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-DV-A4W0-01	TCGA-DV-A4W0	HookNet-TLS_manual	2	1													1		0					positive	immature only (LA1, no GC)	True	TCGA-DV-A4W0-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-DV-A4W0-05	TCGA-DV-A4W0	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-DV-A4W0-05	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-EU-5904-01	TCGA-EU-5904	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-EU-5904-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-EU-5907-01	TCGA-EU-5907	HookNet-TLS_manual	2	1													6		0					positive	immature only (LA1, no GC)	True	TCGA-EU-5907-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-G6-A5PC-01	TCGA-G6-A5PC	HookNet-TLS_manual	2	1													9		2					positive	mature (LA2 / GC+)	True	TCGA-G6-A5PC-01	False	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-G6-A8L8-01	TCGA-G6-A8L8	HookNet-TLS_manual	2	1													3		0					positive	immature only (LA1, no GC)	True	TCGA-G6-A8L8-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-GK-A6C7-01	TCGA-GK-A6C7	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-GK-A6C7-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-MM-A563-01	TCGA-MM-A563	HookNet-TLS_manual	2	1													15		1					positive	mature (LA2 / GC+)	True	TCGA-MM-A563-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-MM-A564-01	TCGA-MM-A564	HookNet-TLS_manual	2	1													3		0					positive	immature only (LA1, no GC)	True	TCGA-MM-A564-01	True	False
+KIRC		TCGA-KIRC/KIRP/KICH	TCGA-T7-A92I-01	TCGA-T7-A92I	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-T7-A92I-01	True	False
+LUSC		TCGA-LUSC	TCGA-18-3406-01	TCGA-18-3406	HookNet-TLS_manual	2	1													14		0					positive	immature only (LA1, no GC)	True	TCGA-18-3406-01	True	False
+LUSC		TCGA-LUSC	TCGA-18-3407-01	TCGA-18-3407	HookNet-TLS_manual	2	1													12		5					positive	mature (LA2 / GC+)	True	TCGA-18-3407-01	True	False
+LUSC		TCGA-LUSC	TCGA-18-3408-01	TCGA-18-3408	HookNet-TLS_manual	2	1													14		0					positive	immature only (LA1, no GC)	True	TCGA-18-3408-01	True	False
+LUSC		TCGA-LUSC	TCGA-18-3409-01	TCGA-18-3409	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-18-3409-01	True	False
+LUSC		TCGA-LUSC	TCGA-18-3410-01	TCGA-18-3410	HookNet-TLS_manual	2	1													4		0					positive	immature only (LA1, no GC)	True	TCGA-18-3410-01	True	False
+LUSC		TCGA-LUSC	TCGA-18-3411-01	TCGA-18-3411	HookNet-TLS_manual	2	1													52		4					positive	mature (LA2 / GC+)	True	TCGA-18-3411-01	True	False
+LUSC		TCGA-LUSC	TCGA-18-3412-01	TCGA-18-3412	HookNet-TLS_manual	2	1													12		0					positive	immature only (LA1, no GC)	True	TCGA-18-3412-01	True	False
+LUSC		TCGA-LUSC	TCGA-18-3414-01	TCGA-18-3414	HookNet-TLS_manual	2	1													29		3					positive	mature (LA2 / GC+)	True	TCGA-18-3414-01	True	False
+LUSC		TCGA-LUSC	TCGA-18-3415-01	TCGA-18-3415	HookNet-TLS_manual	2	1													24		4					positive	mature (LA2 / GC+)	True	TCGA-18-3415-01	True	False
+LUSC		TCGA-LUSC	TCGA-18-3416-01	TCGA-18-3416	HookNet-TLS_manual	2	1													46		0					positive	immature only (LA1, no GC)	True	TCGA-18-3416-01	True	False
+LUSC		TCGA-LUSC	TCGA-18-3417-01	TCGA-18-3417	HookNet-TLS_manual	2	1													7		0					positive	immature only (LA1, no GC)	True	TCGA-18-3417-01	True	False
+LUSC		TCGA-LUSC	TCGA-18-3419-01	TCGA-18-3419	HookNet-TLS_manual	2	1													2		0					positive	immature only (LA1, no GC)	True	TCGA-18-3419-01	True	False
+LUSC		TCGA-LUSC	TCGA-18-3421-01	TCGA-18-3421	HookNet-TLS_manual	2	1													20		3					positive	mature (LA2 / GC+)	True	TCGA-18-3421-01	True	False
+LUSC		TCGA-LUSC	TCGA-18-4083-01	TCGA-18-4083	HookNet-TLS_manual	2	1													10		0					positive	immature only (LA1, no GC)	True	TCGA-18-4083-01	True	False
+LUSC		TCGA-LUSC	TCGA-18-4086-01	TCGA-18-4086	HookNet-TLS_manual	2	1													10		2					positive	mature (LA2 / GC+)	True	TCGA-18-4086-01	True	False
+LUSC		TCGA-LUSC	TCGA-18-4721-01	TCGA-18-4721	HookNet-TLS_manual	2	1													29		0					positive	immature only (LA1, no GC)	True	TCGA-18-4721-01	True	False
+LUSC		TCGA-LUSC	TCGA-18-5592-01	TCGA-18-5592	HookNet-TLS_manual	2	1													34		6					positive	mature (LA2 / GC+)	True	TCGA-18-5592-01	True	False
+LUSC		TCGA-LUSC	TCGA-18-5595-01	TCGA-18-5595	HookNet-TLS_manual	2	1													2		0					positive	immature only (LA1, no GC)	True	TCGA-18-5595-01	True	False
+LUSC		TCGA-LUSC	TCGA-21-5782-01	TCGA-21-5782	HookNet-TLS_manual	2	1													26		0					positive	immature only (LA1, no GC)	True	TCGA-21-5782-01	True	False
+LUSC		TCGA-LUSC	TCGA-21-5784-01	TCGA-21-5784	HookNet-TLS_manual	2	1													24		0					positive	immature only (LA1, no GC)	True	TCGA-21-5784-01	True	False
+LUSC		TCGA-LUSC	TCGA-21-5786-01	TCGA-21-5786	HookNet-TLS_manual	2	1													11		0					positive	immature only (LA1, no GC)	True	TCGA-21-5786-01	True	False
+LUSC		TCGA-LUSC	TCGA-21-5787-01	TCGA-21-5787	HookNet-TLS_manual	2	1													3		0					positive	immature only (LA1, no GC)	True	TCGA-21-5787-01	True	False
+LUSC		TCGA-LUSC	TCGA-22-0940-01	TCGA-22-0940	HookNet-TLS_manual	2	1													7		1					positive	mature (LA2 / GC+)	True	TCGA-22-0940-01	True	False
+LUSC		TCGA-LUSC	TCGA-22-0944-01	TCGA-22-0944	HookNet-TLS_manual	2	1													9		1					positive	mature (LA2 / GC+)	True	TCGA-22-0944-01	True	False
+LUSC		TCGA-LUSC	TCGA-22-1002-01	TCGA-22-1002	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-22-1002-01	True	False
+LUSC		TCGA-LUSC	TCGA-22-1005-01	TCGA-22-1005	HookNet-TLS_manual	2	1													29		1					positive	mature (LA2 / GC+)	True	TCGA-22-1005-01	True	False
+LUSC		TCGA-LUSC	TCGA-22-1011-01	TCGA-22-1011	HookNet-TLS_manual	2	1													57		15					positive	mature (LA2 / GC+)	True	TCGA-22-1011-01	True	False
+LUSC		TCGA-LUSC	TCGA-22-1012-01	TCGA-22-1012	HookNet-TLS_manual	2	1													57		5					positive	mature (LA2 / GC+)	True	TCGA-22-1012-01	True	False
+LUSC		TCGA-LUSC	TCGA-22-1016-01	TCGA-22-1016	HookNet-TLS_manual	2	1													1		0					positive	immature only (LA1, no GC)	True	TCGA-22-1016-01	True	False
+LUSC		TCGA-LUSC	TCGA-22-1017-01	TCGA-22-1017	HookNet-TLS_manual	2	1													3		0					positive	immature only (LA1, no GC)	True	TCGA-22-1017-01	True	False
+LUSC		TCGA-LUSC	TCGA-22-4591-01	TCGA-22-4591	HookNet-TLS_manual	2	1													2		0					positive	immature only (LA1, no GC)	True	TCGA-22-4591-01	True	False
+LUSC		TCGA-LUSC	TCGA-22-4593-01	TCGA-22-4593	HookNet-TLS_manual	2	1													14		0					positive	immature only (LA1, no GC)	True	TCGA-22-4593-01	True	False
+LUSC		TCGA-LUSC	TCGA-22-4594-01	TCGA-22-4594	HookNet-TLS_manual	2	1													14		0					positive	immature only (LA1, no GC)	True	TCGA-22-4594-01	True	False
+LUSC		TCGA-LUSC	TCGA-22-4595-01	TCGA-22-4595	HookNet-TLS_manual	2	1													2		0					positive	immature only (LA1, no GC)	True	TCGA-22-4595-01	True	False
+LUSC		TCGA-LUSC	TCGA-22-4596-01	TCGA-22-4596	HookNet-TLS_manual	2	1													2		0					positive	immature only (LA1, no GC)	True	TCGA-22-4596-01	True	False
+LUSC		TCGA-LUSC	TCGA-22-4599-01	TCGA-22-4599	HookNet-TLS_manual	2	1													6		0					positive	immature only (LA1, no GC)	True	TCGA-22-4599-01	True	False
+LUSC		TCGA-LUSC	TCGA-22-4601-01	TCGA-22-4601	HookNet-TLS_manual	2	1													3		0					positive	immature only (LA1, no GC)	True	TCGA-22-4601-01	True	False
+LUSC		TCGA-LUSC	TCGA-22-4604-01	TCGA-22-4604	HookNet-TLS_manual	2	1													12		0					positive	immature only (LA1, no GC)	True	TCGA-22-4604-01	True	False
+LUSC		TCGA-LUSC	TCGA-22-4605-01	TCGA-22-4605	HookNet-TLS_manual	2	1													8		0					positive	immature only (LA1, no GC)	True	TCGA-22-4605-01	True	False
+LUSC		TCGA-LUSC	TCGA-22-4607-01	TCGA-22-4607	HookNet-TLS_manual	2	1													60		2					positive	mature (LA2 / GC+)	True	TCGA-22-4607-01	True	False
+LUSC		TCGA-LUSC	TCGA-22-4609-01	TCGA-22-4609	HookNet-TLS_manual	2	1													4		0					positive	immature only (LA1, no GC)	True	TCGA-22-4609-01	True	False
+LUSC		TCGA-LUSC	TCGA-22-4613-01	TCGA-22-4613	HookNet-TLS_manual	2	1													9		1					positive	mature (LA2 / GC+)	True	TCGA-22-4613-01	True	False
+LUSC		TCGA-LUSC	TCGA-22-5471-01	TCGA-22-5471	HookNet-TLS_manual	2	1													16		0					positive	immature only (LA1, no GC)	True	TCGA-22-5471-01	True	False
+LUSC		TCGA-LUSC	TCGA-22-5472-01	TCGA-22-5472	HookNet-TLS_manual	2	1													3		0					positive	immature only (LA1, no GC)	True	TCGA-22-5472-01	True	False
+LUSC		TCGA-LUSC	TCGA-22-5473-01	TCGA-22-5473	HookNet-TLS_manual	2	1													3		0					positive	immature only (LA1, no GC)	True	TCGA-22-5473-01	True	False
+LUSC		TCGA-LUSC	TCGA-22-5474-01	TCGA-22-5474	HookNet-TLS_manual	2	1													9		0					positive	immature only (LA1, no GC)	True	TCGA-22-5474-01	True	False
+LUSC		TCGA-LUSC	TCGA-22-5477-01	TCGA-22-5477	HookNet-TLS_manual	2	1													5		0					positive	immature only (LA1, no GC)	True	TCGA-22-5477-01	True	False
+LUSC		TCGA-LUSC	TCGA-22-5478-01	TCGA-22-5478	HookNet-TLS_manual	2	1													23		0					positive	immature only (LA1, no GC)	True	TCGA-22-5478-01	True	False
+LUSC		TCGA-LUSC	TCGA-22-5479-01	TCGA-22-5479	HookNet-TLS_manual	2	1													48		8					positive	mature (LA2 / GC+)	True	TCGA-22-5479-01	True	False
+LUSC		TCGA-LUSC	TCGA-22-5480-01	TCGA-22-5480	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-22-5480-01	True	False
+LUSC		TCGA-LUSC	TCGA-22-5481-01	TCGA-22-5481	HookNet-TLS_manual	2	1													13		0					positive	immature only (LA1, no GC)	True	TCGA-22-5481-01	True	False
+LUSC		TCGA-LUSC	TCGA-22-5482-01	TCGA-22-5482	HookNet-TLS_manual	2	1													22		1					positive	mature (LA2 / GC+)	True	TCGA-22-5482-01	True	False
+LUSC		TCGA-LUSC	TCGA-22-5483-01	TCGA-22-5483	HookNet-TLS_manual	2	1													5		0					positive	immature only (LA1, no GC)	True	TCGA-22-5483-01	True	False
+LUSC		TCGA-LUSC	TCGA-22-5485-01	TCGA-22-5485	HookNet-TLS_manual	2	1													2		0					positive	immature only (LA1, no GC)	True	TCGA-22-5485-01	True	False
+LUSC		TCGA-LUSC	TCGA-22-5489-01	TCGA-22-5489	HookNet-TLS_manual	2	1													5		1					positive	mature (LA2 / GC+)	True	TCGA-22-5489-01	True	False
+LUSC		TCGA-LUSC	TCGA-22-5491-01	TCGA-22-5491	HookNet-TLS_manual	2	1													8		1					positive	mature (LA2 / GC+)	True	TCGA-22-5491-01	True	False
+LUSC		TCGA-LUSC	TCGA-22-5492-01	TCGA-22-5492	HookNet-TLS_manual	2	1													10		2					positive	mature (LA2 / GC+)	True	TCGA-22-5492-01	True	False
+LUSC		TCGA-LUSC	TCGA-22-A5C4-01	TCGA-22-A5C4	HookNet-TLS_manual	2	1													10		0					positive	immature only (LA1, no GC)	True	TCGA-22-A5C4-01	True	False
+LUSC		TCGA-LUSC	TCGA-33-4532-01	TCGA-33-4532	HookNet-TLS_manual	2	1													42		1					positive	mature (LA2 / GC+)	True	TCGA-33-4532-01	True	False
+LUSC		TCGA-LUSC	TCGA-33-4533-01	TCGA-33-4533	HookNet-TLS_manual	2	1													48		0					positive	immature only (LA1, no GC)	True	TCGA-33-4533-01	True	False
+LUSC		TCGA-LUSC	TCGA-33-4538-01	TCGA-33-4538	HookNet-TLS_manual	2	1													88		2					positive	mature (LA2 / GC+)	True	TCGA-33-4538-01	True	False
+LUSC		TCGA-LUSC	TCGA-33-4547-01	TCGA-33-4547	HookNet-TLS_manual	2	1													49		6					positive	mature (LA2 / GC+)	True	TCGA-33-4547-01	True	False
+LUSC		TCGA-LUSC	TCGA-33-4566-01	TCGA-33-4566	HookNet-TLS_manual	2	1													51		16					positive	mature (LA2 / GC+)	True	TCGA-33-4566-01	True	False
+LUSC		TCGA-LUSC	TCGA-33-4583-01	TCGA-33-4583	HookNet-TLS_manual	2	1													144		11					positive	mature (LA2 / GC+)	True	TCGA-33-4583-01	True	False
+LUSC		TCGA-LUSC	TCGA-33-4586-01	TCGA-33-4586	HookNet-TLS_manual	2	1													30		3					positive	mature (LA2 / GC+)	True	TCGA-33-4586-01	True	False
+LUSC		TCGA-LUSC	TCGA-33-4587-01	TCGA-33-4587	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-33-4587-01	True	False
+LUSC		TCGA-LUSC	TCGA-33-6738-01	TCGA-33-6738	HookNet-TLS_manual	2	1													14		0					positive	immature only (LA1, no GC)	True	TCGA-33-6738-01	True	False
+LUSC		TCGA-LUSC	TCGA-33-A4WN-01	TCGA-33-A4WN	HookNet-TLS_manual	2	1													21		1					positive	mature (LA2 / GC+)	True	TCGA-33-A4WN-01	True	False
+LUSC		TCGA-LUSC	TCGA-33-A5GW-01	TCGA-33-A5GW	HookNet-TLS_manual	2	1													3		0					positive	immature only (LA1, no GC)	True	TCGA-33-A5GW-01	True	False
+LUSC		TCGA-LUSC	TCGA-33-AAS8-01	TCGA-33-AAS8	HookNet-TLS_manual	2	1													8		2					positive	mature (LA2 / GC+)	True	TCGA-33-AAS8-01	True	False
+LUSC		TCGA-LUSC	TCGA-33-AASB-01	TCGA-33-AASB	HookNet-TLS_manual	2	1													12		0					positive	immature only (LA1, no GC)	True	TCGA-33-AASB-01	True	False
+LUSC		TCGA-LUSC	TCGA-33-AASD-01	TCGA-33-AASD	HookNet-TLS_manual	2	1													1		0					positive	immature only (LA1, no GC)	True	TCGA-33-AASD-01	True	False
+LUSC		TCGA-LUSC	TCGA-33-AASI-01	TCGA-33-AASI	HookNet-TLS_manual	2	1													51		14					positive	mature (LA2 / GC+)	True	TCGA-33-AASI-01	True	False
+LUSC		TCGA-LUSC	TCGA-33-AASJ-01	TCGA-33-AASJ	HookNet-TLS_manual	2	1													3		0					positive	immature only (LA1, no GC)	True	TCGA-33-AASJ-01	True	False
+LUSC		TCGA-LUSC	TCGA-33-AASL-01	TCGA-33-AASL	HookNet-TLS_manual	2	1													5		0					positive	immature only (LA1, no GC)	True	TCGA-33-AASL-01	True	False
+LUSC		TCGA-LUSC	TCGA-34-2596-01	TCGA-34-2596	HookNet-TLS_manual	2	1													9		0					positive	immature only (LA1, no GC)	True	TCGA-34-2596-01	True	False
+LUSC		TCGA-LUSC	TCGA-34-2600-01	TCGA-34-2600	HookNet-TLS_manual	2	1													2		0					positive	immature only (LA1, no GC)	True	TCGA-34-2600-01	True	False
+LUSC		TCGA-LUSC	TCGA-34-5232-01	TCGA-34-5232	HookNet-TLS_manual	2	1													14		0					positive	immature only (LA1, no GC)	True	TCGA-34-5232-01	True	False
+LUSC		TCGA-LUSC	TCGA-34-5240-01	TCGA-34-5240	HookNet-TLS_manual	2	1													8		0					positive	immature only (LA1, no GC)	True	TCGA-34-5240-01	True	False
+LUSC		TCGA-LUSC	TCGA-34-5241-01	TCGA-34-5241	HookNet-TLS_manual	2	1													5		0					positive	immature only (LA1, no GC)	True	TCGA-34-5241-01	True	False
+LUSC		TCGA-LUSC	TCGA-34-5928-01	TCGA-34-5928	HookNet-TLS_manual	2	1													14		0					positive	immature only (LA1, no GC)	True	TCGA-34-5928-01	True	False
+LUSC		TCGA-LUSC	TCGA-34-5929-01	TCGA-34-5929	HookNet-TLS_manual	2	1													2		0					positive	immature only (LA1, no GC)	True	TCGA-34-5929-01	True	False
+LUSC		TCGA-LUSC	TCGA-34-8454-01	TCGA-34-8454	HookNet-TLS_manual	2	1													107		13					positive	mature (LA2 / GC+)	True	TCGA-34-8454-01	True	False
+LUSC		TCGA-LUSC	TCGA-34-8455-01	TCGA-34-8455	HookNet-TLS_manual	2	1													6		0					positive	immature only (LA1, no GC)	True	TCGA-34-8455-01	True	False
+LUSC		TCGA-LUSC	TCGA-34-A5IX-01	TCGA-34-A5IX	HookNet-TLS_manual	2	1													22		2					positive	mature (LA2 / GC+)	True	TCGA-34-A5IX-01	True	False
+LUSC		TCGA-LUSC	TCGA-37-3783-01	TCGA-37-3783	HookNet-TLS_manual	2	1													8		0					positive	immature only (LA1, no GC)	True	TCGA-37-3783-01	True	False
+LUSC		TCGA-LUSC	TCGA-37-4130-01	TCGA-37-4130	HookNet-TLS_manual	2	1													20		0					positive	immature only (LA1, no GC)	True	TCGA-37-4130-01	True	False
+LUSC		TCGA-LUSC	TCGA-37-4132-01	TCGA-37-4132	HookNet-TLS_manual	2	1													33		2					positive	mature (LA2 / GC+)	True	TCGA-37-4132-01	True	False
+LUSC		TCGA-LUSC	TCGA-37-4133-01	TCGA-37-4133	HookNet-TLS_manual	2	1													9		0					positive	immature only (LA1, no GC)	True	TCGA-37-4133-01	True	False
+LUSC		TCGA-LUSC	TCGA-37-5819-01	TCGA-37-5819	HookNet-TLS_manual	2	1													17		0					positive	immature only (LA1, no GC)	True	TCGA-37-5819-01	True	False
+LUSC		TCGA-LUSC	TCGA-37-A5EL-01	TCGA-37-A5EL	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-37-A5EL-01	True	False
+LUSC		TCGA-LUSC	TCGA-37-A5EM-01	TCGA-37-A5EM	HookNet-TLS_manual	2	1													10		0					positive	immature only (LA1, no GC)	True	TCGA-37-A5EM-01	True	False
+LUSC		TCGA-LUSC	TCGA-37-A5EN-01	TCGA-37-A5EN	HookNet-TLS_manual	2	1													3		0					positive	immature only (LA1, no GC)	True	TCGA-37-A5EN-01	True	False
+LUSC		TCGA-LUSC	TCGA-39-5011-01	TCGA-39-5011	HookNet-TLS_manual	2	1													17		0					positive	immature only (LA1, no GC)	True	TCGA-39-5011-01	True	False
+LUSC		TCGA-LUSC	TCGA-39-5016-01	TCGA-39-5016	HookNet-TLS_manual	2	1													4		0					positive	immature only (LA1, no GC)	True	TCGA-39-5016-01	True	False
+LUSC		TCGA-LUSC	TCGA-39-5019-01	TCGA-39-5019	HookNet-TLS_manual	2	1													33		3					positive	mature (LA2 / GC+)	True	TCGA-39-5019-01	True	False
+LUSC		TCGA-LUSC	TCGA-39-5022-01	TCGA-39-5022	HookNet-TLS_manual	2	1													7		0					positive	immature only (LA1, no GC)	True	TCGA-39-5022-01	True	False
+LUSC		TCGA-LUSC	TCGA-39-5024-01	TCGA-39-5024	HookNet-TLS_manual	2	1													16		0					positive	immature only (LA1, no GC)	True	TCGA-39-5024-01	True	False
+LUSC		TCGA-LUSC	TCGA-39-5027-01	TCGA-39-5027	HookNet-TLS_manual	2	1													4		0					positive	immature only (LA1, no GC)	True	TCGA-39-5027-01	True	False
+LUSC		TCGA-LUSC	TCGA-39-5029-01	TCGA-39-5029	HookNet-TLS_manual	2	1													36		4					positive	mature (LA2 / GC+)	True	TCGA-39-5029-01	True	False
+LUSC		TCGA-LUSC	TCGA-39-5030-01	TCGA-39-5030	HookNet-TLS_manual	2	1													8		0					positive	immature only (LA1, no GC)	True	TCGA-39-5030-01	True	False
+LUSC		TCGA-LUSC	TCGA-39-5031-01	TCGA-39-5031	HookNet-TLS_manual	2	1													8		0					positive	immature only (LA1, no GC)	True	TCGA-39-5031-01	True	False
+LUSC		TCGA-LUSC	TCGA-39-5034-01	TCGA-39-5034	HookNet-TLS_manual	2	1													10		0					positive	immature only (LA1, no GC)	True	TCGA-39-5034-01	True	False
+LUSC		TCGA-LUSC	TCGA-39-5035-01	TCGA-39-5035	HookNet-TLS_manual	2	1													5		0					positive	immature only (LA1, no GC)	True	TCGA-39-5035-01	True	False
+LUSC		TCGA-LUSC	TCGA-39-5036-01	TCGA-39-5036	HookNet-TLS_manual	2	1													5		0					positive	immature only (LA1, no GC)	True	TCGA-39-5036-01	True	False
+LUSC		TCGA-LUSC	TCGA-39-5037-01	TCGA-39-5037	HookNet-TLS_manual	2	1													22		1					positive	mature (LA2 / GC+)	True	TCGA-39-5037-01	True	False
+LUSC		TCGA-LUSC	TCGA-39-5039-01	TCGA-39-5039	HookNet-TLS_manual	2	1													2		0					positive	immature only (LA1, no GC)	True	TCGA-39-5039-01	True	False
+LUSC		TCGA-LUSC	TCGA-39-5040-01	TCGA-39-5040	HookNet-TLS_manual	2	1													13		0					positive	immature only (LA1, no GC)	True	TCGA-39-5040-01	True	False
+LUSC		TCGA-LUSC	TCGA-43-5668-01	TCGA-43-5668	HookNet-TLS_manual	2	1													24		3					positive	mature (LA2 / GC+)	True	TCGA-43-5668-01	True	False
+LUSC		TCGA-LUSC	TCGA-43-6773-01	TCGA-43-6773	HookNet-TLS_manual	2	1													8		0					positive	immature only (LA1, no GC)	True	TCGA-43-6773-01	True	False
+LUSC		TCGA-LUSC	TCGA-43-7656-01	TCGA-43-7656	HookNet-TLS_manual	2	1													26		0					positive	immature only (LA1, no GC)	True	TCGA-43-7656-01	True	False
+LUSC		TCGA-LUSC	TCGA-43-7657-01	TCGA-43-7657	HookNet-TLS_manual	2	1													2		0					positive	immature only (LA1, no GC)	True	TCGA-43-7657-01	True	False
+LUSC		TCGA-LUSC	TCGA-43-7658-01	TCGA-43-7658	HookNet-TLS_manual	2	1													1		0					positive	immature only (LA1, no GC)	True	TCGA-43-7658-01	True	False
+LUSC		TCGA-LUSC	TCGA-43-A56U-01	TCGA-43-A56U	HookNet-TLS_manual	2	1													3		0					positive	immature only (LA1, no GC)	True	TCGA-43-A56U-01	True	False
+LUSC		TCGA-LUSC	TCGA-43-A56V-01	TCGA-43-A56V	HookNet-TLS_manual	2	1													6		0					positive	immature only (LA1, no GC)	True	TCGA-43-A56V-01	True	False
+LUSC		TCGA-LUSC	TCGA-46-3766-01	TCGA-46-3766	HookNet-TLS_manual	2	1													10		0					positive	immature only (LA1, no GC)	True	TCGA-46-3766-01	True	False
+LUSC		TCGA-LUSC	TCGA-46-3767-01	TCGA-46-3767	HookNet-TLS_manual	2	1													8		0					positive	immature only (LA1, no GC)	True	TCGA-46-3767-01	True	False
+LUSC		TCGA-LUSC	TCGA-46-6025-01	TCGA-46-6025	HookNet-TLS_manual	2	1													6		0					positive	immature only (LA1, no GC)	True	TCGA-46-6025-01	True	False
+LUSC		TCGA-LUSC	TCGA-51-4079-01	TCGA-51-4079	HookNet-TLS_manual	2	1													2		2					positive	mature (LA2 / GC+)	True	TCGA-51-4079-01	True	False
+LUSC		TCGA-LUSC	TCGA-51-4080-01	TCGA-51-4080	HookNet-TLS_manual	2	1													6		0					positive	immature only (LA1, no GC)	True	TCGA-51-4080-01	True	False
+LUSC		TCGA-LUSC	TCGA-52-7622-01	TCGA-52-7622	HookNet-TLS_manual	2	1													6		1					positive	mature (LA2 / GC+)	True	TCGA-52-7622-01	True	False
+LUSC		TCGA-LUSC	TCGA-52-7809-01	TCGA-52-7809	HookNet-TLS_manual	2	1													4		0					positive	immature only (LA1, no GC)	True	TCGA-52-7809-01	True	False
+LUSC		TCGA-LUSC	TCGA-52-7811-01	TCGA-52-7811	HookNet-TLS_manual	2	1													15		0					positive	immature only (LA1, no GC)	True	TCGA-52-7811-01	True	False
+LUSC		TCGA-LUSC	TCGA-52-7812-01	TCGA-52-7812	HookNet-TLS_manual	2	1													10		0					positive	immature only (LA1, no GC)	True	TCGA-52-7812-01	True	False
+LUSC		TCGA-LUSC	TCGA-56-5897-01	TCGA-56-5897	HookNet-TLS_manual	2	1													6		0					positive	immature only (LA1, no GC)	True	TCGA-56-5897-01	True	False
+LUSC		TCGA-LUSC	TCGA-56-6545-01	TCGA-56-6545	HookNet-TLS_manual	2	1													16		0					positive	immature only (LA1, no GC)	True	TCGA-56-6545-01	True	False
+LUSC		TCGA-LUSC	TCGA-56-7222-01	TCGA-56-7222	HookNet-TLS_manual	2	1													15		0					positive	immature only (LA1, no GC)	True	TCGA-56-7222-01	True	False
+LUSC		TCGA-LUSC	TCGA-56-7223-01	TCGA-56-7223	HookNet-TLS_manual	2	1													2		0					positive	immature only (LA1, no GC)	True	TCGA-56-7223-01	True	False
+LUSC		TCGA-LUSC	TCGA-56-7579-01	TCGA-56-7579	HookNet-TLS_manual	2	1													12		0					positive	immature only (LA1, no GC)	True	TCGA-56-7579-01	True	False
+LUSC		TCGA-LUSC	TCGA-56-7580-01	TCGA-56-7580	HookNet-TLS_manual	2	1													6		1					positive	mature (LA2 / GC+)	True	TCGA-56-7580-01	True	False
+LUSC		TCGA-LUSC	TCGA-56-7582-01	TCGA-56-7582	HookNet-TLS_manual	2	1													8		1					positive	mature (LA2 / GC+)	True	TCGA-56-7582-01	True	False
+LUSC		TCGA-LUSC	TCGA-56-7730-01	TCGA-56-7730	HookNet-TLS_manual	2	1													4		0					positive	immature only (LA1, no GC)	True	TCGA-56-7730-01	True	False
+LUSC		TCGA-LUSC	TCGA-56-7822-01	TCGA-56-7822	HookNet-TLS_manual	2	1													2		0					positive	immature only (LA1, no GC)	True	TCGA-56-7822-01	True	False
+LUSC		TCGA-LUSC	TCGA-56-7823-01	TCGA-56-7823	HookNet-TLS_manual	2	1													3		0					positive	immature only (LA1, no GC)	True	TCGA-56-7823-01	True	False
+LUSC		TCGA-LUSC	TCGA-56-8083-01	TCGA-56-8083	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-56-8083-01	True	False
+LUSC		TCGA-LUSC	TCGA-56-8305-01	TCGA-56-8305	HookNet-TLS_manual	2	1													1		0					positive	immature only (LA1, no GC)	True	TCGA-56-8305-01	True	False
+LUSC		TCGA-LUSC	TCGA-56-8308-01	TCGA-56-8308	HookNet-TLS_manual	2	1													5		0					positive	immature only (LA1, no GC)	True	TCGA-56-8308-01	True	False
+LUSC		TCGA-LUSC	TCGA-56-8622-01	TCGA-56-8622	HookNet-TLS_manual	2	1													2		0					positive	immature only (LA1, no GC)	True	TCGA-56-8622-01	True	False
+LUSC		TCGA-LUSC	TCGA-56-8623-01	TCGA-56-8623	HookNet-TLS_manual	2	1													5		0					positive	immature only (LA1, no GC)	True	TCGA-56-8623-01	True	False
+LUSC		TCGA-LUSC	TCGA-56-8625-01	TCGA-56-8625	HookNet-TLS_manual	2	1													2		0					positive	immature only (LA1, no GC)	True	TCGA-56-8625-01	True	False
+LUSC		TCGA-LUSC	TCGA-56-8626-01	TCGA-56-8626	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-56-8626-01	True	False
+LUSC		TCGA-LUSC	TCGA-56-8628-01	TCGA-56-8628	HookNet-TLS_manual	2	1													1		0					positive	immature only (LA1, no GC)	True	TCGA-56-8628-01	True	False
+LUSC		TCGA-LUSC	TCGA-56-8629-01	TCGA-56-8629	HookNet-TLS_manual	2	1													57		7					positive	mature (LA2 / GC+)	True	TCGA-56-8629-01	True	False
+LUSC		TCGA-LUSC	TCGA-56-A49D-01	TCGA-56-A49D	HookNet-TLS_manual	2	1													8		0					positive	immature only (LA1, no GC)	True	TCGA-56-A49D-01	True	False
+LUSC		TCGA-LUSC	TCGA-56-A4BW-01	TCGA-56-A4BW	HookNet-TLS_manual	2	1													13		0					positive	immature only (LA1, no GC)	True	TCGA-56-A4BW-01	True	False
+LUSC		TCGA-LUSC	TCGA-56-A4BY-01	TCGA-56-A4BY	HookNet-TLS_manual	2	1													15		0					positive	immature only (LA1, no GC)	True	TCGA-56-A4BY-01	True	False
+LUSC		TCGA-LUSC	TCGA-56-A5DS-01	TCGA-56-A5DS	HookNet-TLS_manual	2	1													10		0					positive	immature only (LA1, no GC)	True	TCGA-56-A5DS-01	True	False
+LUSC		TCGA-LUSC	TCGA-56-A62T-01	TCGA-56-A62T	HookNet-TLS_manual	2	1													5		0					positive	immature only (LA1, no GC)	True	TCGA-56-A62T-01	True	False
+LUSC		TCGA-LUSC	TCGA-58-A46J-01	TCGA-58-A46J	HookNet-TLS_manual	2	1													3		0					positive	immature only (LA1, no GC)	True	TCGA-58-A46J-01	True	False
+LUSC		TCGA-LUSC	TCGA-58-A46K-01	TCGA-58-A46K	HookNet-TLS_manual	2	1													10		0					positive	immature only (LA1, no GC)	True	TCGA-58-A46K-01	True	False
+LUSC		TCGA-LUSC	TCGA-58-A46L-01	TCGA-58-A46L	HookNet-TLS_manual	2	1													2		0					positive	immature only (LA1, no GC)	True	TCGA-58-A46L-01	True	False
+LUSC		TCGA-LUSC	TCGA-58-A46M-01	TCGA-58-A46M	HookNet-TLS_manual	2	1													17		0					positive	immature only (LA1, no GC)	True	TCGA-58-A46M-01	True	False
+LUSC		TCGA-LUSC	TCGA-58-A46N-01	TCGA-58-A46N	HookNet-TLS_manual	2	1													154		24					positive	mature (LA2 / GC+)	True	TCGA-58-A46N-01	True	False
+LUSC		TCGA-LUSC	TCGA-60-2695-01	TCGA-60-2695	HookNet-TLS_manual	2	1													2		0					positive	immature only (LA1, no GC)	True	TCGA-60-2695-01	True	False
+LUSC		TCGA-LUSC	TCGA-60-2696-01	TCGA-60-2696	HookNet-TLS_manual	2	1													1		0					positive	immature only (LA1, no GC)	True	TCGA-60-2696-01	True	False
+LUSC		TCGA-LUSC	TCGA-60-2697-01	TCGA-60-2697	HookNet-TLS_manual	2	1													11		0					positive	immature only (LA1, no GC)	True	TCGA-60-2697-01	True	False
+LUSC		TCGA-LUSC	TCGA-60-2698-01	TCGA-60-2698	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-60-2698-01	True	False
+LUSC		TCGA-LUSC	TCGA-60-2703-01	TCGA-60-2703	HookNet-TLS_manual	2	1													30		0					positive	immature only (LA1, no GC)	True	TCGA-60-2703-01	True	False
+LUSC		TCGA-LUSC	TCGA-60-2704-01	TCGA-60-2704	HookNet-TLS_manual	2	1													8		0					positive	immature only (LA1, no GC)	True	TCGA-60-2704-01	True	False
+LUSC		TCGA-LUSC	TCGA-60-2706-01	TCGA-60-2706	HookNet-TLS_manual	2	1													76		0					positive	immature only (LA1, no GC)	True	TCGA-60-2706-01	True	False
+LUSC		TCGA-LUSC	TCGA-60-2707-01	TCGA-60-2707	HookNet-TLS_manual	2	1													5		0					positive	immature only (LA1, no GC)	True	TCGA-60-2707-01	True	False
+LUSC		TCGA-LUSC	TCGA-60-2708-01	TCGA-60-2708	HookNet-TLS_manual	2	1													3		0					positive	immature only (LA1, no GC)	True	TCGA-60-2708-01	True	False
+LUSC		TCGA-LUSC	TCGA-60-2709-01	TCGA-60-2709	HookNet-TLS_manual	2	1													7		0					positive	immature only (LA1, no GC)	True	TCGA-60-2709-01	True	False
+LUSC		TCGA-LUSC	TCGA-60-2710-01	TCGA-60-2710	HookNet-TLS_manual	2	1													8		0					positive	immature only (LA1, no GC)	True	TCGA-60-2710-01	True	False
+LUSC		TCGA-LUSC	TCGA-60-2711-01	TCGA-60-2711	HookNet-TLS_manual	2	1													25		7					positive	mature (LA2 / GC+)	True	TCGA-60-2711-01	True	False
+LUSC		TCGA-LUSC	TCGA-60-2712-01	TCGA-60-2712	HookNet-TLS_manual	2	1													12		2					positive	mature (LA2 / GC+)	True	TCGA-60-2712-01	True	False
+LUSC		TCGA-LUSC	TCGA-60-2713-01	TCGA-60-2713	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-60-2713-01	True	False
+LUSC		TCGA-LUSC	TCGA-60-2714-01	TCGA-60-2714	HookNet-TLS_manual	2	1													14		0					positive	immature only (LA1, no GC)	True	TCGA-60-2714-01	True	False
+LUSC		TCGA-LUSC	TCGA-60-2715-01	TCGA-60-2715	HookNet-TLS_manual	2	1													3		0					positive	immature only (LA1, no GC)	True	TCGA-60-2715-01	True	False
+LUSC		TCGA-LUSC	TCGA-60-2716-01	TCGA-60-2716	HookNet-TLS_manual	2	1													7		0					positive	immature only (LA1, no GC)	True	TCGA-60-2716-01	True	False
+LUSC		TCGA-LUSC	TCGA-60-2719-01	TCGA-60-2719	HookNet-TLS_manual	2	1													3		0					positive	immature only (LA1, no GC)	True	TCGA-60-2719-01	True	False
+LUSC		TCGA-LUSC	TCGA-60-2720-01	TCGA-60-2720	HookNet-TLS_manual	2	1													10		1					positive	mature (LA2 / GC+)	True	TCGA-60-2720-01	True	False
+LUSC		TCGA-LUSC	TCGA-60-2721-01	TCGA-60-2721	HookNet-TLS_manual	2	1													42		2					positive	mature (LA2 / GC+)	True	TCGA-60-2721-01	True	False
+LUSC		TCGA-LUSC	TCGA-60-2722-01	TCGA-60-2722	HookNet-TLS_manual	2	1													41		5					positive	mature (LA2 / GC+)	True	TCGA-60-2722-01	True	False
+LUSC		TCGA-LUSC	TCGA-60-2723-01	TCGA-60-2723	HookNet-TLS_manual	2	1													54		0					positive	immature only (LA1, no GC)	True	TCGA-60-2723-01	True	False
+LUSC		TCGA-LUSC	TCGA-60-2724-01	TCGA-60-2724	HookNet-TLS_manual	2	1													9		0					positive	immature only (LA1, no GC)	True	TCGA-60-2724-01	True	False
+LUSC		TCGA-LUSC	TCGA-60-2726-01	TCGA-60-2726	HookNet-TLS_manual	2	1													68		0					positive	immature only (LA1, no GC)	True	TCGA-60-2726-01	True	False
+LUSC		TCGA-LUSC	TCGA-63-6202-01	TCGA-63-6202	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-63-6202-01	True	False
+LUSC		TCGA-LUSC	TCGA-63-7020-01	TCGA-63-7020	HookNet-TLS_manual	2	1													1		1					positive	mature (LA2 / GC+)	True	TCGA-63-7020-01	True	False
+LUSC		TCGA-LUSC	TCGA-63-7021-01	TCGA-63-7021	HookNet-TLS_manual	2	1													15		2					positive	mature (LA2 / GC+)	True	TCGA-63-7021-01	True	False
+LUSC		TCGA-LUSC	TCGA-63-7022-01	TCGA-63-7022	HookNet-TLS_manual	2	1													3		0					positive	immature only (LA1, no GC)	True	TCGA-63-7022-01	True	False
+LUSC		TCGA-LUSC	TCGA-63-7023-01	TCGA-63-7023	HookNet-TLS_manual	2	1													48		0					positive	immature only (LA1, no GC)	True	TCGA-63-7023-01	True	False
+LUSC		TCGA-LUSC	TCGA-63-A5M9-01	TCGA-63-A5M9	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-63-A5M9-01	True	False
+LUSC		TCGA-LUSC	TCGA-63-A5MB-01	TCGA-63-A5MB	HookNet-TLS_manual	2	1													7		0					positive	immature only (LA1, no GC)	True	TCGA-63-A5MB-01	True	False
+LUSC		TCGA-LUSC	TCGA-63-A5MG-01	TCGA-63-A5MG	HookNet-TLS_manual	2	1													3		0					positive	immature only (LA1, no GC)	True	TCGA-63-A5MG-01	True	False
+LUSC		TCGA-LUSC	TCGA-63-A5MI-01	TCGA-63-A5MI	HookNet-TLS_manual	2	1													2		0					positive	immature only (LA1, no GC)	True	TCGA-63-A5MI-01	True	False
+LUSC		TCGA-LUSC	TCGA-63-A5MJ-01	TCGA-63-A5MJ	HookNet-TLS_manual	2	1													4		0					positive	immature only (LA1, no GC)	True	TCGA-63-A5MJ-01	True	False
+LUSC		TCGA-LUSC	TCGA-63-A5ML-01	TCGA-63-A5ML	HookNet-TLS_manual	2	1													3		0					positive	immature only (LA1, no GC)	True	TCGA-63-A5ML-01	True	False
+LUSC		TCGA-LUSC	TCGA-63-A5MN-01	TCGA-63-A5MN	HookNet-TLS_manual	2	1													3		0					positive	immature only (LA1, no GC)	True	TCGA-63-A5MN-01	True	False
+LUSC		TCGA-LUSC	TCGA-63-A5MP-01	TCGA-63-A5MP	HookNet-TLS_manual	2	1													7		0					positive	immature only (LA1, no GC)	True	TCGA-63-A5MP-01	True	False
+LUSC		TCGA-LUSC	TCGA-63-A5MR-01	TCGA-63-A5MR	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-63-A5MR-01	True	False
+LUSC		TCGA-LUSC	TCGA-63-A5MV-01	TCGA-63-A5MV	HookNet-TLS_manual	2	1													5		0					positive	immature only (LA1, no GC)	True	TCGA-63-A5MV-01	True	False
+LUSC		TCGA-LUSC	TCGA-66-2727-01	TCGA-66-2727	HookNet-TLS_manual	2	1													7		0					positive	immature only (LA1, no GC)	True	TCGA-66-2727-01	True	False
+LUSC		TCGA-LUSC	TCGA-66-2737-01	TCGA-66-2737	HookNet-TLS_manual	2	1													51		9					positive	mature (LA2 / GC+)	True	TCGA-66-2737-01	True	False
+LUSC		TCGA-LUSC	TCGA-66-2742-01	TCGA-66-2742	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-66-2742-01	True	False
+LUSC		TCGA-LUSC	TCGA-66-2744-01	TCGA-66-2744	HookNet-TLS_manual	2	1													20		0					positive	immature only (LA1, no GC)	True	TCGA-66-2744-01	True	False
+LUSC		TCGA-LUSC	TCGA-66-2754-01	TCGA-66-2754	HookNet-TLS_manual	2	1													1		0					positive	immature only (LA1, no GC)	True	TCGA-66-2754-01	True	False
+LUSC		TCGA-LUSC	TCGA-66-2757-01	TCGA-66-2757	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-66-2757-01	True	False
+LUSC		TCGA-LUSC	TCGA-66-2763-01	TCGA-66-2763	HookNet-TLS_manual	2	1													17		0					positive	immature only (LA1, no GC)	True	TCGA-66-2763-01	True	False
+LUSC		TCGA-LUSC	TCGA-66-2770-01	TCGA-66-2770	HookNet-TLS_manual	2	1													7		0					positive	immature only (LA1, no GC)	True	TCGA-66-2770-01	True	False
+LUSC		TCGA-LUSC	TCGA-66-2771-01	TCGA-66-2771	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-66-2771-01	True	False
+LUSC		TCGA-LUSC	TCGA-66-2773-01	TCGA-66-2773	HookNet-TLS_manual	2	1													2		0					positive	immature only (LA1, no GC)	True	TCGA-66-2773-01	True	False
+LUSC		TCGA-LUSC	TCGA-66-2780-01	TCGA-66-2780	HookNet-TLS_manual	2	1													14		1					positive	mature (LA2 / GC+)	True	TCGA-66-2780-01	True	False
+LUSC		TCGA-LUSC	TCGA-66-2781-01	TCGA-66-2781	HookNet-TLS_manual	2	1													3		0					positive	immature only (LA1, no GC)	True	TCGA-66-2781-01	True	False
+LUSC		TCGA-LUSC	TCGA-66-2783-01	TCGA-66-2783	HookNet-TLS_manual	2	1													8		0					positive	immature only (LA1, no GC)	True	TCGA-66-2783-01	True	False
+LUSC		TCGA-LUSC	TCGA-66-2786-01	TCGA-66-2786	HookNet-TLS_manual	2	1													2		0					positive	immature only (LA1, no GC)	True	TCGA-66-2786-01	True	False
+LUSC		TCGA-LUSC	TCGA-66-2788-01	TCGA-66-2788	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-66-2788-01	True	False
+LUSC		TCGA-LUSC	TCGA-66-2789-01	TCGA-66-2789	HookNet-TLS_manual	2	1													2		0					positive	immature only (LA1, no GC)	True	TCGA-66-2789-01	True	False
+LUSC		TCGA-LUSC	TCGA-66-2791-01	TCGA-66-2791	HookNet-TLS_manual	2	1													6		1					positive	mature (LA2 / GC+)	True	TCGA-66-2791-01	True	False
+LUSC		TCGA-LUSC	TCGA-66-2793-01	TCGA-66-2793	HookNet-TLS_manual	2	1													2		0					positive	immature only (LA1, no GC)	True	TCGA-66-2793-01	True	False
+LUSC		TCGA-LUSC	TCGA-66-2795-01	TCGA-66-2795	HookNet-TLS_manual	2	1													1		0					positive	immature only (LA1, no GC)	True	TCGA-66-2795-01	True	False
+LUSC		TCGA-LUSC	TCGA-68-7755-01	TCGA-68-7755	HookNet-TLS_manual	2	1													15		1					positive	mature (LA2 / GC+)	True	TCGA-68-7755-01	True	False
+LUSC		TCGA-LUSC	TCGA-68-7756-01	TCGA-68-7756	HookNet-TLS_manual	2	1													8		0					positive	immature only (LA1, no GC)	True	TCGA-68-7756-01	True	False
+LUSC		TCGA-LUSC	TCGA-68-7757-01	TCGA-68-7757	HookNet-TLS_manual	2	1													10		0					positive	immature only (LA1, no GC)	True	TCGA-68-7757-01	True	False
+LUSC		TCGA-LUSC	TCGA-68-8250-01	TCGA-68-8250	HookNet-TLS_manual	2	1													23		0					positive	immature only (LA1, no GC)	True	TCGA-68-8250-01	True	False
+LUSC		TCGA-LUSC	TCGA-68-8251-01	TCGA-68-8251	HookNet-TLS_manual	2	1													12		0					positive	immature only (LA1, no GC)	True	TCGA-68-8251-01	True	False
+LUSC		TCGA-LUSC	TCGA-68-A59I-01	TCGA-68-A59I	HookNet-TLS_manual	2	1													90		9					positive	mature (LA2 / GC+)	True	TCGA-68-A59I-01	True	False
+LUSC		TCGA-LUSC	TCGA-68-A59J-01	TCGA-68-A59J	HookNet-TLS_manual	2	1													4		0					positive	immature only (LA1, no GC)	True	TCGA-68-A59J-01	True	False
+LUSC		TCGA-LUSC	TCGA-77-6842-01	TCGA-77-6842	HookNet-TLS_manual	2	1													9		0					positive	immature only (LA1, no GC)	True	TCGA-77-6842-01	True	False
+LUSC		TCGA-LUSC	TCGA-77-6843-01	TCGA-77-6843	HookNet-TLS_manual	2	1													12		0					positive	immature only (LA1, no GC)	True	TCGA-77-6843-01	True	False
+LUSC		TCGA-LUSC	TCGA-77-6844-01	TCGA-77-6844	HookNet-TLS_manual	2	1													31		0					positive	immature only (LA1, no GC)	True	TCGA-77-6844-01	True	False
+LUSC		TCGA-LUSC	TCGA-77-6845-01	TCGA-77-6845	HookNet-TLS_manual	2	1													15		0					positive	immature only (LA1, no GC)	True	TCGA-77-6845-01	True	False
+LUSC		TCGA-LUSC	TCGA-77-7138-01	TCGA-77-7138	HookNet-TLS_manual	2	1													20		0					positive	immature only (LA1, no GC)	True	TCGA-77-7138-01	True	False
+LUSC		TCGA-LUSC	TCGA-77-7139-01	TCGA-77-7139	HookNet-TLS_manual	2	1													31		0					positive	immature only (LA1, no GC)	True	TCGA-77-7139-01	True	False
+LUSC		TCGA-LUSC	TCGA-77-7140-01	TCGA-77-7140	HookNet-TLS_manual	2	1													48		3					positive	mature (LA2 / GC+)	True	TCGA-77-7140-01	True	False
+LUSC		TCGA-LUSC	TCGA-77-7141-01	TCGA-77-7141	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-77-7141-01	True	False
+LUSC		TCGA-LUSC	TCGA-77-7142-01	TCGA-77-7142	HookNet-TLS_manual	2	1													15		1					positive	mature (LA2 / GC+)	True	TCGA-77-7142-01	True	False
+LUSC		TCGA-LUSC	TCGA-77-7335-01	TCGA-77-7335	HookNet-TLS_manual	2	1													6		1					positive	mature (LA2 / GC+)	True	TCGA-77-7335-01	True	False
+LUSC		TCGA-LUSC	TCGA-77-7337-01	TCGA-77-7337	HookNet-TLS_manual	2	1													65		8					positive	mature (LA2 / GC+)	True	TCGA-77-7337-01	True	False
+LUSC		TCGA-LUSC	TCGA-77-7338-01	TCGA-77-7338	HookNet-TLS_manual	2	1													14		0					positive	immature only (LA1, no GC)	True	TCGA-77-7338-01	True	False
+LUSC		TCGA-LUSC	TCGA-77-7463-01	TCGA-77-7463	HookNet-TLS_manual	2	1													51		4					positive	mature (LA2 / GC+)	True	TCGA-77-7463-01	True	False
+LUSC		TCGA-LUSC	TCGA-77-7465-01	TCGA-77-7465	HookNet-TLS_manual	2	1													6		0					positive	immature only (LA1, no GC)	True	TCGA-77-7465-01	True	False
+LUSC		TCGA-LUSC	TCGA-77-8007-01	TCGA-77-8007	HookNet-TLS_manual	2	1													7		0					positive	immature only (LA1, no GC)	True	TCGA-77-8007-01	True	False
+LUSC		TCGA-LUSC	TCGA-77-8008-01	TCGA-77-8008	HookNet-TLS_manual	2	1													41		0					positive	immature only (LA1, no GC)	True	TCGA-77-8008-01	True	False
+LUSC		TCGA-LUSC	TCGA-77-8128-01	TCGA-77-8128	HookNet-TLS_manual	2	1													5		0					positive	immature only (LA1, no GC)	True	TCGA-77-8128-01	True	False
+LUSC		TCGA-LUSC	TCGA-77-8130-01	TCGA-77-8130	HookNet-TLS_manual	2	1													19		0					positive	immature only (LA1, no GC)	True	TCGA-77-8130-01	True	False
+LUSC		TCGA-LUSC	TCGA-77-8133-01	TCGA-77-8133	HookNet-TLS_manual	2	1													6		1					positive	mature (LA2 / GC+)	True	TCGA-77-8133-01	True	False
+LUSC		TCGA-LUSC	TCGA-77-8136-01	TCGA-77-8136	HookNet-TLS_manual	2	1													37		0					positive	immature only (LA1, no GC)	True	TCGA-77-8136-01	True	False
+LUSC		TCGA-LUSC	TCGA-77-8138-01	TCGA-77-8138	HookNet-TLS_manual	2	1													55		0					positive	immature only (LA1, no GC)	True	TCGA-77-8138-01	True	False
+LUSC		TCGA-LUSC	TCGA-77-8139-01	TCGA-77-8139	HookNet-TLS_manual	2	1													10		2					positive	mature (LA2 / GC+)	True	TCGA-77-8139-01	True	False
+LUSC		TCGA-LUSC	TCGA-77-8140-01	TCGA-77-8140	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-77-8140-01	True	False
+LUSC		TCGA-LUSC	TCGA-77-8143-01	TCGA-77-8143	HookNet-TLS_manual	2	1													65		7					positive	mature (LA2 / GC+)	True	TCGA-77-8143-01	True	False
+LUSC		TCGA-LUSC	TCGA-77-8144-01	TCGA-77-8144	HookNet-TLS_manual	2	1													26		0					positive	immature only (LA1, no GC)	True	TCGA-77-8144-01	True	False
+LUSC		TCGA-LUSC	TCGA-77-8146-01	TCGA-77-8146	HookNet-TLS_manual	2	1													37		5					positive	mature (LA2 / GC+)	True	TCGA-77-8146-01	True	False
+LUSC		TCGA-LUSC	TCGA-77-8148-01	TCGA-77-8148	HookNet-TLS_manual	2	1													3		0					positive	immature only (LA1, no GC)	True	TCGA-77-8148-01	True	False
+LUSC		TCGA-LUSC	TCGA-77-8150-01	TCGA-77-8150	HookNet-TLS_manual	2	1													7		0					positive	immature only (LA1, no GC)	True	TCGA-77-8150-01	True	False
+LUSC		TCGA-LUSC	TCGA-77-8153-01	TCGA-77-8153	HookNet-TLS_manual	2	1													20		0					positive	immature only (LA1, no GC)	True	TCGA-77-8153-01	True	False
+LUSC		TCGA-LUSC	TCGA-77-8154-01	TCGA-77-8154	HookNet-TLS_manual	2	1													9		0					positive	immature only (LA1, no GC)	True	TCGA-77-8154-01	True	False
+LUSC		TCGA-LUSC	TCGA-77-8156-01	TCGA-77-8156	HookNet-TLS_manual	2	1													19		0					positive	immature only (LA1, no GC)	True	TCGA-77-8156-01	True	False
+LUSC		TCGA-LUSC	TCGA-77-A5G1-01	TCGA-77-A5G1	HookNet-TLS_manual	2	1													50		11					positive	mature (LA2 / GC+)	True	TCGA-77-A5G1-01	True	False
+LUSC		TCGA-LUSC	TCGA-77-A5G3-01	TCGA-77-A5G3	HookNet-TLS_manual	2	1													9		0					positive	immature only (LA1, no GC)	True	TCGA-77-A5G3-01	True	False
+LUSC		TCGA-LUSC	TCGA-77-A5G6-01	TCGA-77-A5G6	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-77-A5G6-01	True	False
+LUSC		TCGA-LUSC	TCGA-77-A5G7-01	TCGA-77-A5G7	HookNet-TLS_manual	2	1													5		0					positive	immature only (LA1, no GC)	True	TCGA-77-A5G7-01	True	False
+LUSC		TCGA-LUSC	TCGA-77-A5G8-01	TCGA-77-A5G8	HookNet-TLS_manual	2	1													12		2					positive	mature (LA2 / GC+)	True	TCGA-77-A5G8-01	True	False
+LUSC		TCGA-LUSC	TCGA-77-A5GA-01	TCGA-77-A5GA	HookNet-TLS_manual	2	1													19		0					positive	immature only (LA1, no GC)	True	TCGA-77-A5GA-01	True	False
+LUSC		TCGA-LUSC	TCGA-77-A5GB-01	TCGA-77-A5GB	HookNet-TLS_manual	2	1													6		0					positive	immature only (LA1, no GC)	True	TCGA-77-A5GB-01	True	False
+LUSC		TCGA-LUSC	TCGA-77-A5GF-01	TCGA-77-A5GF	HookNet-TLS_manual	2	1													22		6					positive	mature (LA2 / GC+)	True	TCGA-77-A5GF-01	True	False
+LUSC		TCGA-LUSC	TCGA-77-A5GH-01	TCGA-77-A5GH	HookNet-TLS_manual	2	1													7		1					positive	mature (LA2 / GC+)	True	TCGA-77-A5GH-01	True	False
+LUSC		TCGA-LUSC	TCGA-85-6175-01	TCGA-85-6175	HookNet-TLS_manual	2	1													8		0					positive	immature only (LA1, no GC)	True	TCGA-85-6175-01	True	False
+LUSC		TCGA-LUSC	TCGA-85-6561-01	TCGA-85-6561	HookNet-TLS_manual	2	1													46		13					positive	mature (LA2 / GC+)	True	TCGA-85-6561-01	True	False
+LUSC		TCGA-LUSC	TCGA-85-6798-01	TCGA-85-6798	HookNet-TLS_manual	2	1													3		0					positive	immature only (LA1, no GC)	True	TCGA-85-6798-01	True	False
+LUSC		TCGA-LUSC	TCGA-85-7699-01	TCGA-85-7699	HookNet-TLS_manual	2	1													14		6					positive	mature (LA2 / GC+)	True	TCGA-85-7699-01	True	False
+LUSC		TCGA-LUSC	TCGA-85-7843-01	TCGA-85-7843	HookNet-TLS_manual	2	1													1		0					positive	immature only (LA1, no GC)	True	TCGA-85-7843-01	True	False
+LUSC		TCGA-LUSC	TCGA-85-7844-01	TCGA-85-7844	HookNet-TLS_manual	2	1													6		1					positive	mature (LA2 / GC+)	True	TCGA-85-7844-01	True	False
+LUSC		TCGA-LUSC	TCGA-85-8048-01	TCGA-85-8048	HookNet-TLS_manual	2	1													24		1					positive	mature (LA2 / GC+)	True	TCGA-85-8048-01	True	False
+LUSC		TCGA-LUSC	TCGA-85-8350-01	TCGA-85-8350	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-85-8350-01	True	False
+LUSC		TCGA-LUSC	TCGA-85-8351-01	TCGA-85-8351	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-85-8351-01	True	False
+LUSC		TCGA-LUSC	TCGA-85-8353-01	TCGA-85-8353	HookNet-TLS_manual	2	1													30		1					positive	mature (LA2 / GC+)	True	TCGA-85-8353-01	True	False
+LUSC		TCGA-LUSC	TCGA-85-8354-01	TCGA-85-8354	HookNet-TLS_manual	2	1													10		0					positive	immature only (LA1, no GC)	True	TCGA-85-8354-01	True	False
+LUSC		TCGA-LUSC	TCGA-85-8355-01	TCGA-85-8355	HookNet-TLS_manual	2	1													3		0					positive	immature only (LA1, no GC)	True	TCGA-85-8355-01	True	False
+LUSC		TCGA-LUSC	TCGA-85-8481-01	TCGA-85-8481	HookNet-TLS_manual	2	1													37		9					positive	mature (LA2 / GC+)	True	TCGA-85-8481-01	True	False
+LUSC		TCGA-LUSC	TCGA-85-8580-01	TCGA-85-8580	HookNet-TLS_manual	2	1													34		1					positive	mature (LA2 / GC+)	True	TCGA-85-8580-01	True	False
+LUSC		TCGA-LUSC	TCGA-85-8582-01	TCGA-85-8582	HookNet-TLS_manual	2	1													15		0					positive	immature only (LA1, no GC)	True	TCGA-85-8582-01	True	False
+LUSC		TCGA-LUSC	TCGA-85-8584-01	TCGA-85-8584	HookNet-TLS_manual	2	1													7		0					positive	immature only (LA1, no GC)	True	TCGA-85-8584-01	True	False
+LUSC		TCGA-LUSC	TCGA-85-8664-01	TCGA-85-8664	HookNet-TLS_manual	2	1													3		0					positive	immature only (LA1, no GC)	True	TCGA-85-8664-01	True	False
+LUSC		TCGA-LUSC	TCGA-85-8666-01	TCGA-85-8666	HookNet-TLS_manual	2	1													1		0					positive	immature only (LA1, no GC)	True	TCGA-85-8666-01	True	False
+LUSC		TCGA-LUSC	TCGA-85-A4CL-01	TCGA-85-A4CL	HookNet-TLS_manual	2	1													33		2					positive	mature (LA2 / GC+)	True	TCGA-85-A4CL-01	True	False
+LUSC		TCGA-LUSC	TCGA-85-A4JC-01	TCGA-85-A4JC	HookNet-TLS_manual	2	1													46		3					positive	mature (LA2 / GC+)	True	TCGA-85-A4JC-01	True	False
+LUSC		TCGA-LUSC	TCGA-85-A4PA-01	TCGA-85-A4PA	HookNet-TLS_manual	2	1													9		2					positive	mature (LA2 / GC+)	True	TCGA-85-A4PA-01	True	False
+LUSC		TCGA-LUSC	TCGA-85-A4QQ-01	TCGA-85-A4QQ	HookNet-TLS_manual	2	1													2		0					positive	immature only (LA1, no GC)	True	TCGA-85-A4QQ-01	True	False
+LUSC		TCGA-LUSC	TCGA-85-A50M-01	TCGA-85-A50M	HookNet-TLS_manual	2	1													31		0					positive	immature only (LA1, no GC)	True	TCGA-85-A50M-01	True	False
+LUSC		TCGA-LUSC	TCGA-85-A50Z-01	TCGA-85-A50Z	HookNet-TLS_manual	2	1													19		0					positive	immature only (LA1, no GC)	True	TCGA-85-A50Z-01	True	False
+LUSC		TCGA-LUSC	TCGA-85-A510-01	TCGA-85-A510	HookNet-TLS_manual	2	1													19		2					positive	mature (LA2 / GC+)	True	TCGA-85-A510-01	True	False
+LUSC		TCGA-LUSC	TCGA-85-A511-01	TCGA-85-A511	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-85-A511-01	True	False
+LUSC		TCGA-LUSC	TCGA-85-A513-01	TCGA-85-A513	HookNet-TLS_manual	2	1													58		3					positive	mature (LA2 / GC+)	True	TCGA-85-A513-01	True	False
+LUSC		TCGA-LUSC	TCGA-85-A53L-01	TCGA-85-A53L	HookNet-TLS_manual	2	1													106		27					positive	mature (LA2 / GC+)	True	TCGA-85-A53L-01	True	False
+LUSC		TCGA-LUSC	TCGA-85-A5B5-01	TCGA-85-A5B5	HookNet-TLS_manual	2	1													30		2					positive	mature (LA2 / GC+)	True	TCGA-85-A5B5-01	True	False
+LUSC		TCGA-LUSC	TCGA-90-A4ED-01	TCGA-90-A4ED	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-90-A4ED-01	True	False
+LUSC		TCGA-LUSC	TCGA-92-7340-01	TCGA-92-7340	HookNet-TLS_manual	2	1													3		0					positive	immature only (LA1, no GC)	True	TCGA-92-7340-01	True	False
+LUSC		TCGA-LUSC	TCGA-92-7341-01	TCGA-92-7341	HookNet-TLS_manual	2	1													3		0					positive	immature only (LA1, no GC)	True	TCGA-92-7341-01	True	False
+LUSC		TCGA-LUSC	TCGA-92-8063-01	TCGA-92-8063	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-92-8063-01	True	False
+LUSC		TCGA-LUSC	TCGA-92-8064-01	TCGA-92-8064	HookNet-TLS_manual	2	1													120		7					positive	mature (LA2 / GC+)	True	TCGA-92-8064-01	True	False
+LUSC		TCGA-LUSC	TCGA-92-8065-01	TCGA-92-8065	HookNet-TLS_manual	2	1													4		1					positive	mature (LA2 / GC+)	True	TCGA-92-8065-01	True	False
+LUSC		TCGA-LUSC	TCGA-94-8490-01	TCGA-94-8490	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-94-8490-01	True	False
+LUSC		TCGA-LUSC	TCGA-94-8491-01	TCGA-94-8491	HookNet-TLS_manual	2	1													12		0					positive	immature only (LA1, no GC)	True	TCGA-94-8491-01	True	False
+LUSC		TCGA-LUSC	TCGA-94-A4VJ-01	TCGA-94-A4VJ	HookNet-TLS_manual	2	1													7		0					positive	immature only (LA1, no GC)	True	TCGA-94-A4VJ-01	True	False
+LUSC		TCGA-LUSC	TCGA-94-A5I4-01	TCGA-94-A5I4	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-94-A5I4-01	True	False
+LUSC		TCGA-LUSC	TCGA-94-A5I6-01	TCGA-94-A5I6	HookNet-TLS_manual	2	1													14		2					positive	mature (LA2 / GC+)	True	TCGA-94-A5I6-01	True	False
+LUSC		TCGA-LUSC	TCGA-96-7544-01	TCGA-96-7544	HookNet-TLS_manual	2	1													15		0					positive	immature only (LA1, no GC)	True	TCGA-96-7544-01	True	False
+LUSC		TCGA-LUSC	TCGA-96-7545-01	TCGA-96-7545	HookNet-TLS_manual	2	1													41		0					positive	immature only (LA1, no GC)	True	TCGA-96-7545-01	True	False
+LUSC		TCGA-LUSC	TCGA-96-8169-01	TCGA-96-8169	HookNet-TLS_manual	2	1													55		1					positive	mature (LA2 / GC+)	True	TCGA-96-8169-01	True	False
+LUSC		TCGA-LUSC	TCGA-96-8170-01	TCGA-96-8170	HookNet-TLS_manual	2	1													28		0					positive	immature only (LA1, no GC)	True	TCGA-96-8170-01	True	False
+LUSC		TCGA-LUSC	TCGA-96-A4JK-01	TCGA-96-A4JK	HookNet-TLS_manual	2	1													113		21					positive	mature (LA2 / GC+)	True	TCGA-96-A4JK-01	True	False
+LUSC		TCGA-LUSC	TCGA-96-A4JL-01	TCGA-96-A4JL	HookNet-TLS_manual	2	1													51		3					positive	mature (LA2 / GC+)	True	TCGA-96-A4JL-01	True	False
+LUSC		TCGA-LUSC	TCGA-98-8021-01	TCGA-98-8021	HookNet-TLS_manual	2	1													4		0					positive	immature only (LA1, no GC)	True	TCGA-98-8021-01	True	False
+LUSC		TCGA-LUSC	TCGA-98-8022-01	TCGA-98-8022	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-98-8022-01	True	False
+LUSC		TCGA-LUSC	TCGA-98-8023-01	TCGA-98-8023	HookNet-TLS_manual	2	1													66		0					positive	immature only (LA1, no GC)	True	TCGA-98-8023-01	True	False
+LUSC		TCGA-LUSC	TCGA-98-A53B-01	TCGA-98-A53B	HookNet-TLS_manual	2	1													4		0					positive	immature only (LA1, no GC)	True	TCGA-98-A53B-01	True	False
+LUSC		TCGA-LUSC	TCGA-98-A53D-01	TCGA-98-A53D	HookNet-TLS_manual	2	1													10		0					positive	immature only (LA1, no GC)	True	TCGA-98-A53D-01	True	False
+LUSC		TCGA-LUSC	TCGA-98-A53I-01	TCGA-98-A53I	HookNet-TLS_manual	2	1													4		0					positive	immature only (LA1, no GC)	True	TCGA-98-A53I-01	True	False
+LUSC		TCGA-LUSC	TCGA-98-A53J-01	TCGA-98-A53J	HookNet-TLS_manual	2	1													6		0					positive	immature only (LA1, no GC)	True	TCGA-98-A53J-01	True	False
+LUSC		TCGA-LUSC	TCGA-J1-A4AH-01	TCGA-J1-A4AH	HookNet-TLS_manual	2	1													13		1					positive	mature (LA2 / GC+)	True	TCGA-J1-A4AH-01	True	False
+LUSC		TCGA-LUSC	TCGA-L3-A4E7-01	TCGA-L3-A4E7	HookNet-TLS_manual	2	1													12		0					positive	immature only (LA1, no GC)	True	TCGA-L3-A4E7-01	True	False
+LUSC		TCGA-LUSC	TCGA-L3-A524-01	TCGA-L3-A524	HookNet-TLS_manual	2	1													2		0					positive	immature only (LA1, no GC)	True	TCGA-L3-A524-01	True	False
+LUSC		TCGA-LUSC	TCGA-LA-A446-01	TCGA-LA-A446	HookNet-TLS_manual	2	1													21		2					positive	mature (LA2 / GC+)	True	TCGA-LA-A446-01	True	False
+LUSC		TCGA-LUSC	TCGA-LA-A7SW-01	TCGA-LA-A7SW	HookNet-TLS_manual	2	1													1		0					positive	immature only (LA1, no GC)	True	TCGA-LA-A7SW-01	True	False
+LUSC		TCGA-LUSC	TCGA-MF-A522-01	TCGA-MF-A522	HookNet-TLS_manual	2	1													58		0					positive	immature only (LA1, no GC)	True	TCGA-MF-A522-01	True	False
+LUSC		TCGA-LUSC	TCGA-NC-A5HD-01	TCGA-NC-A5HD	HookNet-TLS_manual	2	1													8		0					positive	immature only (LA1, no GC)	True	TCGA-NC-A5HD-01	True	False
+LUSC		TCGA-LUSC	TCGA-NC-A5HE-01	TCGA-NC-A5HE	HookNet-TLS_manual	2	1													36		2					positive	mature (LA2 / GC+)	True	TCGA-NC-A5HE-01	True	False
+LUSC		TCGA-LUSC	TCGA-NC-A5HG-01	TCGA-NC-A5HG	HookNet-TLS_manual	2	1													15		1					positive	mature (LA2 / GC+)	True	TCGA-NC-A5HG-01	True	False
+LUSC		TCGA-LUSC	TCGA-NC-A5HH-01	TCGA-NC-A5HH	HookNet-TLS_manual	2	1													17		0					positive	immature only (LA1, no GC)	True	TCGA-NC-A5HH-01	True	False
+LUSC		TCGA-LUSC	TCGA-NC-A5HI-01	TCGA-NC-A5HI	HookNet-TLS_manual	2	1													41		7					positive	mature (LA2 / GC+)	True	TCGA-NC-A5HI-01	True	False
+LUSC		TCGA-LUSC	TCGA-NC-A5HJ-01	TCGA-NC-A5HJ	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-NC-A5HJ-01	True	False
+LUSC		TCGA-LUSC	TCGA-NC-A5HK-01	TCGA-NC-A5HK	HookNet-TLS_manual	2	1													24		0					positive	immature only (LA1, no GC)	True	TCGA-NC-A5HK-01	True	False
+LUSC		TCGA-LUSC	TCGA-NC-A5HL-01	TCGA-NC-A5HL	HookNet-TLS_manual	2	1													7		0					positive	immature only (LA1, no GC)	True	TCGA-NC-A5HL-01	True	False
+LUSC		TCGA-LUSC	TCGA-NC-A5HM-01	TCGA-NC-A5HM	HookNet-TLS_manual	2	1													9		1					positive	mature (LA2 / GC+)	True	TCGA-NC-A5HM-01	True	False
+LUSC		TCGA-LUSC	TCGA-NC-A5HN-01	TCGA-NC-A5HN	HookNet-TLS_manual	2	1													8		0					positive	immature only (LA1, no GC)	True	TCGA-NC-A5HN-01	True	False
+LUSC		TCGA-LUSC	TCGA-NC-A5HO-01	TCGA-NC-A5HO	HookNet-TLS_manual	2	1													226		61					positive	mature (LA2 / GC+)	True	TCGA-NC-A5HO-01	True	False
+LUSC		TCGA-LUSC	TCGA-NC-A5HP-01	TCGA-NC-A5HP	HookNet-TLS_manual	2	1													15		0					positive	immature only (LA1, no GC)	True	TCGA-NC-A5HP-01	True	False
+LUSC		TCGA-LUSC	TCGA-NC-A5HQ-01	TCGA-NC-A5HQ	HookNet-TLS_manual	2	1													15		4					positive	mature (LA2 / GC+)	True	TCGA-NC-A5HQ-01	True	False
+LUSC		TCGA-LUSC	TCGA-NC-A5HR-01	TCGA-NC-A5HR	HookNet-TLS_manual	2	1													9		0					positive	immature only (LA1, no GC)	True	TCGA-NC-A5HR-01	True	False
+LUSC		TCGA-LUSC	TCGA-NC-A5HT-01	TCGA-NC-A5HT	HookNet-TLS_manual	2	1													16		4					positive	mature (LA2 / GC+)	True	TCGA-NC-A5HT-01	True	False
+LUSC		TCGA-LUSC	TCGA-NK-A5CR-01	TCGA-NK-A5CR	HookNet-TLS_manual	2	1													18		0					positive	immature only (LA1, no GC)	True	TCGA-NK-A5CR-01	True	False
+LUSC		TCGA-LUSC	TCGA-NK-A5CT-01	TCGA-NK-A5CT	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-NK-A5CT-01	True	False
+LUSC		TCGA-LUSC	TCGA-NK-A5CX-01	TCGA-NK-A5CX	HookNet-TLS_manual	2	1													6		3					positive	mature (LA2 / GC+)	True	TCGA-NK-A5CX-01	True	False
+LUSC		TCGA-LUSC	TCGA-NK-A5D1-01	TCGA-NK-A5D1	HookNet-TLS_manual	2	1													0		0					negative	unknown	False	TCGA-NK-A5D1-01	True	False
+LUSC		TCGA-LUSC	TCGA-O2-A52N-01	TCGA-O2-A52N	HookNet-TLS_manual	2	1													21		8					positive	mature (LA2 / GC+)	True	TCGA-O2-A52N-01	True	False
+LUSC		TCGA-LUSC	TCGA-O2-A52S-01	TCGA-O2-A52S	HookNet-TLS_manual	2	1													23		0					positive	immature only (LA1, no GC)	True	TCGA-O2-A52S-01	True	False
+LUSC		TCGA-LUSC	TCGA-O2-A52V-01	TCGA-O2-A52V	HookNet-TLS_manual	2	1													21		0					positive	immature only (LA1, no GC)	True	TCGA-O2-A52V-01	True	False
+LUSC		TCGA-LUSC	TCGA-O2-A52W-01	TCGA-O2-A52W	HookNet-TLS_manual	2	1													12		0					positive	immature only (LA1, no GC)	True	TCGA-O2-A52W-01	True	False
+LUSC		TCGA-LUSC	TCGA-O2-A5IB-01	TCGA-O2-A5IB	HookNet-TLS_manual	2	1													9		0					positive	immature only (LA1, no GC)	True	TCGA-O2-A5IB-01	True	False
+LUSC		TCGA-LUSC	TCGA-XC-AA0X-01	TCGA-XC-AA0X	HookNet-TLS_manual	2	1													24		2					positive	mature (LA2 / GC+)	True	TCGA-XC-AA0X-01	True	False

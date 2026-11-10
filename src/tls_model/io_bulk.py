@@ -27,8 +27,9 @@ log = logging.getLogger(__name__)
 
 PRIVATE_COHORTS = ("Internal_lung", "MGH_LUAD_DagogoJack")
 # Allowlist: only these cohorts and label methods may reach the public (git) tables; any other name stays private.
-PUBLIC_COHORTS = ("CPTAC-PAAD", "CPTAC-ccRCC", "TCGA-BRCA", "TCGA-KIRC/KIRP/KICH", "TCGA-LUAD", "TCGA-PAAD")
-PUBLIC_METHODS = ("pathologist_HE", "pathologist_IHC", "HookNet-TLS_a", "HookNet-TLS_b")
+PUBLIC_COHORTS = ("CPTAC-PAAD", "CPTAC-ccRCC", "TCGA-BLCA", "TCGA-BRCA", "TCGA-KIRC/KIRP/KICH", "TCGA-LUAD",
+                  "TCGA-LUSC", "TCGA-PAAD")
+PUBLIC_METHODS = ("pathologist_HE", "pathologist_IHC", "HookNet-TLS_a", "HookNet-TLS_b", "HookNet-TLS_manual")
 # Internal file paths and pathologist initials never leave the archive.
 DROP_COLUMNS = ("source", "notes", "expression_file")
 LABELS_PRIMARY = "labels_primary.tsv"

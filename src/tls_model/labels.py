@@ -27,9 +27,15 @@ def three_class_label(tls_any: np.ndarray, tls_mature: np.ndarray) -> np.ndarray
     return np.where(np.isnan(tls_any), np.nan, label)
 
 
+# Expert-drawn labels that are not called pathologist_*: the HookNet-TLS manual annotations (Zenodo 10614928).
+EXPERT_METHODS = ("HookNet-TLS_manual",)
+
+
 def label_source(method: pd.Series) -> pd.Series:
-    """'pathologist' for pathologist_HE / pathologist_IHC, 'cnn' for every model-made label."""
-    return np.where(method.str.startswith("pathologist"), "pathologist", "cnn")
+    """'pathologist' for pathologist_HE / pathologist_IHC and the expert annotations, 'cnn' for every model-made
+    label."""
+    is_expert = method.str.startswith("pathologist") | method.isin(EXPERT_METHODS)
+    return np.where(is_expert, "pathologist", "cnn")
 
 
 def bulk_labels(table: pd.DataFrame) -> pd.DataFrame:

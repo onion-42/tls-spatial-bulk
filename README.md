@@ -90,6 +90,30 @@ glioma separate almost perfectly (0.96), CD20 follicle segments vs stroma / tumo
 QC flag): the model reads lymphocyte content well and the follicle itself weakly, which is the same limit the
 maturity head shows.
 
+**Reference points** (`results/baselines.tsv`, `scripts/score_baselines.py`): the same blocks and bootstrap for a dummy
+(one constant per unit kind = the gold training prevalence; AUROC 0.5 by construction) and the three published TLS
+signatures scored by ssGSEA on the model's gene panel (rankings, no calibration). AUROC [95 % CI]:
+
+| evaluation | ours | best signature | 12-chemokine | Cabrita | TLS imprint |
+|---|---|---|---|---|---|
+| Visium spots, test | **0.930 [0.890, 0.961]** | TLS imprint 0.828 | 0.789 | 0.755 | 0.828 |
+| Visium spots, holdout (both cohorts) | **0.940 [0.922, 0.956]** | Cabrita 0.878 | 0.849 | 0.878 | 0.841 |
+| Pseudo-bulk sections, holdout | 0.868 [0.735, 0.967] | 12-chemokine 0.934 | 0.934 | 0.872 | 0.906 |
+| Bulk, TCGA test split pooled | 0.747 [0.667, 0.824] | TLS imprint 0.729 | 0.596 | 0.387 | 0.729 |
+| Bulk, CPTAC-PAAD | 0.673 [0.571, 0.762] | Cabrita 0.643 | 0.576 | 0.643 | 0.636 |
+| Bulk, CPTAC-ccRCC | 0.595 [0.467, 0.718] | TLS imprint 0.582 | 0.579 | 0.538 | 0.582 |
+| Bulk, TCGA-BLCA (HookNet) | 0.644 [0.572, 0.720] | TLS imprint 0.650 | 0.634 | 0.526 | 0.650 |
+| Bulk, TCGA-LUSC (HookNet) | 0.615 [0.514, 0.718] | TLS imprint 0.583 | 0.540 | 0.566 | 0.583 |
+| GeoMx GSE271255, TLS vs control ROIs | 0.963 [0.922, 0.995] | TLS imprint 0.985 | 0.691 | 0.732 | 0.985 |
+| GeoMx GSE276935, CD20 vs other segments | **0.781 [0.696, 0.880]** | 12-chemokine 0.686 | 0.686 | 0.686 | 0.596 |
+
+The model's margin is on spots (+0.06 to +0.10 over the best signature) and on the ovarian follicle contrast; on bulk
+within one cohort it sits in the same 0.55–0.70 band as the best signature on every cohort, in the same bootstrap
+interval; on the glioma ROIs the TLS imprint (plasma-cell / immunoglobulin genes) is as good or better; on whole-section
+pseudo-bulks the 12-chemokine score is higher (41 sections, wide intervals). Pooled across cohorts a signature can even
+be anticorrelated (Cabrita 0.34–0.39 pooled) because it tracks cancer type, which is why within-cohort rows are the
+ones to read.
+
 **Self-distillation ablation** (`results/ablation_distillation.tsv`): teacher (Visium only) vs student (Visium + TCGA
 pseudo-labels), AUROC on the TCGA test split pooled 0.753 → 0.747,
 CPTAC-PAAD 0.659 → 0.673, Visium test spots

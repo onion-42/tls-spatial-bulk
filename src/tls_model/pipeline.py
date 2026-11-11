@@ -418,8 +418,8 @@ def dummy_scores(obs: pd.DataFrame, meta: dict) -> np.ndarray:
 
 def baseline_scores(units, meta: dict, chunk: int = PREDICT_CHUNK) -> dict[str, np.ndarray]:
     """Reference scores for every unit: the dummy and the three published TLS signatures (ssGSEA on the kept genes,
-    the same implementation as the model features; genes outside the panel are skipped). Signature scores rank
-    units but are not probabilities."""
+    the same implementation as the model features; genes outside the panel are skipped). Signature scores are
+    min-max scaled to [0, 1]: they rank units but are not probabilities."""
     signatures = {label: meta["signatures"][name] for label, name in BASELINE_SIGNATURES.items()}
     signatures["TLS imprint (Meylan 2022)"] = [g for g in TLS_IMPRINT if g in set(meta["genes"])]
     genes = list(meta["genes"])
@@ -427,7 +427,9 @@ def baseline_scores(units, meta: dict, chunk: int = PREDICT_CHUNK) -> dict[str, 
     for start in range(0, units.n_obs, chunk):
         values[start : start + chunk] = ssgsea(np.asarray(units.X[start : start + chunk], dtype=np.float32), genes, signatures)
     out = {"dummy": dummy_scores(units.obs, meta)}
-    out.update({label: values[:, i].astype(float) for i, label in enumerate(signatures)})
+    for i, label in enumerate(signatures):
+        score = values[:, i].astype(float)  # min-max to [0, 1]: a ranking, not a probability (metrics that need one apply)
+        out[label] = (score - score.min()) / max(score.max() - score.min(), EPS)
     return out
 
 

@@ -303,7 +303,10 @@ unknown. Both are holdout.</p>
 and USZ (8 FFPE kidney and lung sections with mature / immature spot labels; Zenodo 14620362, CC-BY-4.0) are the
 training sources; GSE273952 (ccRCC FFPE, Fridman lab; 8 sections that are not GSE175540 re-annotations) and
 GSE351843 (primary breast, CytAssist FFPE; pathologist labels from Zenodo 18917100, lymphoid aggregates counted as
-immature TLS) are holdout. Non-public cohorts (Internal lung, MGH) stay outside the repository.</p>
+immature TLS) are holdout. Non-public cohorts (Internal lung, MGH) stay outside the repository. Caveat on GSE273952:
+it comes from the same clinical cohort (BIONIKK) as GSE175540 and GEO gives no patient ids for either series; the 8
+new sections show no duplicate-level expression match with any GSE175540 section (pseudo-bulk Spearman 0.885–0.915,
+the range of unrelated FFPE pairs), but a same-patient overlap cannot be excluded from expression alone.</p>
 <p>Label ceiling, TCGA-LUAD: two pathologists agree almost perfectly with each other (κ 0.96), while two runs of
 the public HookNet-TLS model (HookNet-TLS_a, HookNet-TLS_b) agree with pathologists only moderately (κ 0.20–0.51)
 and with each other poorly (κ 0.20). A model trained partly on these CNN labels cannot be expected to beat that

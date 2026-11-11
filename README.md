@@ -173,7 +173,7 @@ every OOD cohort plus the whole-section pseudo-bulks of the test and holdout Vis
 |---|---|---|---|---|
 | Visium, GSE175540 (ccRCC, FFPE + frozen; Meylan *Immunity* 2022) | GEO | 17 patients · 18 sections · 49,861 spots (2,023 TLS) | 5 · 5 · 19,499 (301) | – |
 | Visium, USZ (kidney + lung FFPE; Zenodo 14620362, CC-BY-4.0) | Zenodo | 6 · 6 · 18,539 (852) | 2 · 2 · 5,707 (73) | – |
-| Visium, GSE273952 (ccRCC FFPE; Fridman lab, BIONIKK) — 8 of 19 sections, the other 11 are GSE175540 re-annotated | GEO | – | – | 8 · 8 · 38,227 (871) |
+| Visium, GSE273952 (ccRCC FFPE; Fridman lab, BIONIKK) — 8 of 19 sections, the other 11 are GSE175540 re-annotated; same clinical cohort, patient overlap with GSE175540 not excludable (see note) | GEO | – | – | 8 · 8 · 38,227 (871) |
 | Visium, GSE351843 (primary breast, CytAssist FFPE; no paper yet; pathologist labels Zenodo 18917100, CC-BY-4.0) | GEO + Zenodo | – | – | 32 · 33 · 259,176 (4,698; 189 called TLS) |
 | TCGA-LUAD | TCGA | distill 406 (313) | 45 (32) | – |
 | TCGA-BRCA | TCGA | distill 389 (185) | 31 (18) | – |
@@ -194,7 +194,12 @@ HookNet-TLS manual annotations on TCGA-BLCA / LUSC (TLS+ = any TLS polygon on th
 than the archive LA1+ call; mature = a germinal-centre polygon; the RNA comes from a different frozen piece, so these
 are holdout labels only — `results/ood_hooknet_strict.tsv` reports the GC-anchored strict label as a control, and
 `results/label_ceiling_kirc.tsv` the agreement with the archive pathologist on kidney). GSE175540 TLS spots carry no
-maturity. GeoMx ROIs are a new unit kind (`geomx` / `roi`, log2-CPM on the model genes, absent genes = 0, no germinal-
+maturity. GSE273952 note: GEO gives no patient ids for either series (GSE273952 samples point to BIONIKK bulk ids,
+GSE175540 only to section names), so the 8 new sections could in principle come from patients that also have a
+GSE175540 section; pseudo-bulk Spearman against every GSE175540 section (best match 0.885–0.915) is indistinguishable
+from unrelated FFPE pairs inside GSE175540 (median 0.86, max 0.93), so there is no duplicate-level match, but a
+same-patient / different-block overlap cannot be excluded from expression alone (raw reads of GSE175540 are withheld).
+Read the GSE273952 holdout numbers with that caveat. GeoMx ROIs are a new unit kind (`geomx` / `roi`, log2-CPM on the model genes, absent genes = 0, no germinal-
 centre call → maturity unknown; `results/geomx_qc.tsv`); they get the raw model probability (no ROI calibration data),
 so only their ranking is read. Test and holdout metrics use expert labels only (HookNet-TLS CNN labels are never fitted
 or scored). Public bulk expression + labels are in `data/bulk/` (`scripts/fetch_tcga_xena.py` rebuilds the BLCA / LUSC

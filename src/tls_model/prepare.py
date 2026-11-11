@@ -1,4 +1,5 @@
-"""Build the unit table (bulk + Visium) once: splits + roles, label-free gene filter, platform offset, aggregates.
+"""Build the unit table (bulk + Visium + GeoMx ROIs) once: splits + roles, label-free gene filter, platform offset,
+aggregates.
 
 Output: <processed>/units.h5ad (X = log2 values on kept genes, obs = unit metadata) and <processed>/meta.json.
 Everything that is fitted here (gene filter, offset) uses train-split data only (Visium train sections and the
@@ -15,7 +16,7 @@ import anndata as ad
 import numpy as np
 import pandas as pd
 
-from tls_model import io_bulk, io_visium
+from tls_model import io_bulk, io_geomx, io_visium
 from tls_model.features import gene_filter, platform_offset
 from tls_model.labels import three_class_label
 from tls_model.pseudobulk import build_units, log2_cpm, spot_prevalence
@@ -94,6 +95,36 @@ def _visium_units(section: ad.AnnData, split: str, genes: list[str], cfg: dict, 
     return ad.AnnData(X=values, obs=unit_obs, var=pd.DataFrame(index=genes))
 
 
+def geomx_split(cfg: dict, source: str) -> str:
+    """'train' for a GeoMx series listed in cohorts.geomx_train, 'ood' for cohorts.geomx_holdout."""
+    cohorts = cfg["cohorts"]
+    if source in cohorts.get("geomx_train", []):
+        return "train"
+    if source in cohorts.get("geomx_holdout", []):
+        return "ood"
+    raise ValueError(f"GeoMx series {source} is in neither cohorts.geomx_train nor cohorts.geomx_holdout")
+
+
+def geomx_units(rois: ad.AnnData, genes: list[str], split: str) -> tuple[ad.AnnData, float]:
+    """ROI units of one GeoMx series (excluded ROIs dropped): log2-CPM on the kept genes, missing genes = 0.
+    Returns (units, share of the kept genes present in the panel)."""
+    rois = rois[~rois.obs["excluded"].to_numpy()]
+    values, coverage = io_geomx.roi_log2cpm(rois, genes)
+    obs = rois.obs
+    source = obs["source"].iloc[0]
+    unit_obs = pd.DataFrame(
+        {
+            "kind": "geomx", "unit": "roi", "k": 0, "group": obs["group"], "cohort": source, "section": "",
+            "patient": source + ":" + obs["patient"].astype(str), "split": split, "platform": "geomx",
+            "source": source, "label_source": "pathologist", "tls_any": obs["tls"].astype(float),
+            "tls_mature": obs["tls_mature"].astype(float), "tls_fraction": np.nan,
+        },
+        index=obs.index,
+    )
+    unit_obs = unit_obs[[c for c in UNIT_COLUMNS if c in unit_obs.columns]]
+    return ad.AnnData(X=values, obs=unit_obs, var=pd.DataFrame(index=genes)), coverage
+
+
 def _spot_detection(sections: pd.DataFrame, genes: list[str]) -> np.ndarray:
     """Share of train spots with count > 0, per gene."""
     detected, n_spots = np.zeros(len(genes)), 0
@@ -167,6 +198,14 @@ def prepare_units(cfg: dict, root: Path = Path(".")) -> tuple[ad.AnnData, dict]:
     spot_prior = {"any": natural["n_tls"] / natural["n_spots"],
                   "mature": natural["n_mature"] / max(natural["n_mature_known"], 1)}
     log.info("natural train-spot prevalence: %s (%s)", spot_prior, natural)
+    # GeoMx ROIs: holdout (or train) units on the same genes; they never touch the gene filter or the offset.
+    geomx_sources = [*cfg["cohorts"].get("geomx_train", []), *cfg["cohorts"].get("geomx_holdout", [])]
+    geomx_coverage = {}
+    for source, rois in io_geomx.load_geomx(paths["geomx"], geomx_sources).items():
+        block, geomx_coverage[source] = geomx_units(rois, genes, geomx_split(cfg, source))
+        blocks.append(block)
+        log.info("units %s (%s): %d ROIs, model-gene coverage %.2f", source, block.obs["split"].iloc[0], block.n_obs,
+                 geomx_coverage[source])
     units = ad.concat(blocks, join="outer")
     units.var_names = genes
     units.obs["role"] = roles(units.obs, cfg["cohorts"]["distill"])
@@ -180,6 +219,7 @@ def prepare_units(cfg: dict, root: Path = Path(".")) -> tuple[ad.AnnData, dict]:
         "offset": offset.tolist(),
         "prev_panel_genes": prev_panel_genes(paths),
         "spot_prior": spot_prior,
+        "geomx_coverage": geomx_coverage,
         "n_shared_genes": len(shared),
         "sections": sections[["section", "patient", "source", "protocol", "has_tls", "split"]].to_dict("records"),
     }

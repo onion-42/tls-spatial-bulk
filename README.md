@@ -48,6 +48,14 @@ public data only (no MGH, no Internal lung; the previous run had Internal lung a
 | Holdout pseudo-bulk: whole test + holdout Visium sections | 41 (32) | 0.868 [0.735, 0.967] |
 | Holdout bulk, CPTAC-PAAD | 129 (54) | 0.673 [0.571, 0.762] |
 | Holdout bulk, CPTAC-ccRCC | 86 (25) | 0.595 [0.467, 0.718] |
+| Holdout bulk, TCGA-BLCA, HookNet-TLS manual label (any TLS polygon) | 303 (225) | 0.644 [0.572, 0.720] |
+| Holdout bulk, TCGA-BLCA, strict label (germinal-centre polygon present) | 303 (114) | 0.624 [0.557, 0.689] |
+| Holdout bulk, TCGA-LUSC, HookNet-TLS manual label | 342 (312) | 0.615 [0.514, 0.718] |
+| Holdout bulk, TCGA-LUSC, strict label | 342 (98) | 0.571 [0.502, 0.634] |
+| Holdout GeoMx ROIs, GSE271255 glioma: TLS vs control ROIs | 81 (61), 20 patients | **0.963 [0.922, 0.995]** |
+| Holdout GeoMx AOIs, GSE276935 ovarian: CD20 follicle vs Immune / Stroma / Tumor segments | 289 (78), 11 patients | 0.781 [0.696, 0.880] |
+| GSE276935, CD20 vs Immune only (immune cells without a follicle) | 172 (78) | 0.606 [0.488, 0.718] |
+| GSE276935, CD20 vs Stroma + Tumor | 195 (78) | 0.921 [0.868, 0.979] |
 
 Maturity (P(mature | TLS), among TLS-positive units with a known maturity) and the 3-class output (macro one-vs-rest
 AUROC over no TLS / immature / mature; the AUROC of mature vs everything else in brackets):
@@ -56,6 +64,8 @@ AUROC over no TLS / immature / mature; the AUROC of mature vs everything else in
 |---|---|---|---|
 | Bulk, TCGA test split | 68 (10) | 0.607 [0.370, 0.812] | 0.700 (0.598) |
 | Bulk, CPTAC-PAAD holdout | 54 (11) | 0.539 [0.299, 0.759] | 0.635 (0.567) |
+| Bulk, TCGA-BLCA holdout (HookNet GC = mature) | 225 (114) | 0.618 [0.549, 0.688] | 0.591 (0.634) |
+| Bulk, TCGA-LUSC holdout (HookNet GC = mature) | 312 (98) | 0.545 [0.474, 0.615] | 0.554 (0.569) |
 | USZ test spots | 73 (17) | 0.413 [0.413, 0.601] | – |
 | Holdout Visium spots, GSE273952 | 793 (65) | – | 0.941 (0.963) |
 | Holdout Visium spots, GSE351843 | 4698 (189) | – | 0.956 (0.979) |
@@ -64,7 +74,21 @@ AUROC over no TLS / immature / mature; the AUROC of mature vs everything else in
 
 Mature vs rest is high on spots because mature TLS are also the strongest TLS signal; **mature vs immature among TLS
 is weak everywhere** (0.4–0.7, intervals crossing 0.5), and the argmax call never returns "mature" (P(mature) =
-P(TLS) · P(mature | TLS) rarely exceeds the other two). Read the 3-class output as a ranking, not as a call.
+P(TLS) · P(mature | TLS) rarely exceeds the other two). Read the 3-class output as a ranking, not as a call. The two
+HookNet cohorts are the first bulk maturity test with hundreds of germinal-centre calls: BLCA 0.62 [0.55, 0.69] is the
+first bulk maturity interval that excludes 0.5, LUSC does not.
+
+**HookNet-TLS holdout (TCGA-BLCA, TCGA-LUSC).** TLS+ = any TLS polygon on the diagnostic FFPE slide (more inclusive than
+the archive LA1+ call: 44 % of the archive's KIRC pathologist negatives carry a HookNet TLS, κ 0.25 on 142 shared kidney
+samples, `results/label_ceiling_kirc.tsv`), mature = a germinal-centre polygon; the RNA comes from a different frozen
+piece. P(TLS) reaches 0.64 / 0.62 against the inclusive label and 0.62 / 0.57 against the GC-anchored strict label
+(`results/ood_hooknet_strict.tsv`) — the same within-cohort band as CPTAC.
+
+**GeoMx regions** (`results/ood_geomx.tsv`, raw model probability, bootstrap over patients): TLS vs control ROIs in
+glioma separate almost perfectly (0.96), CD20 follicle segments vs stroma / tumour segments in ovarian cancer too
+(0.92), but CD20 vs immune segments without a follicle only 0.61 [0.49, 0.72] (0.77 on the 48 AOIs without an author
+QC flag): the model reads lymphocyte content well and the follicle itself weakly, which is the same limit the
+maturity head shows.
 
 **Self-distillation ablation** (`results/ablation_distillation.tsv`): teacher (Visium only) vs student (Visium + TCGA
 pseudo-labels), AUROC on the TCGA test split pooled 0.753 → 0.747,
@@ -108,7 +132,9 @@ only (bladder IMvigor210 and ccRCC, not corrected for multiplicity).
 **Limitations.** Spots work; bulk within one cohort is weak (~0.55–0.70 for every model family, signatures
 included), and every TCGA label is read on the diagnostic FFPE slide while the RNA comes from a different, frozen
 piece of the tumour (TLS sit at the periphery, RNA pieces come from the centre), which caps what any bulk model can
-reach there. Bulk probabilities over-call TLS on a new cohort — use the ranking. Maturity rests on 6 USZ training
+reach there; the HookNet-TLS cohorts (BLCA / LUSC, 0.62–0.64) confirm the band. Bulk probabilities over-call TLS on a
+new cohort — use the ranking. GeoMx ROIs are scored with the raw probability (no ROI calibration data) and the model
+separates follicles from other immune regions only weakly (0.61). Maturity rests on 6 USZ training
 patients: mature vs immature among TLS is near chance on bulk and weak on spots; the 3-class output is a ranking.
 Self-distillation on TCGA did not improve the bulk arm.
 
@@ -131,14 +157,25 @@ every OOD cohort plus the whole-section pseudo-bulks of the test and holdout Vis
 | TCGA-PAAD | TCGA | distill 94 (71) | 24 (18) | – |
 | CPTAC-ccRCC | CPTAC | – | – | 86 (25) |
 | CPTAC-PAAD | CPTAC | – | – | 129 (54) |
+| TCGA-BLCA (HookNet-TLS manual annotation, Zenodo 10614928; expression UCSC Xena GDC hub) | TCGA + Zenodo | – | – | 303 (225; 114 mature) |
+| TCGA-LUSC (same) | TCGA + Zenodo | – | – | 342 (312; 98 mature) |
+| GeoMx, GSE271255 (glioma; TLS vs control ROIs, CTA-like panel, 41 % of model genes) | GEO | – | – | 20 patients · 81 ROIs (61) |
+| GeoMx, GSE276935 (ovarian HGSOC; CD20 segments = TLS, Immune / Stroma / Tumor = negative, Full ROI unlabelled) | GEO | – | – | 16 · 543 AOIs (78 CD20; 211 negative; 254 Full ROI unlabelled) |
 | Internal lung (local, not in repo) | non-public | – | – | 47 (17) |
 | MGH LUAD (local, not in repo; not in the public retrain) | non-public | – | – | 12 (9) |
 
 Visium cells: patients · sections · spots (TLS spots). Bulk cells: samples (TLS+). Maturity labels: USZ spots (mature /
-immature), GSE273952 and GSE351843 spots, pathologist LA1 / LA2 calls on TCGA-LUAD / BRCA / PAAD and CPTAC-PAAD;
-GSE175540 TLS spots carry no maturity. Test and holdout metrics use pathologist labels only (HookNet-TLS CNN labels
-are never fitted or scored). Public bulk expression + labels are in `data/bulk/`; Visium is downloaded by notebook 01;
-non-public cohorts and the immunotherapy cohorts live in `data/private/` (gitignored) — the pipeline runs without them.
+immature), GSE273952 and GSE351843 spots, pathologist LA1 / LA2 calls on TCGA-LUAD / BRCA / PAAD and CPTAC-PAAD, and the
+HookNet-TLS manual annotations on TCGA-BLCA / LUSC (TLS+ = any TLS polygon on the diagnostic FFPE slide, more inclusive
+than the archive LA1+ call; mature = a germinal-centre polygon; the RNA comes from a different frozen piece, so these
+are holdout labels only — `results/ood_hooknet_strict.tsv` reports the GC-anchored strict label as a control, and
+`results/label_ceiling_kirc.tsv` the agreement with the archive pathologist on kidney). GSE175540 TLS spots carry no
+maturity. GeoMx ROIs are a new unit kind (`geomx` / `roi`, log2-CPM on the model genes, absent genes = 0, no germinal-
+centre call → maturity unknown; `results/geomx_qc.tsv`); they get the raw model probability (no ROI calibration data),
+so only their ranking is read. Test and holdout metrics use expert labels only (HookNet-TLS CNN labels are never fitted
+or scored). Public bulk expression + labels are in `data/bulk/` (`scripts/fetch_tcga_xena.py` rebuilds the BLCA / LUSC
+matrices); Visium is downloaded by notebook 01, GeoMx by `scripts/fetch_geomx.py`; non-public cohorts and the
+immunotherapy cohorts live in `data/private/` (gitignored) — the pipeline runs without them.
 `pipeline.leakage_report` asserts the role discipline (patients disjoint, fitted rows ⊆ train ∪ distill, calibration on
 gold labels only) in notebooks 03 and 04.
 
@@ -157,9 +194,9 @@ run log); every step is idempotent and all paths live in `config.yaml`.
 | notebook | does |
 |---|---|
 | `01_load_visium` | downloads GEO + Zenodo (~4.6 GB; ~8 GB on disk incl. the extracted USZ archive), one AnnData per section, QC, label maps |
-| `02_load_bulk` | bulk cohorts + labels, label-agreement ceiling, builds the unit table (splits + roles) |
+| `02_load_bulk` | bulk cohorts + labels, label-agreement ceilings (LUAD, KIRC), builds the unit table (splits + roles) incl. the GeoMx ROI units |
 | `03_train` | teacher CV (heads any / mature + direct 3-class), self-distillation on TCGA, student, calibration, held-out test, SHAP → `models/tls_model.pkl` |
-| `04_predict_ood` | holdout cohorts and pseudo-bulks, once; 3-class spot maps on held-out sections |
+| `04_predict_ood` | holdout cohorts (bulk, Visium, GeoMx) and pseudo-bulks, once; HookNet strict-label table; 3-class spot maps on held-out sections |
 | `05_ici_validation` | immunotherapy cohorts: response / DCR / OS / PFS vs baseline signatures, forest plots |
 
 Score your own bulk samples (log2(TPM + 1), samples × HUGO genes) with the trained model:
@@ -186,10 +223,11 @@ Methods, the course of the work, all figures, baselines and the survival analysi
 ## Layout
 
 ```
-src/tls_model/   io_visium · io_bulk · io_ici · labels · pseudobulk · features · splits · models · evaluate
-                 prepare · pipeline · ici_stats · ici_report
+src/tls_model/   io_visium · io_bulk · io_bulk_hooknet · io_geomx · io_ici · labels · pseudobulk · features · splits
+                 models · evaluate · prepare · pipeline · ici_stats · ici_report
 notebooks/       01–05 (executed; no per-sample output of non-public cohorts)
-scripts/         run_notebooks.py (logged driver) · build_report.py · report_data.py (report.html)
+scripts/         run_notebooks.py (logged driver) · fetch_tcga_xena.py · fetch_geomx.py · build_report.py ·
+                 report_data.py (report.html)
 tests/           pytest
 results/         metric tables (tsv), results/ici/, figures
 report.html      full report (aggregates + interactive ROC / UMAP; no sample ids)

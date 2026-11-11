@@ -1,0 +1,3 @@
+source	rois	patients	slides	tls_pos	tls_neg	unlabelled	excluded	qc_flagged	panel_genes	model_gene_coverage
+GSE271255	81	20	1	61	20	0	0	0	7157	0.41172974043986527
+GSE276935	543	16	24	78	211	254	23	368	13907	0.8660590449772142

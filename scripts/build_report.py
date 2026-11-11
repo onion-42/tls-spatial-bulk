@@ -83,6 +83,16 @@ def three_class_rows(df: pd.DataFrame) -> pd.DataFrame:
     })
 
 
+def baselines_view(baselines: pd.DataFrame) -> pd.DataFrame:
+    """block × model AUROC [CI] for the test and holdout splits (ours, dummy, published signatures)."""
+    t = baselines.assign(AUROC=[ci(*r) for r in baselines[["auroc", "auroc_lo", "auroc_hi"]].itertuples(index=False)],
+                         evaluation=baselines["split"] + " · " + baselines["block"])
+    models = [m for m in ("ours (P(TLS))", "dummy") if m in set(t["model"])] + sorted(set(t["model"]) - {"ours (P(TLS))", "dummy"})
+    wide = t.pivot_table(index="evaluation", columns="model", values="AUROC", aggfunc="first").reindex(columns=models)
+    n = t.groupby("evaluation")[["n", "n_pos"]].first().astype("Int64").rename(columns={"n_pos": "TLS+"})
+    return n.join(wide).reset_index().sort_values("evaluation", key=lambda s: ~s.str.startswith("test"), kind="stable")
+
+
 def ablation_view(ablation: pd.DataFrame) -> pd.DataFrame:
     return pd.DataFrame({
         "head": ablation["head"], "evaluation": ablation["split"].map({"test": "test", "ood": "holdout"}),
@@ -196,12 +206,15 @@ def main() -> None:
     test, ood = tsv(RES / "test_metrics.tsv"), tsv(RES / "ood_metrics.tsv")
     cv_a, cv_b, forms = tsv(RES / "cv_stage_a.tsv"), tsv(RES / "cv_stage_b_any.tsv"), tsv(RES / "cv_forms.tsv")
     ceiling, cohorts_bulk = tsv(RES / "label_ceiling_luad.tsv"), tsv(RES / "bulk_cohorts.tsv")
+    ceiling_kirc, geomx_qc = tsv(RES / "label_ceiling_kirc.tsv"), tsv(RES / "geomx_qc.tsv")
+    hooknet_strict, ood_geomx = tsv(RES / "ood_hooknet_strict.tsv"), tsv(RES / "ood_geomx.tsv")
     coverage, ici_cohorts = tsv(ICI / "coverage.tsv"), tsv(ICI / "cohorts.tsv")
     rho = tsv(ICI / "score_correlation.tsv")
     assoc_main, delta_main = tsv(ICI / "assoc_main.tsv"), tsv(ICI / "delta_main.tsv")
     assoc_n, delta_n = tsv(ICI / "assoc_tmb_pdl1.tsv"), tsv(ICI / "delta_tmb_pdl1.tsv")
     added = tsv(ICI / "delta_added_value.tsv")
     ablation = tsv(RES / "ablation_distillation.tsv")
+    baselines = tsv(RES / "baselines.tsv")
     three_cv = tsv(RES / "cv_stage_b_three.tsv")
 
     cv_names = {"auroc_bulk": "bulk AUROC, within cohort", "auroc_spot": "spot AUROC",
@@ -216,8 +229,9 @@ RNA-seq sample, one sample at a time, as three class probabilities: no TLS / imm
 trained on spot annotations from spatial transcriptomics (the gold labels), carried to bulk RNA-seq by
 self-distillation on TCGA (the teacher's own soft predictions train the student; the TCGA pathologist labels are
 never fitted), selected by grouped cross-validation, tested on held-out patients (Visium sections and the TCGA test
-split) and checked once on locked holdout cohorts: CPTAC-PAAD, CPTAC-ccRCC, Internal lung, two new Visium cohorts
-(GSE273952 ccRCC, GSE351843 breast) and their whole-section pseudo-bulks. The earlier version of the model (trained
+split) and checked once on locked holdout cohorts: CPTAC-PAAD, CPTAC-ccRCC, Internal lung, TCGA-BLCA and TCGA-LUSC
+(HookNet-TLS manual annotations), two new Visium cohorts (GSE273952 ccRCC, GSE351843 breast), two GeoMx ROI series
+(GSE271255 glioma, GSE276935 ovarian) and the whole-section pseudo-bulks. The earlier version of the model (trained
 on spot and bulk labels together, no maturity output) was frozen and scored in 2,689 patients treated with immune
 checkpoint inhibitors (ICI); that analysis was not repeated.</p>
 <ul class=findings>
@@ -233,8 +247,14 @@ pseudo-labels) differ by less than ±0.05 AUROC on every bulk block, within the 
 {ci(*test[(test['head']=='any')&(test['block']=='bulk:all')][['auroc','auroc_lo','auroc_hi']].iloc[0])}; within a cohort
 0.45–0.70 with wide intervals. Every model family, published signatures included, stays near 0.55–0.65 here.</li>
 <li><b>Holdout, scored once.</b> CPTAC-PAAD {block_ci(ood, 'bulk:CPTAC-PAAD')}, CPTAC-ccRCC
-{block_ci(ood, 'bulk:CPTAC-ccRCC')}, Internal lung {block_ci(ood, 'bulk:Internal_lung')}; whole-section pseudo-bulks
+{block_ci(ood, 'bulk:CPTAC-ccRCC')}, Internal lung {block_ci(ood, 'bulk:Internal_lung')}; TCGA-BLCA
+{block_ci(ood, 'bulk:TCGA-BLCA')} and TCGA-LUSC {block_ci(ood, 'bulk:TCGA-LUSC')} against the HookNet-TLS manual
+annotations (any TLS polygon; the GC-anchored strict label in the results section); whole-section pseudo-bulks
 {block_ci(ood, 'visium:sections')}.</li>
+<li><b>GeoMx regions, a labelled tier between spot and sample.</b> TLS vs control ROIs in glioma (GSE271255)
+{block_ci(ood, 'geomx:GSE271255')}; CD20 follicle segments vs the other segments in ovarian cancer (GSE276935)
+{block_ci(ood, 'geomx:GSE276935')}, with the hard contrast against immune segments without a follicle in the results
+section. Scored with the raw model probability (no ROI calibration data), so only the ranking is read.</li>
 <li><b>Immunotherapy.</b> A higher score goes with longer survival and more responses, but the effect is small
 (pooled OS HR 0.92 per SD), and the model is not better than the 12-chemokine signature: added on top of it, it
 contributes nothing (likelihood-ratio tests near null). A positive interaction of the two scores appears in bladder
@@ -259,12 +279,26 @@ model on both worlds so that the same model scores a spot or a bulk sample.</p>
 teacher and the student learn from them), <b>distill</b> = the train split of the TCGA cohorts (expression only: the
 teacher's soft predictions are the student's targets; the pathologist labels there serve as a diagnostic and for the
 two Platt parameters of bulk calibration), <b>test</b> = Visium test sections and the TCGA test split (in-distribution),
-<b>holdout</b> = CPTAC-PAAD, CPTAC-ccRCC, Internal lung, GSE273952, GSE351843 and the whole-section pseudo-bulks of
-every test and holdout section, scored once. A leakage report asserts that no patient sits in two of these groups,
-that every fitted row is a train or distill unit and that calibration sees gold labels only.</p>
+<b>holdout</b> = CPTAC-PAAD, CPTAC-ccRCC, Internal lung, TCGA-BLCA, TCGA-LUSC, GSE273952, GSE351843, the GeoMx
+series GSE271255 and GSE276935 and the whole-section pseudo-bulks of every test and holdout section, scored once. A
+leakage report asserts that no patient sits in two of these groups, that every fitted row is a train or distill unit
+and that calibration sees gold labels only.</p>
 <p>Bulk cohorts. TLS+ counts are pathologist calls except TCGA-BRCA and part of TCGA-LUAD, where HookNet-TLS labels
-(CNN) exist; CNN labels are neither fitted nor scored in this version.</p>
+(CNN) exist; CNN labels are neither fitted nor scored in this version. TCGA-BLCA and TCGA-LUSC (expression from the
+UCSC Xena GDC hub, STAR TPM, reindexed to the archive gene list) carry the <b>HookNet-TLS manual annotations</b>
+(Zenodo 10614928, van Rijthoven et al.): polygons drawn on the diagnostic FFPE slide, TLS+ = at least one TLS polygon,
+mature = at least one germinal-centre polygon. This definition is more inclusive than the archive's LA1+ call: on the
+kidney cohort 44 % of the archive's pathologist negatives carry a HookNet TLS (label ceiling below). Like every TCGA
+label, they are read on the FFPE slide while the RNA comes from a different frozen piece of the tumour (Silina lab
+caveat), so they are holdout labels and are never fitted.</p>
 {table(cohorts_bulk)}
+<p>GeoMx DSP regions of interest (unit kind <code>geomx</code>, unit <code>roi</code>): a labelled mini-bulk between a
+spot and a sample. GSE271255 (glioma): TLS vs control ROIs, a CTA-like 7,157-gene panel that covers 41 % of the model
+genes (absent genes = 0). GSE276935 (high-grade serous ovarian cancer, whole-transcriptome atlas): no explicit TLS
+label; the segment of each AOI gives the mapping CD20 (B-cell follicle) = TLS+, Immune / Stroma / Tumor = negative,
+Other and the lymph-node slide excluded, Full ROI unlabelled. Neither series calls germinal centres, so maturity is
+unknown. Both are holdout.</p>
+{table(geomx_qc, "GeoMx series: ROIs after exclusions, label counts and model-gene coverage")}
 <p>Visium: GSE175540 (ccRCC, 23 sections, FFPE and frozen; Meylan <i>Immunity</i> 2022; TLS spots carry no maturity)
 and USZ (8 FFPE kidney and lung sections with mature / immature spot labels; Zenodo 14620362, CC-BY-4.0) are the
 training sources; GSE273952 (ccRCC FFPE, Fridman lab; 8 sections that are not GSE175540 re-annotations) and
@@ -274,13 +308,17 @@ immature TLS) are holdout. Non-public cohorts (Internal lung, MGH) stay outside 
 the public HookNet-TLS model (HookNet-TLS_a, HookNet-TLS_b) agree with pathologists only moderately (κ 0.20–0.51)
 and with each other poorly (κ 0.20). A model trained partly on these CNN labels cannot be expected to beat that
 agreement.</p>
-{table(ceiling)}"""),
+{table(ceiling)}
+<p>Label ceiling, TCGA-KIRC: the archive pathologist against the HookNet-TLS manual annotation on the same samples.
+The manual annotation calls many more samples TLS-positive (any TLS polygon), which sets the agreement.</p>
+{table(ceiling_kirc)}"""),
 
         "methods": ("Methods", """
 <h3>Model</h3>
 <ul>
-<li><b>Units.</b> A bulk sample, a Visium spot, an aggregate of k neighbouring spots (k = 1, 7, 19) and a whole-section
-pseudo-bulk; all share one gene panel (16,788 genes detected on every platform).</li>
+<li><b>Units.</b> A bulk sample, a Visium spot, an aggregate of k neighbouring spots (k = 1, 7, 19), a whole-section
+pseudo-bulk and a GeoMx region (log2-CPM of the region's counts; holdout only); all share one gene panel (16,788 genes
+detected on every platform; genes a holdout panel lacks are set to 0).</li>
 <li><b>Features.</b> Within-sample ranks (chosen in stage A over log2(TPM+1); the bulk↔Visium platform offset did not
 help and was dropped), ssGSEA of 30 public signatures, their pairwise products and products of the top signature
 genes chosen inside each fold.</li>
@@ -375,6 +413,13 @@ hierarchy is deployed and the direct model stays as a comparison.</li>
 <li><b>Ablation of the distillation.</b> Teacher vs student on the TCGA test split, Visium test spots and the bulk
 holdout: no change beyond the bootstrap noise. The student is kept (it is the design), but the bulk gain expected
 from distillation did not materialise.</li>
+<li><b>HookNet-TLS manual annotations and GeoMx regions</b> as holdout. The HookNet-TLS authors shared their manual
+TCGA annotations (BLCA, LUSC, KIRC): BLCA and LUSC became holdout bulk cohorts with a germinal-centre maturity label,
+KIRC a second label for the ceiling table. Two GeoMx series (glioma TLS vs control ROIs, ovarian CD20 vs other
+segments) entered as a new unit kind. GSE271255 was first planned as a training source (gold ROI labels for a
+ROI calibrator) and was held out instead because its panel covers only 41 % of the model genes; single-cell
+pseudo-bulks were skipped. The training set, the gene list and the saved model did not change (asserted in
+notebook 02), so only notebooks 02 and 04 were re-run.</li>
 </ol>"""),
 
         "model": ("Model results", f"""
@@ -384,8 +429,17 @@ from distillation did not materialise.</li>
 <h3>Held-out test and OOD</h3>
 {table(metric_rows(pd.concat([test, ood]), "any"), "P(any TLS): held-out patients and the two OOD cohorts")}
 {table(three_class_rows(pd.concat([test, ood])), "3-class (no TLS / immature / mature): held-out patients and the holdout cohorts")}
+{table(hooknet_strict, "HookNet-TLS holdout cohorts: P(TLS) against the inclusive label (any TLS polygon) and the strict label (germinal-centre polygon present)")}
+{table(ood_geomx, "GeoMx ROI holdout: TLS vs control ROIs (GSE271255) and CD20 follicle segments against immune, stroma / tumour and all negative segments (GSE276935); bootstrap over patients")}
 {table(forms_view(forms), "Hierarchy (P(TLS) · P(mature | TLS)) vs direct 3-class model, out-of-fold on the gold train units with a known 3-class label")}
 {table(three_cv[["candidate", "macro_auroc", "balanced_accuracy", "auroc_mature_vs_rest", "seconds"]], "Direct 3-class candidates (teacher CV, train spots)")}
+<h3>Reference points: dummy and published signatures on the same blocks</h3>
+<p>Dummy = one constant per unit kind, the TLS prevalence of the gold training data (natural train-spot prevalence
+for spots and ROIs, pathologist prevalence of the TCGA train split for bulk): AUROC 0.5 by construction, the floor
+for AUPRC and Brier. Signatures = ssGSEA of Cabrita (9 genes), the 12-chemokine score and the TLS imprint (Meylan
+2022) on the model's gene panel, rankings without calibration; same blocks and bootstrap as the model
+(<code>results/baselines.tsv</code>, <code>scripts/score_baselines.py</code>).</p>
+{table(baselines_view(baselines), "AUROC [95% CI] of our P(TLS), the dummy and the published signatures per block")}
 <h3>Ablation: does self-distillation on TCGA help?</h3>
 <p>Teacher = the two heads fitted on Visium train only; student = the same heads refitted with the TCGA pseudo-labels.
 Raw head probabilities (AUROC is rank-based, calibration does not matter), bootstrap 95% CI.</p>

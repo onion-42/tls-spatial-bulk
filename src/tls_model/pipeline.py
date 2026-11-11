@@ -22,7 +22,7 @@ import pandas as pd
 import yaml
 
 from tls_model.evaluate import binary_metrics, macro_ovr_auroc, multiclass_metrics, section_spearman
-from tls_model.features import FeatureSpace
+from tls_model.features import FeatureSpace, ssgsea
 from tls_model.labels import three_class_label
 from tls_model.models import EPS, HeadModel, PlattCalibrator, auroc, three_class
 from tls_model.splits import ROLES, balanced_weights, cv_folds, roles
@@ -171,7 +171,7 @@ def cv_strata(obs: pd.DataFrame, head: str) -> np.ndarray:
     """Stratify folds by block × label (bulk cohort × y, Visium × y). Stratifying on y alone lets the
     thousands of spot units dominate and can put all bulk positives of a head into one or two folds."""
     y = obs[HEAD_LABEL[head]].astype(float).astype(str)
-    block = np.where(obs["kind"] == "bulk", obs["cohort"].astype(str), "visium")
+    block = np.where(obs["kind"] == "bulk", obs["cohort"].astype(str), obs["kind"].astype(str))
     return pd.factorize(pd.Series(block, index=obs.index) + ":" + y)[0]
 
 
@@ -315,14 +315,18 @@ def choose_form(forms: pd.DataFrame) -> str:
 
 
 def calibration_kind(obs: pd.DataFrame) -> np.ndarray:
-    """'spot' for spots and spot aggregates; 'bulk' for bulk samples and whole-section pseudo-bulks."""
-    return np.where(obs["unit"].isin(["spot", "agg7", "agg19"]), "spot", "bulk")
+    """'spot' for spots and spot aggregates; 'roi' for GeoMx regions; 'bulk' for bulk samples and whole-section
+    pseudo-bulks. A kind without gold calibration rows (roi, while every GeoMx series is held out) keeps the raw
+    model probability: the Platt calibrator leaves unfitted kinds untouched (ranking metrics are unaffected)."""
+    kind = np.where(obs["unit"].isin(["spot", "agg7", "agg19"]), "spot", "bulk")
+    return np.where(obs["unit"] == "roi", "roi", kind)
 
 
 def calibration_rows(obs: pd.DataFrame, head: str) -> np.ndarray:
-    """Gold-labelled rows of the unit types the model is scored on: train spots (k = 1) and the pathologist-labelled
-    bulk samples of the distill cohorts (two Platt parameters per kind; the student never fits on those labels)."""
-    spots = train_rows(obs, head) & (obs["unit"] == "spot").to_numpy()
+    """Gold-labelled rows of the unit types the model is scored on: train spots (k = 1), train ROIs (when a GeoMx
+    series is a training source) and the pathologist-labelled bulk samples of the distill cohorts (two Platt
+    parameters per kind; the student never fits on those labels)."""
+    spots = train_rows(obs, head) & obs["unit"].isin(["spot", "roi"]).to_numpy()
     bulk = distill_rows(obs) & (obs["label_source"] == "pathologist").to_numpy() & obs[HEAD_LABEL[head]].notna().to_numpy()
     return spots | bulk
 
@@ -392,15 +396,62 @@ def predict_three_in_chunks(units, meta: dict, variant: dict, saved: dict, chunk
     return _in_chunks(units, meta, variant, lambda B, names, obs: predict_three(B, names, obs, saved), 3, chunk)
 
 
+# ------------------------------------------------------------------------------------------------- baselines
+
+
+BASELINE_SIGNATURES = {"Cabrita (TLS_SKCM)": "TLS_SKCM", "12-chemokine (TLS_Chem)": "TLS_Chem"}
+TLS_IMPRINT = (  # Meylan et al., Immunity 2022 (29 genes as listed in Nat Commun 2025, PMC12059173)
+    "IGHA1", "IGHG1", "IGHG2", "IGHG3", "IGHG4", "IGHGP", "IGHM", "IGKC", "IGLC1", "IGLC2", "IGLC3", "JCHAIN",
+    "CD79A", "FCRL5", "MZB1", "SSR4", "XBP1", "TRBC2", "IL7R", "CXCL12", "LUM", "C1QA", "C7", "CD52", "APOE",
+    "PTLP", "PTGDS", "PIM2", "DERL3",
+)
+
+
+def dummy_scores(obs: pd.DataFrame, meta: dict) -> np.ndarray:
+    """Constant prediction per calibration kind = the TLS prevalence of the gold training data: the natural train-spot
+    prevalence for spots and ROIs, the pathologist prevalence of the distill bulk rows for bulk samples."""
+    gold_bulk = distill_rows(obs) & (obs["label_source"] == "pathologist").to_numpy() & obs["tls_any"].notna().to_numpy()
+    bulk_prior = float(obs.loc[gold_bulk, "tls_any"].mean()) if gold_bulk.any() else float("nan")
+    spot_prior = float(meta["spot_prior"]["any"])
+    return np.where(calibration_kind(obs) == "bulk", bulk_prior, spot_prior)
+
+
+def baseline_scores(units, meta: dict, chunk: int = PREDICT_CHUNK) -> dict[str, np.ndarray]:
+    """Reference scores for every unit: the dummy and the three published TLS signatures (ssGSEA on the kept genes,
+    the same implementation as the model features; genes outside the panel are skipped). Signature scores rank
+    units but are not probabilities."""
+    signatures = {label: meta["signatures"][name] for label, name in BASELINE_SIGNATURES.items()}
+    signatures["TLS imprint (Meylan 2022)"] = [g for g in TLS_IMPRINT if g in set(meta["genes"])]
+    genes = list(meta["genes"])
+    values = np.empty((units.n_obs, len(signatures)), dtype=np.float32)
+    for start in range(0, units.n_obs, chunk):
+        values[start : start + chunk] = ssgsea(np.asarray(units.X[start : start + chunk], dtype=np.float32), genes, signatures)
+    out = {"dummy": dummy_scores(units.obs, meta)}
+    out.update({label: values[:, i].astype(float) for i, label in enumerate(signatures)})
+    return out
+
+
 # ------------------------------------------------------------------------------------------------ evaluation
 
 
 def _blocks(obs: pd.DataFrame) -> list[tuple[str, np.ndarray]]:
     bulk = (obs["kind"] == "bulk").to_numpy()
+    geomx = (obs["kind"] == "geomx").to_numpy()
     cohorts = sorted(obs.loc[bulk, "cohort"].unique())
     blocks = [(f"bulk:{c}", bulk & (obs["cohort"] == c).to_numpy()) for c in cohorts]
-    return blocks + [("bulk:all", bulk), ("visium:spots", (obs["unit"] == "spot").to_numpy()),
-                     ("visium:sections", (obs["unit"] == "section").to_numpy())]
+    blocks += [("bulk:all", bulk), ("visium:spots", (obs["unit"] == "spot").to_numpy()),
+               ("visium:sections", (obs["unit"] == "section").to_numpy())]
+    # GeoMx units carry their series in `cohort` (one block per series).
+    return blocks + [(f"geomx:{s}", geomx & (obs["cohort"] == s).to_numpy()) for s in sorted(obs.loc[geomx, "cohort"].unique())]
+
+
+def _bootstrap_groups(block: str, obs: pd.DataFrame, mask: np.ndarray) -> np.ndarray | None:
+    """Spots are resampled by section, GeoMx ROIs by patient, bulk samples one by one."""
+    if block == "visium:spots":
+        return obs["section"].to_numpy()[mask]
+    if block.startswith("geomx:"):
+        return obs["patient"].to_numpy()[mask]
+    return None
 
 
 def evaluate_split(obs: pd.DataFrame, probs: np.ndarray, split: str, n_boot: int = 1000) -> pd.DataFrame:
@@ -421,7 +472,7 @@ def evaluate_split(obs: pd.DataFrame, probs: np.ndarray, split: str, n_boot: int
             mask = scored & in_block
             if mask.sum() < 2:
                 continue
-            groups = sections[mask] if block == "visium:spots" else None
+            groups = _bootstrap_groups(block, obs, mask)
             y = obs[HEAD_LABEL[head]].to_numpy(dtype=float)[mask]
             rows.append({"split": split, "head": head, "block": block, **binary_metrics(y, p[mask], groups, n_boot)})
     if three is not None:
@@ -431,7 +482,7 @@ def evaluate_split(obs: pd.DataFrame, probs: np.ndarray, split: str, n_boot: int
             mask = known & in_block
             if mask.sum() < 2 or len(np.unique(y3[mask])) < 2:
                 continue
-            groups = sections[mask] if block == "visium:spots" else None
+            groups = _bootstrap_groups(block, obs, mask)
             rows.append({"split": split, "head": "3-class", "block": block,
                          **multiclass_metrics(y3[mask], three[mask], groups, n_boot)})
     spots = (obs["split"] == split).to_numpy() & (obs["unit"] == "spot").to_numpy()
@@ -469,11 +520,12 @@ def leakage_report(obs: pd.DataFrame, fit_rows: dict[str, np.ndarray], calibrati
                              f"{sorted(set(role[bad]))}")
     is_path = (obs["label_source"] == "pathologist").to_numpy()
     table = pd.DataFrame({"role": role, "patient": obs["patient"].to_numpy(), "bulk": (obs["kind"] == "bulk").to_numpy(),
-                          "spot": (obs["unit"] == "spot").to_numpy(),
+                          "spot": (obs["unit"] == "spot").to_numpy(), "roi": (obs["unit"] == "roi").to_numpy(),
                           "gold_any": is_path & obs["tls_any"].notna().to_numpy(),
                           "gold_maturity": is_path & obs["tls_mature"].notna().to_numpy()})
     summary = table.groupby("role").agg(patients=("patient", "nunique"), units=("patient", "size"), bulk=("bulk", "sum"),
-                                        spots=("spot", "sum"), gold_any=("gold_any", "sum"), gold_maturity=("gold_maturity", "sum"))
+                                        spots=("spot", "sum"), rois=("roi", "sum"), gold_any=("gold_any", "sum"),
+                                        gold_maturity=("gold_maturity", "sum"))
     return summary.reindex(ROLES).fillna(0).astype(int)
 
 

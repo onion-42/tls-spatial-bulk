@@ -6,17 +6,24 @@ paths:
   visium_raw: data/visium/raw
   visium_h5ad: data/visium/h5ad
   processed: data/processed
+  geomx: data/private/geomx
   results: results
 
 cohorts:
   # Bulk cohorts held out whole (true holdout, notebook 04 only).
-  ood: [Internal_lung, CPTAC-PAAD, CPTAC-ccRCC]
+  # TCGA-BLCA / TCGA-LUSC: HookNet-TLS manual annotations (Zenodo 10614928) on the diagnostic FFPE slide, RNA from a
+  # different frozen piece -> holdout labels only, never fitted.
+  ood: [Internal_lung, CPTAC-PAAD, CPTAC-ccRCC, TCGA-BLCA, TCGA-LUSC]
   # Visium cohorts held out whole (no spot in gene filter, offset, prior or training): scored once in notebook 04.
   visium_ood: [GSE273952, GSE351843]
   # Roles on top of the patient split: Visium train sections = gold training (teacher); these bulk cohorts, train
   # split only, are self-distilled (teacher pseudo-labels, gold labels never fitted); their test split stays the
   # in-distribution bulk test. Any other non-OOD bulk cohort is an error.
   distill: [TCGA-LUAD, TCGA-BRCA, TCGA-KIRC/KIRP/KICH, TCGA-PAAD]
+  # GeoMx ROI / AOI units (kind geomx, unit roi; data/private/geomx, scripts/fetch_geomx.py). geomx_train would enter
+  # the gold training rows; both series are held out: GSE271255 covers only ~41 % of the model genes (CTA panel).
+  geomx_train: []
+  geomx_holdout: [GSE271255, GSE276935]
   # Gene panels of the previous model were derived on these cohorts -> excluded when scoring prev_panel.
   prev_panel_derived_on: [TCGA-LUAD, TCGA-BRCA]
 

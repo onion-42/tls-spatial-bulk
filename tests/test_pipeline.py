@@ -234,3 +234,100 @@ def test_predict_in_chunks_equals_one_pass():
     chunked = pipeline.predict_in_chunks(units, meta, variant, model, calibrator, chunk=37)
 
     assert np.allclose(one, chunked)
+
+
+def _with_geomx(units, split="ood"):
+    """Append GeoMx ROI units (two sources, three patients each) to the synthetic unit table."""
+    rng = np.random.default_rng(1)
+    rows, index = [], []
+    for source in ("GX1", "GX2"):
+        for i in range(30):
+            rows.append(dict(kind="geomx", unit="roi", group=source, cohort=source, section="", patient=f"{source}:P{i % 3}",
+                             split=split, platform="geomx", label_source="pathologist", tls_any=float(i % 2) if i % 5 else np.nan,
+                             tls_mature=np.nan, k=0, tls_fraction=np.nan))
+            index.append(f"{source}:roi:{i}")
+    obs = pd.DataFrame(rows, index=index)
+    obs["role"] = pipeline.roles(obs, distill_cohorts=[])
+    obs["tls_three"] = pipeline.three_class_column(obs)
+    X = rng.normal(size=(len(obs), units.n_vars)).astype(np.float32) + 5
+    extra = ad.AnnData(X=X, obs=obs, var=units.var.copy())
+    return ad.concat([units, extra], join="outer")
+
+
+def test_roles_geomx_units_follow_their_split_like_visium():
+    obs = _with_geomx(_units()).obs
+    assert (obs.loc[obs["kind"] == "geomx", "role"] == "holdout").all()
+
+    obs_train = _with_geomx(_units(), split="train").obs
+    assert (obs_train.loc[obs_train["kind"] == "geomx", "role"] == "train").all()
+
+
+def test_calibration_kind_roi_stays_uncalibrated_without_gold_train_rois():
+    from tls_model.models import PlattCalibrator
+
+    units = _with_geomx(_units())
+    kind = pipeline.calibration_kind(units.obs)
+    assert set(kind) == {"bulk", "spot", "roi"}
+    assert (kind[(units.obs["unit"] == "roi").to_numpy()] == "roi").all()
+
+    p = np.linspace(0.05, 0.95, len(kind))
+    y = (p > 0.5).astype(int)
+    fitted = np.isin(kind, ["bulk", "spot"])
+    cal = PlattCalibrator().fit(p[fitted], y[fitted], kind[fitted])
+    out = cal.transform(p, kind)
+    assert np.allclose(out[kind == "roi"], p[kind == "roi"])  # no roi model -> raw probability
+    assert not np.allclose(out[kind == "spot"], p[kind == "spot"])
+
+
+def test_calibration_rows_include_gold_train_rois():
+    units = _with_geomx(_units(), split="train")
+    rows = pipeline.calibration_rows(units.obs, "any")
+    used = units.obs[rows]
+    assert "roi" in set(used["unit"])
+    assert used.loc[used["unit"] == "roi", "tls_any"].notna().all()
+
+
+def test_evaluate_split_reports_one_block_per_geomx_source():
+    units = _with_geomx(_units())
+    obs = units.obs
+    p_any = np.where(obs["tls_any"].to_numpy() == 1, 0.8, 0.2)
+
+    table = pipeline.evaluate_split(obs, p_any, "ood", n_boot=20)
+
+    blocks = set(table["block"])
+    assert {"geomx:GX1", "geomx:GX2"} <= blocks
+    assert "bulk:GX1" not in blocks
+    assert table.loc[table["block"] == "geomx:GX1", "n"].iloc[0] == 24  # unlabelled ROIs are not scored
+
+
+def test_leakage_report_counts_rois():
+    units = _with_geomx(_units())
+    obs = units.obs
+    fit = {h: pipeline.train_rows(obs, h) for h in ("any", "mature")}
+    cal = {h: pipeline.calibration_rows(obs, h) for h in ("any", "mature")}
+
+    report = pipeline.leakage_report(obs, fit, cal)
+
+    assert report.loc["holdout", "rois"] == 60 and report.loc["train", "rois"] == 0
+
+
+def test_baseline_scores_dummy_is_constant_per_kind_and_signatures_follow_their_genes():
+    units = _with_geomx(_units())
+    meta = {"genes": list(units.var_names), "signatures": {"TLS_SKCM": ["G0", "G1"], "TLS_Chem": ["G2", "G3"]},
+            "spot_prior": {"any": 0.04}}
+    units.X[:, 0] = 20.0  # G0 high everywhere -> the Cabrita score ranks every unit the same way
+
+    scores = pipeline.baseline_scores(units, meta)
+
+    assert set(scores) == {"dummy", "Cabrita (TLS_SKCM)", "12-chemokine (TLS_Chem)", "TLS imprint (Meylan 2022)"}
+    kind = pipeline.calibration_kind(units.obs)
+    dummy = scores["dummy"]
+    for k in ("spot", "bulk", "roi"):
+        assert len(np.unique(dummy[kind == k])) == 1
+    assert dummy[kind == "spot"][0] == 0.04 and dummy[kind == "roi"][0] == 0.04
+    gold_bulk = pipeline.distill_rows(units.obs) & (units.obs["label_source"] == "pathologist").to_numpy()
+    assert np.isclose(dummy[kind == "bulk"][0], units.obs.loc[gold_bulk, "tls_any"].mean())
+    cabrita = scores["Cabrita (TLS_SKCM)"]
+    assert len(cabrita) == units.n_obs and np.isfinite(cabrita).all()
+    hi = units.X[:, 1] > np.median(units.X[:, 1])  # G1 is the only varying Cabrita gene
+    assert cabrita[hi].mean() > cabrita[~hi].mean()

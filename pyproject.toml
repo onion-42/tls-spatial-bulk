@@ -29,6 +29,11 @@ dev = [
     "nbconvert>=7.16",
     "nbformat>=5.10",
 ]
+# Optional: the TabPFN comparison (scripts/compare_tabpfn.py). `uv sync --group tabpfn`; pulls in torch.
+# TabPFN-3.5 weights are non-commercial; accept the licence at https://ux.priorlabs.ai and set TABPFN_TOKEN.
+tabpfn = [
+    "tabpfn==10.2.0",
+]
 
 [build-system]
 requires = ["hatchling"]

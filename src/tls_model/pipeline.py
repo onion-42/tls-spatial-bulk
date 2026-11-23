@@ -32,7 +32,7 @@ log = logging.getLogger(__name__)
 HEAD_LABEL = {"any": "tls_any", "mature": "tls_mature", "three": "tls_three"}
 # Target classes of a head, in the order the soft pseudo-label columns are laid out.
 HEAD_CLASSES = {"any": (1, 0), "mature": (1, 0), "three": (0, 1, 2)}
-SHARED_SELECTION = ("enet", "lgbm")  # identical in-fold selection -> computed once per fold
+SHARED_SELECTION = ("enet", "lgbm", "tabpfn")  # identical in-fold selection -> computed once per fold
 FORMS = ("hierarchy", "direct")
 
 __all__ = ["roles", "ROLES"]
@@ -103,7 +103,7 @@ def make_head(candidate: dict, meta: dict, n_panel: int, n_pair_genes: int, seed
     return HeadModel(
         candidate["family"], candidate["selector"], n_panel=n_panel, n_pair_genes=n_pair_genes,
         signature_genes=signature_genes, panel_genes=meta.get("prev_panel_genes"), seed=seed,
-        preselected=preselected,
+        preselected=preselected, tabpfn_weights=candidate.get("tabpfn_weights", "resample"),
     )
 
 

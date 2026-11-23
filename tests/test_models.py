@@ -110,3 +110,90 @@ def test_lgbm_head_handles_three_classes(selector):
     assert probs.shape == (600, 3) and np.allclose(probs.sum(axis=1), 1.0)
     assert (probs.argmax(axis=1) == y3).mean() > 0.9
     assert model.shap_values(B, names) is not None
+
+
+def test_weighted_resample_follows_the_weights():
+    rng = np.random.default_rng(0)
+    X = np.arange(2000, dtype=np.float32).reshape(1000, 2)
+    y = rng.integers(0, 2, size=1000)
+    w = np.where(np.arange(1000) < 100, 9.0, 1.0)  # first 100 rows carry half of the total weight
+
+    Xr, yr = models.weighted_resample(X, y, w, seed=0)
+
+    assert Xr.shape == X.shape and yr.shape == y.shape
+    share = np.mean(Xr[:, 0] < 200)  # rows 0..99 hold values 0..199 in column 0
+    assert 0.45 < share < 0.55
+    Xr2, yr2 = models.weighted_resample(X, y, w, seed=0)
+    assert np.array_equal(Xr, Xr2) and np.array_equal(yr, yr2)
+
+
+def test_weighted_resample_keeps_every_class():
+    X = np.zeros((50, 1), dtype=np.float32)
+    y = np.array([1] + [0] * 49)
+    w = np.array([1e-9] + [1.0] * 49)  # the only positive row is almost never drawn
+
+    _, yr = models.weighted_resample(X, y, w, seed=0)
+
+    assert set(np.unique(yr)) == {0, 1}
+
+
+def test_weighted_resample_rescue_does_not_remove_another_class():
+    X = np.zeros((3, 1), dtype=np.float32)
+    y = np.array([0, 1, 2])
+    w = np.array([1.0, 1e-9, 1e-9])  # the draw is all class 0; classes 1 and 2 must both be rescued
+
+    _, yr = models.weighted_resample(X, y, w, seed=0)
+
+    assert set(np.unique(yr)) == {0, 1, 2}
+
+
+def test_weighted_resample_rejects_bad_weights_and_skips_zero_weight_classes():
+    X = np.zeros((4, 1), dtype=np.float32)
+    y = np.array([0, 0, 1, 1])
+
+    with pytest.raises(ValueError):
+        models.weighted_resample(X, y, np.zeros(4))
+    with pytest.raises(ValueError):
+        models.weighted_resample(X, y, np.array([1.0, -1.0, 1.0, 1.0]))
+    _, yr = models.weighted_resample(X, y, np.array([1.0, 1.0, 0.0, 0.0]), seed=0)
+    assert set(np.unique(yr)) == {0}  # a class the weights exclude stays excluded
+
+
+def test_tabpfn_is_a_family_with_shared_selection():
+    from tls_model import pipeline
+
+    assert "tabpfn" in models.FAMILIES and "tabpfn" in pipeline.SHARED_SELECTION
+    with pytest.raises(ValueError):
+        models.HeadModel("tabpfn", None)
+    with pytest.raises(ValueError):
+        models.HeadModel("tabpfn", "corr", tabpfn_weights="unknown")
+
+
+def test_tabpfn_head_learns_on_toy_data():
+    pytest.importorskip("tabpfn")
+    B, names, y, w = _toy()
+    head = models.HeadModel("tabpfn", "corr", n_panel=4, n_pair_genes=3, signature_genes={"A", "B", "C"}, seed=0)
+
+    head.fit(B[:300], names, y[:300], w[:300])
+    p = head.predict_proba(B[300:], names)
+
+    assert p.shape == (100,) and np.all((p >= 0) & (p <= 1))
+    assert models.auroc(y[300:], p) > 0.75
+    assert head.shap_values(B[300:], names) is None
+
+
+def test_selector_all_keeps_every_base_column():
+    B, names, y, w = _toy()
+    head = models.HeadModel("lgbm", "all", n_panel=4, n_pair_genes=3, signature_genes={"A", "B", "C"}, seed=0)
+    head.fit(B, names, y, w)
+    assert head.panel == names
+    assert models.auroc(y, head.predict_proba(B, names)) > 0.9
+
+
+def test_selector_coef_ranks_by_the_linear_model_itself():
+    B, names, y, w = _toy()
+    head = models.HeadModel("enet", "coef", n_panel=3, n_pair_genes=3, signature_genes={"A", "B", "C"}, seed=0)
+    head.fit(B, names, y, w)
+    assert len(head.panel) == 3
+    assert any("A" in col and "B" in col or col in ("gene:A", "gene:B") for col in head.panel)
+    assert not {"gene:E", "gene:F"} & set(head.panel)

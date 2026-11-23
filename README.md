@@ -162,6 +162,48 @@ separates follicles from other immune regions only weakly (0.61). Maturity rests
 patients: mature vs immature among TLS is near chance on bulk and weak on spots; the 3-class output is a ranking.
 Self-distillation on TCGA did not improve the bulk arm.
 
+**TabPFN side experiment** (2026-11-23, branch `tabpfn`; `scripts/compare_tabpfn.py`, the deployed model is only
+read). Question: does a tabular foundation model (TabPFN-3.5, in-context learning, non-commercial weights) beat
+LightGBM on the same rows? Four models, each as a teacher (gold Visium train rows) and as a student (plus the TCGA
+distill rows with the soft labels of its own teacher): dummy (training prevalence), logreg (family `enet`), lgbm,
+tabpfn. First run: one shared panel of 200 features per head (the deployed `shap` selector), raw head probabilities,
+1,000 bootstrap replicates; "better" = the paired-bootstrap interval of the AUROC difference excludes 0. Head P(TLS),
+AUROC teacher / student:
+
+| block | n (TLS+) | dummy | logreg | lgbm | tabpfn |
+|---|---|---|---|---|---|
+| test, bulk pooled | 142 (73) | 0.5 | 0.298 / 0.700 | 0.753 / 0.748 | 0.761 / 0.760 |
+| test, Visium spots | 25,206 (374) | 0.5 | 0.189 / 0.477 | 0.935 / 0.930 | 0.933 / 0.938 |
+| holdout, bulk pooled | 860 (616) | 0.5 | 0.397 / 0.436 | 0.684 / 0.689 | 0.668 / 0.675 |
+| holdout, Visium spots | 297,403 (5,569) | 0.5 | 0.136 / 0.605 | 0.938 / 0.939 | 0.940 / 0.945 |
+
+**TabPFN is not better than LightGBM.** No difference on the test blocks and on the holdout spots; on the pooled
+holdout bulk it is slightly worse (teacher −0.016, 95 % CI −0.031 to −0.002; student −0.014, −0.026 to −0.000). Over
+all 52 block × head pairs per role: teacher 2 better / 21 no difference / 3 worse, student 3 / 21 / 2, not corrected
+for multiplicity, so the isolated calls are within what chance gives. Distillation changes TabPFN as little as it
+changes LightGBM. The same ceiling as above applies: within-cohort bulk stays at ~0.55–0.70 whatever the classifier.
+Caveats: (1) the `enet` family ranks below chance here, as it already did in the teacher CV
+(`results/cv_stage_b_any.tsv`: 0.22 with `shap`, 0.45 with `corr`), so the logreg column is not a usable linear
+baseline and "tabpfn better than logreg" says nothing about TabPFN — cause not investigated; (2) TabPFN-3.5 takes no
+row weights (`SAMPLE_WEIGHT_MODE` unset), so its sample weights and soft labels enter through one weighted bootstrap
+of the fit rows — an approximation of the exact distillation the other two get; (3) no GeoMx block; the maturity head
+on the 73 test spots and the per-section blocks (n = 2–7) have degenerate intervals. Full tables:
+`results/tabpfn_comparison.tsv`, `results/tabpfn_deltas.tsv`.
+
+Per-model feature selection (`--selection own`, now the default of the script: lgbm by its own SHAP, logreg by its
+own elastic-net coefficients — selector `coef`, tabpfn on every base column — selector `all`, 5,512 columns) is
+implemented and tested, but **the full run is not done yet**. Pilot only (TabPFN teacher, head P(TLS), test split,
+200 bootstrap replicates, not a paired comparison): bulk pooled 0.682 (0.600–0.767) against 0.761 (0.671–0.837) with
+the shared panel, Visium spots 0.927 against 0.933. Cost on one 24 GB GPU: fit 21,624 rows in ~2 min, 9–10.5 GB peak
+GPU memory, ~2–4.5 s per 1,000 scored units; the shared-panel run took 1 h 51 min.
+
+```bash
+uv sync --group tabpfn                                   # torch + tabpfn; weights need a Prior Labs licence token
+uv run python scripts/compare_tabpfn.py --pilot          # time and GPU memory first
+uv run python scripts/compare_tabpfn.py                  # --selection own -> results/tabpfn_*_own.tsv
+uv run python scripts/compare_tabpfn.py --selection shared   # the run reported above
+```
+
 ## Data, splits and roles
 
 Patient-grouped split (seed 42); roles on top of it: **train** = Visium train sections (gold labels; teacher and
@@ -256,7 +298,7 @@ src/tls_model/   io_visium · io_bulk · io_bulk_hooknet · io_geomx · io_ici �
                  models · evaluate · prepare · pipeline · ici_stats · ici_report
 notebooks/       01–05 (executed; no per-sample output of non-public cohorts)
 scripts/         run_notebooks.py (logged driver) · fetch_tcga_xena.py · fetch_geomx.py · build_report.py ·
-                 report_data.py (report.html)
+                 report_data.py (report.html) · compare_tabpfn.py (TabPFN side experiment, GPU)
 tests/           pytest
 results/         metric tables (tsv), results/ici/, figures
 report.html      full report (aggregates + interactive ROC / UMAP; no sample ids)

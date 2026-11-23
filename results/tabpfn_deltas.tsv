@@ -1,0 +1,105 @@
+split	head	block	role	n	n_pos	comparison	delta_auroc	delta_lo	delta_hi	verdict
+test	any	bulk:TCGA-BRCA	teacher	31	18	tabpfn - logreg	0.3290598290598291	-0.05312998405103669	0.6891214667685256	no difference
+test	any	bulk:TCGA-BRCA	teacher	31	18	tabpfn - lgbm	-0.06837606837606836	-0.16191416040100248	0.008552631578947442	no difference
+test	any	bulk:TCGA-KIRC/KIRP/KICH	teacher	42	5	tabpfn - logreg	0.3594594594594594	-0.1519961763382816	0.95	no difference
+test	any	bulk:TCGA-KIRC/KIRP/KICH	teacher	42	5	tabpfn - lgbm	0.05945945945945941	-0.017094017094017144	0.15745614035087724	no difference
+test	any	bulk:TCGA-LUAD	teacher	45	32	tabpfn - logreg	0.10697115384615385	-0.29888700695589243	0.49309325636412926	no difference
+test	any	bulk:TCGA-LUAD	teacher	45	32	tabpfn - lgbm	-0.024038461538461564	-0.12121212121212122	0.060827973695620784	no difference
+test	any	bulk:TCGA-PAAD	teacher	24	18	tabpfn - logreg	0.09259259259259256	-0.3651960784313727	0.5265789473684209	no difference
+test	any	bulk:TCGA-PAAD	teacher	24	18	tabpfn - lgbm	-0.10185185185185186	-0.21251157407407403	-0.009259259259259297	worse
+test	any	bulk:all	teacher	142	73	tabpfn - logreg	0.4631725233273774	0.302914223525231	0.6211274352083177	better
+test	any	bulk:all	teacher	142	73	tabpfn - lgbm	0.008735358348223143	-0.018664884847136083	0.03586143501243782	no difference
+test	any	visium:spots	teacher	25206	374	tabpfn - logreg	0.7434022944346437	0.5909949135628949	0.8601087576333677	better
+test	any	visium:spots	teacher	25206	374	tabpfn - lgbm	-0.0020266673328187546	-0.007029220531973301	0.005936744348022951	no difference
+test	any	visium:sections	teacher	7	6	tabpfn - logreg	0.75	0.4	1.0	better
+test	any	visium:sections	teacher	7	6	tabpfn - lgbm	-0.16666666666666663	-0.5	0.0	no difference
+test	mature	bulk:TCGA-BRCA	teacher	18	2	tabpfn - logreg	0.75	0.4117647058823529	1.0	better
+test	mature	bulk:TCGA-BRCA	teacher	18	2	tabpfn - lgbm	-0.125	-0.2941176470588236	0.0	no difference
+test	mature	bulk:TCGA-LUAD	teacher	32	5	tabpfn - logreg	0.029629629629629783	-0.6301851851851852	0.6906513409961684	no difference
+test	mature	bulk:TCGA-LUAD	teacher	32	5	tabpfn - lgbm	0.15555555555555567	0.008928571428571452	0.32258064516129026	better
+test	mature	bulk:TCGA-PAAD	teacher	18	3	tabpfn - logreg	-0.17777777777777776	-0.6768891402714933	0.2941176470588235	no difference
+test	mature	bulk:TCGA-PAAD	teacher	18	3	tabpfn - lgbm	-0.22222222222222227	-0.8227022058823529	0.25	no difference
+test	mature	bulk:all	teacher	68	10	tabpfn - logreg	0.08103448275862069	-0.2827817118226601	0.4882797805642632	no difference
+test	mature	bulk:all	teacher	68	10	tabpfn - lgbm	0.01379310344827589	-0.18430896577380954	0.19658584770114945	no difference
+test	mature	visium:spots	teacher	73	17	tabpfn - logreg	-0.2762605042016807	-0.2762605042016807	-0.025210084033613467	worse
+test	mature	visium:spots	teacher	73	17	tabpfn - lgbm	-0.01155462184873951	-0.01155462184873951	0.004201680672268893	no difference
+test	mature	visium:sections	teacher	2	1	tabpfn - logreg	-1.0	-1.0	-1.0	worse
+test	mature	visium:sections	teacher	2	1	tabpfn - lgbm	0.0	0.0	0.0	no difference
+ood	any	bulk:CPTAC-PAAD	teacher	129	54	tabpfn - logreg	0.35345679012345677	0.16162432992202733	0.5118933494357224	better
+ood	any	bulk:CPTAC-PAAD	teacher	129	54	tabpfn - lgbm	0.014814814814814836	-0.04893804173256342	0.07654708744809917	no difference
+ood	any	bulk:CPTAC-ccRCC	teacher	86	25	tabpfn - logreg	0.12786885245901647	-0.08578917050691241	0.33746431546266836	no difference
+ood	any	bulk:CPTAC-ccRCC	teacher	86	25	tabpfn - lgbm	0.0006557377049181135	-0.05524048415352757	0.0601246921182266	no difference
+ood	any	bulk:TCGA-BLCA	teacher	303	225	tabpfn - logreg	0.17096866096866103	0.05354864614650014	0.28749406224138596	better
+ood	any	bulk:TCGA-BLCA	teacher	303	225	tabpfn - lgbm	-0.04757834757834756	-0.0827754501509758	-0.012298992229237549	worse
+ood	any	bulk:TCGA-LUSC	teacher	342	312	tabpfn - logreg	0.20934829059829052	0.025141165258352763	0.3970625346164495	better
+ood	any	bulk:TCGA-LUSC	teacher	342	312	tabpfn - lgbm	-0.018482905982906028	-0.04805760020044389	0.009798763680888915	no difference
+ood	any	bulk:all	teacher	860	616	tabpfn - logreg	0.270169123908878	0.194926965969603	0.34433982250590167	better
+ood	any	bulk:all	teacher	860	616	tabpfn - lgbm	-0.016420055354481544	-0.030562088208939457	-0.0022934621187761777	worse
+ood	any	visium:spots	teacher	297403	5569	tabpfn - logreg	0.8038456230931322	0.7592918921371995	0.8474362921296307	better
+ood	any	visium:spots	teacher	297403	5569	tabpfn - lgbm	0.002166761002612261	-0.00269186280173406	0.007324893770698382	no difference
+ood	any	visium:sections	teacher	41	32	tabpfn - logreg	0.7777777777777777	0.5095224567099567	0.9666758241758242	better
+ood	any	visium:sections	teacher	41	32	tabpfn - lgbm	0.02083333333333315	-0.038901515151515124	0.08334677419354852	no difference
+ood	mature	bulk:CPTAC-PAAD	teacher	54	11	tabpfn - logreg	0.02536997885835096	-0.3250231481481481	0.4042679837892604	no difference
+ood	mature	bulk:CPTAC-PAAD	teacher	54	11	tabpfn - lgbm	-0.09513742071881615	-0.3098158212560386	0.16420972644376894	no difference
+ood	mature	bulk:TCGA-BLCA	teacher	225	114	tabpfn - logreg	0.17757230915125655	0.053514798460074384	0.3007189827007777	better
+ood	mature	bulk:TCGA-BLCA	teacher	225	114	tabpfn - lgbm	-0.03793266951161678	-0.10105482765181546	0.0222844022096599	no difference
+ood	mature	bulk:TCGA-LUSC	teacher	312	98	tabpfn - logreg	0.06985504482166693	-0.05017058041256972	0.1791082658402001	no difference
+ood	mature	bulk:TCGA-LUSC	teacher	312	98	tabpfn - lgbm	0.03328247186725164	-0.016644768689085224	0.08745449754299629	no difference
+ood	mature	bulk:all	teacher	591	223	tabpfn - logreg	0.07461859036849283	-0.010915387753623097	0.15794569570795503	no difference
+ood	mature	bulk:all	teacher	591	223	tabpfn - lgbm	0.02479771885357762	-0.015988212316373467	0.06272791649656718	no difference
+ood	mature	visium:spots	teacher	5491	254	tabpfn - logreg	0.2343207552559844	0.05578218359548001	0.4532517582401238	better
+ood	mature	visium:spots	teacher	5491	254	tabpfn - lgbm	-0.007277112129171814	-0.033039353168353575	0.011961423010385573	no difference
+ood	mature	visium:sections	teacher	32	7	tabpfn - logreg	0.4228571428571428	0.041666666666666685	0.7357077175697865	better
+ood	mature	visium:sections	teacher	32	7	tabpfn - lgbm	0.17142857142857143	0.0444444444444444	0.3429017857142858	better
+test	any	bulk:TCGA-BRCA	student	31	18	tabpfn - logreg	0.15170940170940173	-0.09593749999999998	0.3999999999999999	no difference
+test	any	bulk:TCGA-BRCA	student	31	18	tabpfn - lgbm	-0.02564102564102566	-0.10002192982456148	0.04828947368421042	no difference
+test	any	bulk:TCGA-KIRC/KIRP/KICH	student	42	5	tabpfn - logreg	0.32972972972972964	-0.20051282051282054	0.7783783783783784	no difference
+test	any	bulk:TCGA-KIRC/KIRP/KICH	student	42	5	tabpfn - lgbm	0.0108108108108107	-0.09756097560975607	0.15288461538461542	no difference
+test	any	bulk:TCGA-LUAD	student	45	32	tabpfn - logreg	-0.08173076923076916	-0.4039351851851851	0.20113533834586475	no difference
+test	any	bulk:TCGA-LUAD	student	45	32	tabpfn - lgbm	-0.016826923076923017	-0.07374125277351085	0.03336032388663975	no difference
+test	any	bulk:TCGA-PAAD	student	24	18	tabpfn - logreg	0.06944444444444436	-0.263157894736842	0.41258223684210515	no difference
+test	any	bulk:TCGA-PAAD	student	24	18	tabpfn - lgbm	-0.02777777777777779	-0.13689327485380137	0.09262152777777773	no difference
+test	any	bulk:all	student	142	73	tabpfn - logreg	0.06035338495136	-0.037697770979021064	0.1612395690931876	no difference
+test	any	bulk:all	student	142	73	tabpfn - lgbm	0.012110383164582017	-0.01358729811854808	0.0349823458225566	no difference
+test	any	visium:spots	student	25206	374	tabpfn - logreg	0.46113363083342507	0.3680584031103734	0.6129093876283815	better
+test	any	visium:spots	student	25206	374	tabpfn - lgbm	0.008091540930453611	-0.005830460914464222	0.026146663037744933	no difference
+test	any	visium:sections	student	7	6	tabpfn - logreg	0.16666666666666663	0.0	0.5	no difference
+test	any	visium:sections	student	7	6	tabpfn - lgbm	0.0	0.0	0.0	no difference
+test	mature	bulk:TCGA-BRCA	student	18	2	tabpfn - logreg	0.46875	-0.11764705882352944	1.0	no difference
+test	mature	bulk:TCGA-BRCA	student	18	2	tabpfn - lgbm	-0.125	-0.2941176470588236	0.0	no difference
+test	mature	bulk:TCGA-LUAD	student	32	5	tabpfn - logreg	-0.014814814814814725	-0.5376059113300492	0.4885470085470084	no difference
+test	mature	bulk:TCGA-LUAD	student	32	5	tabpfn - lgbm	0.08888888888888896	-0.1251388888888889	0.3119444444444443	no difference
+test	mature	bulk:TCGA-PAAD	student	18	3	tabpfn - logreg	-0.055555555555555636	-0.5	0.47058823529411764	no difference
+test	mature	bulk:TCGA-PAAD	student	18	3	tabpfn - lgbm	-0.22222222222222227	-0.7647058823529411	0.18416208791208755	no difference
+test	mature	bulk:all	student	68	10	tabpfn - logreg	-0.05862068965517242	-0.4003124214398179	0.31628257628882794	no difference
+test	mature	bulk:all	student	68	10	tabpfn - lgbm	-0.06379310344827593	-0.30416666666666664	0.17709590517241378	no difference
+test	mature	visium:spots	student	73	17	tabpfn - logreg	0.0010504201680672232	0.0010504201680672232	0.04201680672268915	better
+test	mature	visium:spots	student	73	17	tabpfn - lgbm	-0.016806722689075626	-0.016806722689075626	0.008403361344537896	no difference
+test	mature	visium:sections	student	2	1	tabpfn - logreg	-1.0	-1.0	-1.0	worse
+test	mature	visium:sections	student	2	1	tabpfn - lgbm	0.0	0.0	0.0	no difference
+ood	any	bulk:CPTAC-PAAD	student	129	54	tabpfn - logreg	0.13469135802469145	0.03476754026754031	0.23037213164251202	better
+ood	any	bulk:CPTAC-PAAD	student	129	54	tabpfn - lgbm	-0.006172839506172756	-0.05489486786213885	0.04198895186746845	no difference
+ood	any	bulk:CPTAC-ccRCC	student	86	25	tabpfn - logreg	0.005901639344262133	-0.11859038978494627	0.14169611706599416	no difference
+ood	any	bulk:CPTAC-ccRCC	student	86	25	tabpfn - lgbm	0.04065573770491793	-0.015392772977219167	0.09661972215398895	no difference
+ood	any	bulk:TCGA-BLCA	student	303	225	tabpfn - logreg	0.12091168091168081	0.01825309765018173	0.21879655520746516	better
+ood	any	bulk:TCGA-BLCA	student	303	225	tabpfn - lgbm	0.0019373219373218786	-0.019723289750185006	0.023489825964081033	no difference
+ood	any	bulk:TCGA-LUSC	student	342	312	tabpfn - logreg	0.20395299145299145	0.053556478081886946	0.3469958826938029	better
+ood	any	bulk:TCGA-LUSC	student	342	312	tabpfn - lgbm	-0.02179487179487183	-0.040698416672324475	-0.0020173141935283675	worse
+ood	any	bulk:all	student	860	616	tabpfn - logreg	0.23897567596338082	0.18859056979803332	0.29001697201661086	better
+ood	any	bulk:all	student	860	616	tabpfn - lgbm	-0.013625718543751275	-0.026287396517128865	-0.00030555957090088045	worse
+ood	any	visium:spots	student	297403	5569	tabpfn - logreg	0.3406327531757286	0.2762229131481418	0.39297878328004615	better
+ood	any	visium:spots	student	297403	5569	tabpfn - lgbm	0.005983603316561892	-0.0011451986378236661	0.012805073854583461	no difference
+ood	any	visium:sections	student	41	32	tabpfn - logreg	0.2881944444444443	0.14011546920821114	0.44097355769230767	better
+ood	any	visium:sections	student	41	32	tabpfn - lgbm	-1.1102230246251565e-16	-0.054621848739495826	0.0517823858341098	no difference
+ood	mature	bulk:CPTAC-PAAD	student	54	11	tabpfn - logreg	-0.053911205073995716	-0.39967296511627903	0.3352705039525693	no difference
+ood	mature	bulk:CPTAC-PAAD	student	54	11	tabpfn - lgbm	-0.012684989429175508	-0.25800779505047794	0.2960259437242684	no difference
+ood	mature	bulk:TCGA-BLCA	student	225	114	tabpfn - logreg	0.19574837995890637	0.07244664031620558	0.3224207873772738	better
+ood	mature	bulk:TCGA-BLCA	student	225	114	tabpfn - lgbm	-0.005610874031926616	-0.07018724936847107	0.05937246039325067	no difference
+ood	mature	bulk:TCGA-LUSC	student	312	98	tabpfn - logreg	0.02353137516688919	-0.07282994687005526	0.11404843625370673	no difference
+ood	mature	bulk:TCGA-LUSC	student	312	98	tabpfn - lgbm	0.06928285332824724	0.02438635500498641	0.11406379035285286	better
+ood	mature	bulk:all	student	591	223	tabpfn - logreg	0.08137551179567165	-0.0016160495036971084	0.16062156028968716	no difference
+ood	mature	bulk:all	student	591	223	tabpfn - lgbm	0.04077305517644758	0.0007300966015217851	0.08181292363862423	better
+ood	mature	visium:spots	student	5491	254	tabpfn - logreg	0.3556263804335896	0.2412822392337247	0.4956642904574206	better
+ood	mature	visium:spots	student	5491	254	tabpfn - lgbm	0.015477395094564916	-0.02416728749235176	0.04439423488005081	no difference
+ood	mature	visium:sections	student	32	7	tabpfn - logreg	0.2885714285714286	-0.1444266381766381	0.6280519480519473	no difference
+ood	mature	visium:sections	student	32	7	tabpfn - lgbm	0.18285714285714294	0.008852513227513202	0.3661586617405582	better

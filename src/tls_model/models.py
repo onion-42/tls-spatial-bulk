@@ -7,9 +7,16 @@ Families:
     ktsp        k top-scoring pairs: votes of "gene i < gene j" rules (rank-only classifier)
     enet        elastic-net logistic regression on the selected panel
     lgbm        LightGBM on the selected panel
-Selection (`corr` | `shap`) happens inside `fit`, i.e. inside every CV fold:
+    tabpfn      TabPFN (tabular foundation model, in-context learning) on the selected panel; binary heads only;
+                needs the optional dependency group `tabpfn` and a GPU for more than ~5,000 rows
+Selection happens inside `fit`, i.e. inside every CV fold. Selectors that score columns:
+    corr   weighted |correlation| of the column with the label
+    shap   mean |SHAP| of an auxiliary LightGBM (whatever the family)
+    coef   mean |coefficient| of an auxiliary elastic-net on standardised columns (the linear model's own ranking)
     score all base columns -> top `n_pair_genes` signature genes -> add all their pairwise products
     -> re-score base top-`n_panel` + products -> keep top `n_panel`.
+Selector `all` selects nothing: the panel is every base column, without pair products (for a model that weighs
+the columns itself, e.g. TabPFN).
 With three classes in y (enet, lgbm only) `corr` scores a column by its best one-vs-rest correlation, `shap` by the
 mean |SHAP| over classes, and `predict_proba` returns the (n, 3) matrix.
 """
@@ -25,8 +32,11 @@ from sklearn.preprocessing import StandardScaler
 
 from tls_model.features import pair_products, weighted_abs_corr
 
-FAMILIES = ("signature", "prev_panel", "ktsp", "enet", "lgbm")
-SELECTORS = ("corr", "shap")
+FAMILIES = ("signature", "prev_panel", "ktsp", "enet", "lgbm", "tabpfn")
+# How the sample weights reach TabPFN: `native` = fit(sample_weight=w) (experimental upstream, raises when the
+# checkpoint takes no row weights); `resample` = bootstrap the fit rows with probability proportional to w.
+TABPFN_WEIGHTS = ("native", "resample")
+SELECTORS = ("corr", "shap", "coef", "all")
 LGBM_PARAMS = dict(
     n_estimators=300, learning_rate=0.05, num_leaves=15, min_child_samples=20,
     subsample=0.8, subsample_freq=1, colsample_bytree=0.5, reg_lambda=1.0, verbose=-1,
@@ -51,6 +61,26 @@ def _lgbm_shap(model: LGBMClassifier, X: np.ndarray) -> np.ndarray:
     contrib = model.predict(X, pred_contrib=True)
     n_classes = contrib.shape[1] // (X.shape[1] + 1)
     return contrib.reshape(X.shape[0], n_classes, X.shape[1] + 1)[:, :, :-1]
+
+
+def weighted_resample(X: np.ndarray, y: np.ndarray, w: np.ndarray, seed: int = 0) -> tuple[np.ndarray, np.ndarray]:
+    """Bootstrap sample of the rows drawn with probability proportional to `w`: turns sample weights into row
+    frequencies for a model without weights. A class with positive weight that the draw missed gets its heaviest
+    row appended, so no class disappears (the result is then longer than the input by the number of such classes).
+    One draw only: the fitted model carries this resampling noise."""
+    w = np.asarray(w, dtype=float)
+    if np.any(w < 0) or not w.sum() > 0:
+        raise ValueError("sample weights must be non-negative with a positive sum")
+    rng = np.random.default_rng(seed)
+    rows = rng.choice(len(y), size=len(y), replace=True, p=w / w.sum())
+    drawn = set(np.unique(y[rows]))
+    rescue = []
+    for c in np.unique(y):
+        candidates = np.flatnonzero(y == c)
+        if c not in drawn and w[candidates].sum() > 0:
+            rescue.append(candidates[np.argmax(w[candidates])])
+    rows = np.concatenate([rows, np.array(rescue, dtype=int)])
+    return X[rows], y[rows]
 
 
 class KTSP:
@@ -100,11 +130,15 @@ class HeadModel:
         seed: int = 0,
         n_shap_rows: int = 3000,
         preselected: tuple[list[str], list[str]] | None = None,
+        tabpfn_weights: str = "resample",
     ):
         if family not in FAMILIES:
             raise ValueError(f"unknown family {family!r}")
-        if family in ("ktsp", "enet", "lgbm") and selector not in SELECTORS:
+        if family in ("ktsp", "enet", "lgbm", "tabpfn") and selector not in SELECTORS:
             raise ValueError(f"{family} needs a selector in {SELECTORS}")
+        if tabpfn_weights not in TABPFN_WEIGHTS:
+            raise ValueError(f"tabpfn_weights must be one of {TABPFN_WEIGHTS}, got {tabpfn_weights!r}")
+        self.tabpfn_weights = tabpfn_weights
         self.family, self.selector = family, selector
         self.n_panel, self.n_pair_genes = n_panel, n_pair_genes
         self.signature_genes = set(signature_genes)
@@ -133,6 +167,10 @@ class HeadModel:
             if len(classes) <= 2:
                 return weighted_abs_corr(X, y.astype(float), w)
             return np.max([weighted_abs_corr(X, (y == c).astype(float), w) for c in classes], axis=0)
+        if self.selector == "coef":
+            linear = make_pipeline(StandardScaler(), SGDClassifier(random_state=self.seed, **ENET_PARAMS))
+            linear.fit(X, y, sgdclassifier__sample_weight=w)
+            return np.abs(linear[-1].coef_).mean(axis=0)
         model = LGBMClassifier(random_state=self.seed, **SHAP_SELECTOR_PARAMS).fit(X, y, sample_weight=w)
         rng = np.random.default_rng(self.seed)
         rows = rng.choice(len(X), size=min(self.n_shap_rows, len(X)), replace=False)
@@ -148,6 +186,8 @@ class HeadModel:
             gene_idx = [i for i, n in enumerate(names) if n.startswith("gene:")]
             scores = self._score(B[:, gene_idx], y, w)
             return [names[gene_idx[i]] for i in np.argsort(-scores)[: self.n_panel]]
+        if self.selector == "all":
+            return list(names)
 
         scores = self._score(B, y, w)
         order = np.argsort(-scores)
@@ -164,7 +204,7 @@ class HeadModel:
     def fit(self, B: np.ndarray, names: list[str], y: np.ndarray, w: np.ndarray) -> "HeadModel":
         y = np.asarray(y).astype(int)
         self.n_classes = len(np.unique(y))
-        if self.n_classes > 2 and self.family in ("ktsp", "signature", "prev_panel"):
+        if self.n_classes > 2 and self.family in ("ktsp", "signature", "prev_panel", "tabpfn"):
             raise ValueError(f"{self.family} is binary only; use enet or lgbm for {self.n_classes} classes")
         if self.preselected is not None:
             self.panel, self.pair_genes = list(self.preselected[0]), list(self.preselected[1])
@@ -175,6 +215,8 @@ class HeadModel:
             self.model = LGBMClassifier(random_state=self.seed, **LGBM_PARAMS).fit(X, y, sample_weight=w)
         elif self.family == "ktsp":
             self.model = KTSP().fit(X, y, w)
+        elif self.family == "tabpfn":
+            self.model = self._fit_tabpfn(X, y, w)
         else:
             if self.family == "signature":
                 linear = LogisticRegression(C=1.0, max_iter=2000)
@@ -183,6 +225,14 @@ class HeadModel:
             self.model = make_pipeline(StandardScaler(), linear)
             self.model.fit(X, y, **{f"{self.model.steps[-1][0]}__sample_weight": w})
         return self
+
+    def _fit_tabpfn(self, X: np.ndarray, y: np.ndarray, w: np.ndarray):
+        from tabpfn import TabPFNClassifier  # optional dependency group `tabpfn` (pulls in torch)
+
+        model = TabPFNClassifier(random_state=self.seed, fit_mode="fit_with_cache")
+        if self.tabpfn_weights == "native":
+            return model.fit(X, y, sample_weight=w)
+        return model.fit(*weighted_resample(X, y, w, self.seed))
 
     def predict_proba(self, B: np.ndarray, names: list[str]) -> np.ndarray:
         """P(class 1) for a binary head, the (n, n_classes) matrix for a multiclass one."""
@@ -193,10 +243,10 @@ class HeadModel:
         return probs if self.n_classes > 2 else probs[:, 1]
 
     def shap_values(self, B: np.ndarray, names: list[str]) -> tuple[np.ndarray, list[str], np.ndarray] | None:
-        """Per-unit SHAP values (log-odds scale) of the panel features; None for kTSP.
+        """Per-unit SHAP values (log-odds scale) of the panel features; None for kTSP and TabPFN.
         For a multiclass head: the contributions to the last class (mature)."""
         X = self._assemble(B, names, self.panel)
-        if self.family == "ktsp":
+        if self.family in ("ktsp", "tabpfn"):
             return None
         if self.family == "lgbm":
             return _lgbm_shap(self.model, X)[:, -1, :], list(self.panel), X
